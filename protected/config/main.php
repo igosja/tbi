@@ -30,10 +30,10 @@ return array(
         ),
 
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=igosja_photo',
+            'connectionString' => 'mysql:host=localhost;dbname=igosja_tbi',
             'emulatePrepare' => true,
-            'username' => 'igosja_photo',
-            'password' => '?aVq56*m',
+            'username' => 'igosja_tbi',
+            'password' => 'jorodus-',
             'charset' => 'utf8',
         ),
     ),

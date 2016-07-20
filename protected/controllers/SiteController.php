@@ -4,8 +4,8 @@ class SiteController extends Controller
 {
     public function actionLogin()
     {
-        $model = new Login;
-        if ($data = Yii::app()->request->getPost('Login')) {
+        $model = new User;
+        if ($data = Yii::app()->request->getPost('User')) {
             $username = $data['username'];
             $password = $data['password'];
             $identity = new UserIdentity($username, $password);

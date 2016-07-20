@@ -8,14 +8,10 @@ class Controller extends CController
     public $layout = 'main';
     public $menu = array();
     public $breadcrumbs = array();
-    public $a_social;
-    public $contacts;
-    public $defaultAction = 'index';
 
     public function init()
     {
-        $this->a_social = Social::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
-        $this->contacts = Contacts::model()->findByPk(1);
+
     }
 
     public function setSEO($model)

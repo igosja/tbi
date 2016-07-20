@@ -1,7 +1,3 @@
-Слайдер
-<br/>
-Фотык
-<br/>
-Мозаика альбомов
-<br/>
-<?= $o_mainpage->text; ?>
+<?= $o_mainpage->text_title; ?>
+<?= $o_mainpage->text_left; ?>
+<?= $o_mainpage->text_right; ?>
