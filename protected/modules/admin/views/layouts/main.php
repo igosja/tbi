@@ -40,10 +40,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;">Товары и категории<span class="fa arrow"></span></a>
+                        <a href="javascript:;">Бренды<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <?= CHtml::link('Бренды', array('brand/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('SEO-теги', array('brandpage/index')); ?>
                             </li>
                         </ul>
                     </li>

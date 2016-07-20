@@ -42,15 +42,24 @@
                 'name' => 'name',
             ),
             array(
+                'filter' => false,
+                'name' => 'status',
+                'headerHtmlOptions' => array('class' => 'col-lg-1'),
+                'type' => 'raw',
+                'value' => function($data) {
+                    if (1 == $data->status) {
+                        $link = 'on';
+                    } else {
+                        $link = 'off';
+                    }
+                    $link = '<a href="javascript:;" class="status" data-controller="' . $this->uniqueid . '" data-id="' . $data->id . '">' . $link . '</a>';
+                    return $link;
+                }
+            ),
+            array(
                 'class' => 'CButtonColumn',
                 'template'=>'{view}{update}{delete}',
                 'headerHtmlOptions' => array('class' => 'col-lg-1'),
-                'deleteButtonImageUrl' => false,
-                'deleteButtonLabel' => '<i class="fa fa-trash"></i> ',
-                'updateButtonImageUrl' => false,
-                'updateButtonLabel' => '<i class="fa fa-pencil"></i> ',
-                'viewButtonImageUrl' => false,
-                'viewButtonLabel' => '<i class="fa fa-eye"></i> ',
             ),
         ),
     )); ?>
