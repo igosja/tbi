@@ -1,9 +1,9 @@
 <?php
 
-class BrandpageController extends AController
+class FaqpageController extends AController
 {
-    public $h1 = 'SEO-теги брендов';
-    public $post_name = 'BrandPage';
+    public $h1 = 'SEO-теги ЧаВо';
+    public $post_name = 'FaqPage';
 
     public function actionIndex()
     {
@@ -33,7 +33,7 @@ class BrandpageController extends AController
 
     public function getModel($search = '')
     {
-        $model = new BrandPage($search);
+        $model = new FaqPage($search);
         return $model;
     }
 }

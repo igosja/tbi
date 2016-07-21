@@ -27,40 +27,10 @@
             </tr>
             <tr>
                 <td>
-                    <?= $model->getAttributeLabel('text'); ?>
-                </td>
-                <td>
-                    <?= $model->text; ?>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-lg-4">
-                    <?= $model->getAttributeLabel('web'); ?>
-                </td>
-                <td>
-                    <a href="<?= $model->web; ?>" target="_blank"><?= $model->web; ?></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <?= $model->getAttributeLabel('url'); ?>
                 </td>
                 <td>
-                    <?= CHtml::link($model->url, array('/brand/view', 'id' => $model->url), array('target' => '_blank')); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?= $model->getAttributeLabel('image_id'); ?>
-                </td>
-                <td>
-                    <?php if (isset($model->image->url)) { ?>
-                        <div class="col-lg-6">
-                            <a href="javascript:;" class="thumbnail">
-                                <img src="<?= $model->image->url ?>"/>
-                            </a>
-                        </div>
-                    <?php } ?>
+                    <?= CHtml::link($model->url, array('/blog/index', 'id' => $model->url), array('target' => '_blank')); ?>
                 </td>
             </tr>
             <tr>

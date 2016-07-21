@@ -8,6 +8,9 @@ class MainpageController extends AController
     public function actionIndex()
     {
         $model = $this->getModel()->findByPk(1);
+        $this->breadcrumbs = array(
+            $this->h1,
+        );
         $this->render('index', array('model' => $model));
     }
 
@@ -21,6 +24,10 @@ class MainpageController extends AController
                 $this->redirect(array('index'));
             }
         }
+        $this->breadcrumbs = array(
+            $this->h1 => array('index'),
+            'Редактирование',
+        );
         $this->render('form', array('model' => $model));
     }
 

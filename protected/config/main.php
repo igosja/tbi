@@ -2,11 +2,11 @@
 
 return array(
     'defaultController' => 'index',
-    'language'=>'ru',
-    'sourceLanguage'=>'ru',
+    'language' => 'ru',
+    'sourceLanguage' => 'ru',
     'timeZone' => 'UTC',
 
-    'import'=>array(
+    'import' => array(
         'application.models.*',
         'application.components.*',
     ),
@@ -14,7 +14,7 @@ return array(
     'components' => array(
         'urlManager' => array(
             'urlFormat' => 'path',
-            'showScriptName'=>false,
+            'showScriptName' => false,
             'rules' => array(
                 'gii' => 'gii',
                 'gii/<controller:\w+>' => 'gii/<controller>',
@@ -22,10 +22,10 @@ return array(
                 '<module>/<controller>/<action>/<id>' => '<module>/<controller>/<action>',
                 '<module>/<controller>/<action>' => '<module>/<controller>/<action>',
                 '<module>/<controller>' => '<module>/<controller>',
+                '<module>' => '<module>/index',
                 '<controller>/<action>/<id>' => '<controller>/<action>',
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>' => '<controller>/index',
-                '<module>' => '<module>/index',
             ),
         ),
 

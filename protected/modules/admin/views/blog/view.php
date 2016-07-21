@@ -26,6 +26,14 @@
                 </td>
             </tr>
             <tr>
+                <td class="col-lg-4">
+                    <?= $model->getAttributeLabel('name'); ?>
+                </td>
+                <td>
+                    <?= Yii::app()->dateFormatter->formatDateTime($model->date); ?>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <?= $model->getAttributeLabel('text'); ?>
                 </td>
@@ -34,19 +42,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="col-lg-4">
-                    <?= $model->getAttributeLabel('web'); ?>
-                </td>
-                <td>
-                    <a href="<?= $model->web; ?>" target="_blank"><?= $model->web; ?></a>
-                </td>
-            </tr>
-            <tr>
                 <td>
                     <?= $model->getAttributeLabel('url'); ?>
                 </td>
                 <td>
-                    <?= CHtml::link($model->url, array('/brand/view', 'id' => $model->url), array('target' => '_blank')); ?>
+                    <?= CHtml::link($model->url, array('/blog/view', 'id' => $model->url), array('target' => '_blank')); ?>
                 </td>
             </tr>
             <tr>

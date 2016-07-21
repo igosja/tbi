@@ -14,20 +14,114 @@
     <meta name="viewport" content="width=1260">
     <meta name="p:domain_verify" content="e2f098dcc8774e0ba7df70e2dba39d27"/>
     <meta name="google-site-verification" content="1tZDe5lIeTnoLqSvQWJY26R2XkfhOuYZpkJbO0lUiBU"/>
-    <title><?= $this->seo_title; ?></title>
-    <meta name="description" content="<?= $this->seo_description; ?>">
-    <meta name="keywords" content="<?= $this->seo_keywords; ?>">
+    <title> Материалы для декора: карнизы, ткани, краски, обои и многое другое Киев. Интерьер материалы для дома, офиса,
+        квартиры. ТБИ Киев. </title>
+    <meta name="description" content="Продажа материалов, готовой продукции для декора дома, офиса, квартиры  интерьера в Киеве. Купить штукатурку, шторы, карнизы, ткани, обои, краски, моторизированные карнизы цена Киев. ТБИ. "/>
+    <link rel="canonical" href="http://www.tbi.ua/"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/normalize.min.css">
     <link rel="stylesheet" href="/css/libs.css">
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/jquery.js"></script>
+
+    <style type="text/css">
+        .autocomplete-suggestions {
+            border: 1px solid #999;
+            background: #FFF;
+            cursor: default;
+            overflow: auto;
+            -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+            -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+            box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+        }
+
+        .autocomplete-suggestion {
+            padding: 2px 5px;
+            overflow: hidden;
+        }
+
+        .autocomplete-selected {
+            background: #F0F0F0;
+        }
+
+        .autocomplete-suggestions span.highlight {
+            font-weight: bold;
+        }
+
+        .autocomplete-suggestion img {
+            float: left;
+            margin-right: 5px
+        }
+
+        input.autocomplete-loading {
+            background: url('/wa-apps/shop/plugins/searchautocomplete/img/loading.gif') right 3px no-repeat;
+        }
+
+        .autocomplete-info a, .autocomplete-suggestions a {
+            color: #27282d;
+            display: block;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            text-decoration: none;
+            margin-left: 11px;
+            position: relative;
+        }
+    </style>
+    <script type="text/javascript"
+            src="/wa-apps/shop/plugins/searchautocomplete/js/jquery.autocomplete.min.js?1.7"></script>
+    <script type="text/javascript" src="/wa-apps/shop/plugins/itemsets/js/itemsets.js"></script>
+    <script type="text/javascript" src="/wa-apps/shop/plugins/itemsets/js/itemsetsFrontend.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").searchautocomplete({"serviceUrl": "\/shop\/search\/autocomplete\/", "minChars": 2});
+        });
+    </script>
+
+
 </head>
-<body>
+<body oncopy="return false;">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!--google+ share-->
+<script src="https://apis.google.com/js/platform.js" async defer>
+    {
+        lang: 'ru'
+    }
+</script>
+
+<!--facebook share-->
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!--tweet share-->
+<script>!function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');</script>
+
+
 <div class="sitewrap">
     <div class="siteinfo">
         <div class="wrap">
             <a href="javascript:;" class="siteinfo-btn"></a>
+
             <h1 class="siteinfo-heading">Материалы для декора, карнизы, ткани, обои, штукатурки интернет-магазин ТБИ
                 Киев. </h1>
             <p>Интернет магазин фирмы <strong> «ТБИ» (TBI) </strong>, которая существует на рынке с 1992 года и
@@ -93,29 +187,39 @@
                 собственный уют.</p>
         </div>
     </div>
+
+
     <header>
         <div class="wrap">
+
             <div class="hleft">
-                <a href="javascript:;" class="haddr" title="Контакты">Киев, ул. Гоголевская, 23</a>
+                <a href="/kontakty/" class="haddr" title="Контакты">Киев, ул. Гоголевская, 23</a>
+
                 <div class="hphones">
                     <a href="javascript:;" class="hphone" title="(044) 482-01-01">(044) <strong>482-01-01</strong></a>
                     <span>•</span>
                     <a href="javascript:;" class="hphone" title="(050) 481-01-01">(050) <strong>481-01-01</strong></a>
                 </div>
-                <a href="javascript:;" data-selector="form-sendEmail" class="callrequest overlayElementTrigger" title="Заказать звонок">Заказать звонок</a>
+                <a href="javascript:;" data-selector="form-sendEmail" class="callrequest overlayElementTrigger"
+                   title="Заказать звонок">Заказать звонок</a>
             </div>
-            <a href="/" class="logo"><img src="/img/logo.png" alt=""></a>
+
+            <a href="/" class="logo"><img src="/wa-data/public/site/themes/tbi_site/img/logo.png" alt=""></a>
+
             <div class="hright">
                 <div class="user-functions">
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="Вход">Вход</a>
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn"
+                       title="Вход">Вход</a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp"
+                       title="Регистрация">Регистрация</a>
                 </div>
                 <div class="hsearch">
-                    <form>
+                    <form method="get" action="/shop/search/">
                         <input name="query" type="search" placeholder="Поиск..." id="search">
                         <input type="submit">
                     </form>
                 </div>
+
                 <div class="hcurrency">
                     <select id="currency">
                         <option value="UAH" selected>UAH</option>
@@ -124,21 +228,24 @@
                     </select>
                 </div>
             </div>
+
         </div>
     </header>
     <nav>
         <div class="wrap clearfix">
             <div class="navleft">
                 <ul>
-                    <li><a href="javascript:;" title="О компании">О компании</a></li>
-                    <li><a href="javascript:;" title="Блог">Блог</a></li>
+                    <li><a href="/o-kompanii" title="О компании">О компании</a></li>
+                    <li><a href="/blog" title="Блог">Блог</a></li>
                     <li>
-                        <a href="javascript:;" title="Наши товары">Наши товары</a>
+                        <a href="/shop/" title="НАШИ ТОВАРЫ">НАШИ ТОВАРЫ</a>
                         <div class="first-m">
                             <div class="wrap">
                                 <ul class="clearfix">
                                     <li>
-                                        <a href="javascript:;" title="Декоративные материалы" class="has-c">Декоративные материалы</a>
+                                        <!--<a href="/shop/category/dekorativnye-materialy/" title="Декоративные материалы">Декоративные материалы</a>-->
+                                        <a href="/shop/category/dekorativnye-materialy/" title="Декоративные материалы"
+                                           class="has-c">Декоративные материалы</a>
                                         <div class="second-m">
                                             <div class="wrap clearfix">
                                                 <div class="secon-m__left">
@@ -147,75 +254,98 @@
                                                             <div class="second-m__title">
                                                                 Тип материала
                                                             </div>
+
                                                             <div>
-                                                                <a href="javascript:;">Фоновые материалы</a>
-                                                            </div>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_materiala%5B%5D=690i/">Фоновые
+                                                                    материалы</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Декоративные краски</a>
-                                                            </div>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_materiala%5B%5D=79">Декоративные
+                                                                    краски</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Тонкослойные материалы</a>
-                                                            </div>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_materiala%5B%5D=80">Тонкослойные
+                                                                    материалы</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Декоративные штукатурки</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_materiala%5B%5D=81">Декоративные
+                                                                    штукатурки</a></div>
+
+                                                            <a href="/shop/category/dekorativnye-materialy/"
+                                                               class="second-m__all">Смотреть все</a>
+
+
                                                         </div>
+
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 Тип помещения
                                                             </div>
+
                                                             <div>
-                                                                <a href="javascript:;">Интерьер</a>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_pomeshcheniya%5B%5D=1">Интерьер</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Фасад</a>
+                                                                <a href="/shop/category/dekorativnye-materialy/?view_type=table&price_min=&price_max=&tip_pomeshcheniya%5B%5D=2">Фасад</a>
                                                             </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+
+                                                            <a href="/shop/category/dekorativnye-materialy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
+
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 По бренду
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Giorgio Graesan & Friends</a></div>
+                                                                <a href="/shop/category/dekorativnye-materialy/?brend[]=571">Giorgio
+                                                                    Graesan & Friends</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Novacolor</a>
+                                                                <a href="/shop/category/dekorativnye-materialy/?brend[]=625">Novacolor</a>
                                                             </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                            <a href="/shop/category/dekorativnye-materialy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
+
+
                                                         <div class="secon-m__left">
                                                             <div class="clearfix">
+
                                                                 <div class="second-m__item second-m__item_full">
                                                                     <div class="second-m__title">
                                                                         Декоративные эффекты
+
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
+
                                                         <div class="secon-m__left">
                                                             <div class="clearfix">
                                                                 <div class="second-m__item">
                                                                     <div class="second-m__title">
                                                                         По декорам
                                                                     </div>
-                                                                    <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                                    <a href="/shop/category/dekorativnye-materialy/effekty/"
+                                                                       class="second-m__all">Смотреть все</a>
                                                                 </div>
+
                                                                 <div class="second-m__item">
                                                                     <div class="second-m__title">
                                                                         Стиль декора
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">Классический</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&stil%5B%5D=3">Классический</a>
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">Арт-деко</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&stil%5B%5D=4">Арт-деко</a>
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">High-tech/Loft/Минимализм</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&stil%5B%5D=5">High-tech/Loft/Минимализм</a>
                                                                     </div>
+
                                                                     <div>
-                                                                        <a href="javascript:;">Фьюжн</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&stil%5B%5D=4871">Фьюжн</a>
                                                                     </div>
                                                                 </div>
                                                                 <div class="second-m__item">
@@ -223,31 +353,43 @@
                                                                         Эффект поверхности
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">Камень/мрамор/траветин</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&effekt_poverkhnosti%5B%5D=14">Камень/мрамор/траветин</a>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&effekt_poverkhnosti%5B%5D=16">Бетон</a>
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">Бетон</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&effekt_poverkhnosti%5B%5D=17">Коррозия/ржавчина</a>
                                                                     </div>
                                                                     <div>
-                                                                        <a href="javascript:;">Коррозия/ржавчина</a>
+                                                                        <a href="/shop/category/dekorativnye-materialy/effekty/?view_type=table&effekt_poverkhnosti%5B%5D=19">Шёлк/ткань/бархат</a>
                                                                     </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Шёлк/ткань/бархат</a>
-                                                                    </div>
-                                                                    <a href="javascript:;" class="second-m__all">Смотреть все</a>
+
+                                                                    <a href="/shop/category/dekorativnye-materialy/effekty/"
+                                                                       class="second-m__all">Смотреть все</a>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+
                                                     </div>
                                                 </div>
+
+
                                                 <div class="secon-m__right">
-                                                    <img src="/img/menu-img-decormat.jpg" alt="" />
+                                                    <img
+                                                        src="/wa-data/public/site/themes/tbi_site/img/menu-img-decormat.jpg"
+                                                        alt=""/>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" title="Карнизы" class="has-c">Карнизы</a>
+                                        <!--<a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/" title="Карнизы" >Карнизы</a>-->
+                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/" title="Карнизы"
+                                           class="has-c">Карнизы</a>
                                         <div class="second-m">
                                             <div class="wrap clearfix">
                                                 <div class="secon-m__left">
@@ -257,83 +399,93 @@
                                                                 По типу системы
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Карнизы для драпированных занавесей</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_sistemy%5B%5D=26&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Карнизы
+                                                                    для драпированных занавесей</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Карнизы для римских штор</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_sistemy%5B%5D=27&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Карнизы
+                                                                    для римских штор</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Карнизы для панельных штор</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_sistemy%5B%5D=28&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Карнизы
+                                                                    для панельных штор</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Карнизные системы для мансардных окон</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_sistemy%5B%5D=29&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Карнизные
+                                                                    системы для мансардных окон</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Декоративные карнизы</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/dekorativnye-karnizy/">Декоративные
+                                                                    карнизы</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Специальные системы</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_sistemy%5B%5D=31&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Специальные
+                                                                    системы</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Ламбрекенная планка</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/lambrekennaya-planka/">Ламбрекенная
+                                                                    планка</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Рулонные шторы</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/rulonnye-shtory/">Рулонные
+                                                                    шторы</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Деревянные жалюзи</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/derevyannye-zhalyuzi/">Деревянные
+                                                                    жалюзи</a></div>
+
                                                             <div>
-                                                                <a href="javascript:;">Вертикальные жалюзи</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/vertikalnye-zhalyuzi/">Вертикальные
+                                                                    жалюзи</a></div>
+
+                                                            <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 По типу управления
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Шнур</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?tip_upravleniya[]=36">Шнур</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Цепочка</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?tip_upravleniya[]=37">Цепочка</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Корба</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?tip_upravleniya[]=38">Корба</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Ручное управление</a>
-                                                            </div>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?tip_upravleniya[]=39">Ручное
+                                                                    управление</a></div>
                                                             <div>
-                                                                <a href="javascript:;">Моторизированная система</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?tip_upravleniya[]=40">Моторизированная
+                                                                    система</a></div>
+                                                            <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 Тип крепления
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Потолочное</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_krepleniya%5B%5D=41&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Потолочное</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Стеновое</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_krepleniya%5B%5D=42&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">Стеновое</a>
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">На раму</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/?view_type=table&tip_krepleniya%5B%5D=43&dlina_karniza%5Bmin%5D=&dlina_karniza%5Bmax%5D=&vysota_proema%5Bmin%5D=&vysota_proema%5Bmax%5D=&ves_polotna%5Bmin%5D=&ves_polotna%5Bmax%5D=">На
+                                                                    раму</a></div>
+                                                            <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="secon-m__right">
-                                                    <img src="/img/menu-img-karnozi.jpg" alt="" />
+                                                    <img
+                                                        src="/wa-data/public/site/themes/tbi_site/img/menu-img-karnozi.jpg"
+                                                        alt=""/>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" title="Ткани" class="has-c">Ткани</a>
+                                        <!--<a href="/shop/category/tkani/" title="Ткани">Ткани</a>-->
+                                        <a href="/shop/category/tkani/" title="Ткани" class="has-c">Ткани</a>
                                         <div class="second-m">
                                             <div class="wrap clearfix">
                                                 <div class="secon-m__left">
@@ -342,39 +494,41 @@
                                                             <div class="second-m__title">
                                                                 По типу
                                                             </div>
-                                                            <div>
-                                                                <a href="javascript:;">Декоративные ткани</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Технические ткани</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ткани Atelier Mottura</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ткани Блекаут (Blackout)</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                            <div><a href="/shop/category/tkani/dekorativnye-tkani/">Декоративные
+                                                                    ткани</a></div>
+                                                            <div><a href="/shop/category/tkani/tekhnicheskie-tkani/">Технические
+                                                                    ткани</a></div>
+                                                            <div><a href="/shop/category/tkani/tkani-atelier-mottura/">Ткани
+                                                                    Atelier Mottura</a></div>
+                                                            <div><a href="/shop/category/tkani/tkani-blekaut-blackout/">Ткани
+                                                                    Блекаут (Blackout)</a></div>
+                                                            <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                                                               class="second-m__all">Смотреть все</a>
                                                         </div>
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 По бренду
                                                             </div>
                                                             <div>
-                                                                <a href="javascript:;">Mottura</a>
+                                                                <a href="/shop/category/tkani/?view_type=table&brend%5B%5D=577&shirina%5Bmin%5D=&shirina%5Bmax%5D=">Mottura</a>
                                                             </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                            <a href="/shop/category/tkani/" class="second-m__all">Смотреть
+                                                                все</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="secon-m__right">
-                                                    <img src="/img/menu-img-tkani.jpg" alt="" />
+                                                    <img
+                                                        src="/wa-data/public/site/themes/tbi_site/img/menu-img-tkani.jpg"
+                                                        alt=""/>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" title="Обои" class="has-c">Обои</a>
+                                        <!--<a href="/shop/category/oboi/" title="Обои" >Обои</a>-->
+                                        <a href="/shop/category/oboi/" title="Обои" class="has-c">Обои</a>
                                         <div class="second-m">
                                             <div class="wrap clearfix">
                                                 <div class="secon-m__left">
@@ -383,77 +537,955 @@
                                                             <div class="second-m__title">
                                                                 По бренду
                                                             </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                            <a href="/shop/category/oboi/" class="second-m__all">Смотреть
+                                                                все</a>
                                                         </div>
+
                                                         <div class="second-m__item">
                                                             <div class="second-m__title">
                                                                 По типу
                                                             </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
+                                                            <a href="/shop/category/oboi/" class="second-m__all">Смотреть
+                                                                все</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="secon-m__right">
-                                                    <img src="/img/menu-img-oboi.jpg" alt="" />
+                                                    <img
+                                                        src="/wa-data/public/site/themes/tbi_site/img/menu-img-oboi.jpg"
+                                                        alt=""/>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li><a href="javascript:;" title="Другое">Другое</a></li>
+                                    <!--<li><a href="/shop/category/venetsianskie-shtukaturki/" title="Венецианские штукатурки">Венецианские штукатурки</a> </li>-->
+                                    <li><a href="/shop/category/drugoe/" title="Другое">Другое</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
-                    <li><a href="javascript:;" title="Услуги">Услуги</a></li>
-                    <li><a href="javascript:;" title="Сотрудничество">Сотрудничество</a>
-                    <li><a href="javascript:;" title="Контакты">Контакты</a></li>
+                    <li><a href="/services/" title="Услуги">Услуги</a></li>
+                    <li><a href="/cooperation" title="Сотрудничество">Сотрудничество</a>
+                        <!--<div class="first-m">
+                            <div class="wrap">
+                                <ul class="clearfix">
+                                    <li><a href="/cooperation/arkhitektoram-i-dizayneram" title="Архитекторам и дизайнерам">Архитекторам и дизайнерам</a></li>
+                                    <li><a href="/cooperation/partneram-v-regionakh" title="Партнерам в регионах">Партнерам в регионах</a></li>
+                                    <li><a href="/cooperation/dileram" title="Дилерам">Дилерам</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>-->
+                    <li><a href="/kontakty/" title="Контакты">Контакты</a></li>
                 </ul>
             </div>
             <div class="navright">
-                <a href="javascript:;" title="0" class="navcart <?php if (1) { ?>empty<?php } ?>">
+                <a href="javascript:;" title="0" class="navcart empty ">
                     <span>0</span>
                 </a>
             </div>
-            <a href="javascript:;" class="compare-block" id="compare-leash" <?php if (1) { ?>style="display:none;"<?php } ?> title="Сравнить товары">Сравнить товары</a>
+            <a href="/shop/compare/" class="compare-block" id="compare-leash" style="display:none;"
+               title="Сравнить товары">Сравнить товары</a>
         </div>
     </nav>
-    <?= $content; ?>
+
+
+    <section class="mainsliderwrap bxunstyled">
+        <div class="mainslider">
+            <div class="slide"
+                 style="background-image:url(http://www.tbi.ua/wa-data/public/photos/76/01/176/176.1600x450.jpg);"
+                 data-slidenumber="0"></div>
+            <div class="slide"
+                 style="background-image:url(http://www.tbi.ua/wa-data/public/photos/77/01/177/177.1600x450.jpg);"
+                 data-slidenumber="1"></div>
+            <div class="slide"
+                 style="background-image:url(http://www.tbi.ua/wa-data/public/photos/78/01/178/178.1600x450.jpg);"
+                 data-slidenumber="2"></div>
+            <div class="slide"
+                 style="background-image:url(http://www.tbi.ua/wa-data/public/photos/79/01/179/179.1600x450.jpg);"
+                 data-slidenumber="3"></div>
+            <div class="slide"
+                 style="background-image:url(http://www.tbi.ua/wa-data/public/photos/80/01/180/180.1600x450.jpg);"
+                 data-slidenumber="4"></div>
+        </div>
+
+        <div class="slideproduct-contents">
+            <div class="slideproduct-wrap">
+                <div class="slideproduct">
+                    <div class="slideproduct-content ms-0">
+                        <div class="sp-name"><span>Моторизированный карниз для штор Power 571/2</span></div>
+                        <a href="/shop/motorizirovannyy-karniz-dlya-shtor-power-5712" class="sp-btn">ПОДРОБНЕЕ О
+                            ТОВАРЕ</a>
+                    </div>
+                    <div class="slideproduct-content ms-1">
+                        <div class="sp-name"><span>Вертикальные жалюзи Mono 371/2</span></div>
+                        <a href="/shop/vertikalnye-zhalyuzi-mono-3712" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
+                    </div>
+                    <div class="slideproduct-content ms-2">
+                        <div class="sp-name"><span>Боксовая тканевая ролета на пружине Rollbox 167</span></div>
+                        <a href="/shop/boksovaja-tkanevaja-roleta-na-pruzhine-rollbox-167" class="sp-btn">ПОДРОБНЕЕ О
+                            ТОВАРЕ</a>
+                    </div>
+                    <div class="slideproduct-content ms-3">
+                        <div class="sp-name"><span>Карниз для тюля и шторы Modulo 205</span></div>
+                        <a href="/shop/karniz-dlya-tyulya-i-shtory-modulo-205" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
+                    </div>
+                    <div class="slideproduct-content ms-4">
+                        <div class="sp-name"><span>Декоративная штукатурка Segui Il Tuo Istinto </span></div>
+                        <a href="/shop/dekorativnaya-shtukaturka-segui-il-tuo-istinto" class="sp-btn">ПОДРОБНЕЕ О
+                            ТОВАРЕ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main3buttons">
+        <div class="wrap clearfix">
+            <a href="/dostavka" title="Доставка по всей Украине">
+                <img src="/wa-data/public/site/themes/tbi_site/img/main1btn.png" alt="" style="top:34px;">
+                <strong>Доставка</strong>
+                <span>по всей Украине</span>
+            </a>
+            <a href="/razlichnye-sposoby-oplaty" title="Различные способы оплаты">
+                <img src="/wa-data/public/site/themes/tbi_site/img/main2btn.png" alt="" style="top:24px;">
+                <strong>Различные</strong>
+                <span>способы оплаты</span>
+            </a>
+            <a href="/cooperation" title="Партнерские программы">
+                <img src="/wa-data/public/site/themes/tbi_site/img/main4btn.png" alt="" style="top:24px;">
+                <strong>Партнерские</strong>
+                <span>программы</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="maincatblocks">
+        <div class="wrap clearfix">
+            <a href="/shop/category/dekorativnye-materialy" class="mcb-left"
+               style="background-image:url(/wa-data/public/site/themes/tbi_site/img/mcb1.jpg);">
+                <div><span>Декоративные<br>материалы</span></div>
+                <span class="mcbbtn"><span>Смотреть каталог</span></span>
+            </a>
+
+            <div class="mcb-right">
+                <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                   style="background-image:url(/wa-data/public/site/themes/tbi_site/img/mcb2.jpg);">
+                    <div><span>Карнизы<br>и солнцезащитные<br>системы</span></div>
+                    <span class="mcbbtn"><span>Смотреть каталог</span></span>
+                </a>
+                <a href="/shop/category/tekhnicheskie-tkani/"
+                   style="background-image:url(/wa-data/public/site/themes/tbi_site/img/mcb3.jpg);">
+                    <div><span>Ткани</span></div>
+                    <span class="mcbbtn"><span>Смотреть каталог</span></span>
+                </a>
+                <a href="/shop/category/oboi/"
+                   style="background-image:url(/wa-data/public/site/themes/tbi_site/img/mcb5.jpg);">
+                    <div><span>Обои</span></div>
+                    <span class="mcbbtn"><span>Смотреть каталог</span></span>
+                </a>
+                <a href="/shop/category/drugoe/"
+                   style="background-image:url(/wa-data/public/site/themes/tbi_site/img/mcb4.jpg);">
+                    <div><span>Другое</span></div>
+                    <span class="mcbbtn"><span>Смотреть каталог</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="mainabout">
+        <div class="wrap">
+            <h3 class="section-heading">О компании ТБИ</h3>
+
+            <div class="ma-text clearfix">
+                <div class="ma-left">
+                    <p>Фирма «ТБИ» была основана в 1992 году и вот уже более 20 лет лет успешно работает на рынке
+                        Украины, зарекомендовав себя, как надёжный партнёр с комплексным подходом к высококлассному <a
+                            href="http://www.tbi.ua/shop/category/dekorativnye-materialy/" target="_blank">декору
+                            интерьеров и экстерьеров</a>, декору окон и <a
+                            href="http://www.tbi.ua/shop/category/karnizy-i-solntsezashchitnye-sistemy/"
+                            target="_blank">профессиональной солнцезащите</a> частных и общественных объектов, работая
+                        непосредственно с Заказчиками, а также сотрудничая, как с архитекторами и дизайнерами, так и со
+                        строительными и подрядными организациями.<br>
+                        Фирма "ТБИ" является эксклюзивным представителем декоративных материалов <a
+                            href="http://www.tbi.ua/shop/category/brendy/giorgio-graesan--friends/" target="_blank">Giorgio
+                            Graesan &amp;Friends</a> (Италия) и <a
+                            href="http://www.tbi.ua/shop/category/brendy/novacolor/" target="_blank">NOVACOLOR</a>
+                        (Италия), а также является официальным представителем компании</p>
+                </div>
+                <div class="ma-right">
+                    <p><a href="http://www.tbi.ua/shop/category/brendy/mottura/" target="_blank">MOTTURA</a>
+                        специализирующейся на профессиональной солнцезащите и карнизных системах для декора окон.
+                        Помимо дистрибуции и проектной деятельности, Компания "ТБИ" также работает с конечными
+                        потребителями на основе интерьер-бутика "VOGUE INTERIORS", находящегося в Киеве, а также
+                        запускает интернет-магазин с помощью которого можно купить декоративные материалы, карнизы,
+                        рулонные шторы, деревянные жалюзи, а также ткани и даже заказать пошив онлайн с доставкой по
+                        всей Украине и не только. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brandssliderwrap bxunstyled">
+        <div class="wrap clearfix">
+            <h4 class="section-heading section-heading_brands">БРЕНДЫ</h4>
+            <div>
+                <div class="brandsslider">
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/agena/">
+                                    <img src="/wa-data/public/shop/categories/15/9.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/aldeco/">
+                                    <img src="/wa-data/public/shop/categories/21/10.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/ardecora/">
+                                    <img src="/wa-data/public/shop/categories/16/11.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/bennet-silk/">
+                                    <img src="/wa-data/public/shop/categories/18/12.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/boussac/">
+                                    <img src="/wa-data/public/shop/categories/19/13.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/braqueni/">
+                                    <img src="/wa-data/public/shop/categories/22/14.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/casamance/">
+                                    <img src="/wa-data/public/shop/categories/23/15.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/castello-del-barro/">
+                                    <img src="/wa-data/public/shop/categories/24/16.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/chivasso/">
+                                    <img src="/wa-data/public/shop/categories/25/17.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/christian-fischbacher/">
+                                    <img src="/wa-data/public/shop/categories/27/18.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/creation-baumman/">
+                                    <img src="/wa-data/public/shop/categories/26/19.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/dedar/">
+                                    <img src="/wa-data/public/shop/categories/28/20.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/designers-guild/">
+                                    <img src="/wa-data/public/shop/categories/29/21.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/elitis/">
+                                    <img src="/wa-data/public/shop/categories/33/22.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/etamine/">
+                                    <img src="/wa-data/public/shop/categories/31/23.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/etro/">
+                                    <img src="/wa-data/public/shop/categories/32/24.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/fadini-borghi/">
+                                    <img src="/wa-data/public/shop/categories/35/25.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/giorgio-graesan--friends/">
+                                    <img src="/wa-data/public/shop/categories/14/26.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/henry-bertrand/">
+                                    <img src="/wa-data/public/shop/categories/38/27.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/houles/">
+                                    <img src="/wa-data/public/shop/categories/39/28.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/jab-anstoetz/">
+                                    <img src="/wa-data/public/shop/categories/40/29.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/kinnasand/">
+                                    <img src="/wa-data/public/shop/categories/41/30.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/lelievre/">
+                                    <img src="/wa-data/public/shop/categories/42/31.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/lizzo/">
+                                    <img src="/wa-data/public/shop/categories/44/32.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/loris-zanca/">
+                                    <img src="/wa-data/public/shop/categories/43/33.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/mottura/">
+                                    <img src="/wa-data/public/shop/categories/45/34.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/myb-textiles/">
+                                    <img src="/wa-data/public/shop/categories/46/35.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/nobilis/">
+                                    <img src="/wa-data/public/shop/categories/48/36.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/novacolor/">
+                                    <img src="/wa-data/public/shop/categories/49/37.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/nya-nordiska/">
+                                    <img src="/wa-data/public/shop/categories/50/38.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/osborne--little/">
+                                    <img src="/wa-data/public/shop/categories/51/39.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/pierre-frey/">
+                                    <img src="/wa-data/public/shop/categories/52/40.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/rubelli/">
+                                    <img src="/wa-data/public/shop/categories/54/41.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/sahco-hesslein/">
+                                    <img src="/wa-data/public/shop/categories/55/42.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/sanderson/">
+                                    <img src="/wa-data/public/shop/categories/56/43.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/saum-s-viebahn/">
+                                    <img src="/wa-data/public/shop/categories/57/44.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/soniya-raykel/">
+                                    <img src="/wa-data/public/shop/categories/58/45.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/sur-canape/">
+                                    <img src="/wa-data/public/shop/categories/59/46.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/texdecor/">
+                                    <img src="/wa-data/public/shop/categories/60/47.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/ulf-moritz/">
+                                    <img src="/wa-data/public/shop/categories/61/48.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/verel-de-beval/">
+                                    <img src="/wa-data/public/shop/categories/62/49.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div>
+                            <div>
+                                <a href="/shop/category/brendy/zimmer--rohde/">
+                                    <img src="/wa-data/public/shop/categories/64/50.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="section__link" href="/shop/category/brendy/" title="Все бренды">Все бренды</a>
+        </div>
+    </section>
+    <section class="popularitems">
+        <div class="wrap">
+            <h4 class="section-heading">Популярные товары</h4>
+
+            <div class="popularitemsgrid clearfix">
+
+
+                <div class="popularitem">
+                    <div class="pi-top" style="height: 334px;">
+                        <a href="/shop/dekorativnaya-kraska-dune-gold/" class="pi-img"
+                           style="background-image: url(/wa-data/public/shop/products/24/03/324/images/794/794.280x280.jpg)"
+                           title="Декоративная краска Dune Gold "></a>
+                        <a href="/shop/dekorativnaya-kraska-dune-gold/" class="pi-name"
+                           title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
+                        <span class="pi-price">
+                <span>от </span>
+                2 955,29 грн.
+                </span>
+                    </div>
+                    <div class="clearfix">
+                        <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart"
+                           title="В
+            корзину">В
+                            корзину</a>
+                        <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">Сравнить</a>
+                    </div>
+                    <div class="pi-details">
+                        <table>
+                            <tr>
+                                <td>Артикул:</td>
+                                <td>36147</td>
+                            </tr>
+                            <tr>
+                                <td>Тип товара:</td>
+                                <td>Декоративные краски</td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>Novacolor</td>
+                            </tr>
+                            <tr>
+                                <td>Упаковка:</td>
+                                <td>5 kg</td>
+                            </tr>
+                            <tr>
+                                <td>Применение:</td>
+                                <td>Интерьер</td>
+                            </tr>
+                            <tr>
+                                <td>Расход:</td>
+                                <td>0.15</td>
+                            </tr>
+                            <tr>
+                                <td>Цвет:</td>
+                                <td><span class="pi-color" style="background:;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Наличие:</td>
+                                <td>В наличии</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="popularitem">
+                    <div class="pi-top" style="height: 334px;">
+                        <a href="/shop/dekorativnaya-kraska-afrika-25-l/" class="pi-img"
+                           style="background-image: url(/wa-data/public/shop/products/19/03/319/images/786/786.280x280.jpg)"
+                           title="Декоративная краска Africa "></a>
+                        <a href="/shop/dekorativnaya-kraska-afrika-25-l/" class="pi-name"
+                           title="Декоративная краска Africa ">Декоративная краска Africa </a>
+                        <span class="pi-price">
+                <span>от </span>
+                2 479,50 грн.
+                </span>
+                    </div>
+                    <div class="clearfix">
+                        <a href="javascript:;" data-id="319" data-sku="36076" data-type="2" class="pi-cart addtocart"
+                           title="В
+            корзину">В
+                            корзину</a>
+                        <a href="javascript:;" class="pi-compare compare-add" data-product="319" title="Сравнить">Сравнить</a>
+                    </div>
+                    <div class="pi-details">
+                        <table>
+                            <tr>
+                                <td>Артикул:</td>
+                                <td>36076</td>
+                            </tr>
+                            <tr>
+                                <td>Тип товара:</td>
+                                <td>Декоративные краски</td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>Novacolor</td>
+                            </tr>
+                            <tr>
+                                <td>Упаковка:</td>
+                                <td>2.5 kg</td>
+                            </tr>
+                            <tr>
+                                <td>Применение:</td>
+                                <td>Интерьер</td>
+                            </tr>
+                            <tr>
+                                <td>Расход:</td>
+                                <td>0.15</td>
+                            </tr>
+                            <tr>
+                                <td>Цвет:</td>
+                                <td><span class="pi-color" style="background:;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Наличие:</td>
+                                <td>В наличии</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="popularitem">
+                    <div class="pi-top" style="height: 334px;">
+                        <a href="/shop/fase-silossanica/" class="pi-img"
+                           style="background-image: url(/wa-data/public/shop/products/40/03/340/images/821/821.280x280.jpg)"
+                           title="Fase Silossanica "></a>
+                        <a href="/shop/fase-silossanica/" class="pi-name" title="Fase Silossanica ">Fase
+                            Silossanica </a>
+                        <span class="pi-price">
+                <span>от </span>
+                1 346,92 грн.
+                </span>
+                    </div>
+                    <div class="clearfix">
+                        <a href="javascript:;" data-id="340" data-sku="36215" data-type="2" class="pi-cart addtocart"
+                           title="В
+            корзину">В
+                            корзину</a>
+                        <a href="javascript:;" class="pi-compare compare-add" data-product="340" title="Сравнить">Сравнить</a>
+                    </div>
+                    <div class="pi-details">
+                        <table>
+                            <tr>
+                                <td>Артикул:</td>
+                                <td>36215</td>
+                            </tr>
+                            <tr>
+                                <td>Тип товара:</td>
+                                <td>Декоративные краски</td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>Novacolor</td>
+                            </tr>
+                            <tr>
+                                <td>Упаковка:</td>
+                                <td>2.5 kg</td>
+                            </tr>
+                            <tr>
+                                <td>Применение:</td>
+                                <td>Интерьер</td>
+                            </tr>
+                            <tr>
+                                <td>Расход:</td>
+                                <td>0.05</td>
+                            </tr>
+                            <tr>
+                                <td>Цвет:</td>
+                                <td><span class="pi-color" style="background:;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Наличие:</td>
+                                <td>В наличии</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="popularitem">
+                    <div class="pi-top" style="height: 334px;">
+                        <a href="/shop/venetsianskaya-shtukaturka-spatula-stuhhi-classico-2-kg/" class="pi-img"
+                           style="background-image: url(/wa-data/public/shop/products/49/00/49/images/205/205.280x280.jpg)"
+                           title="Венецианская штукатурка Spatula Stuhhi Classico "></a>
+                        <a href="/shop/venetsianskaya-shtukaturka-spatula-stuhhi-classico-2-kg/" class="pi-name"
+                           title="Венецианская штукатурка Spatula Stuhhi Classico ">Венецианская штукатурка Spatula
+                            Stuhhi Classico </a>
+                        <span class="pi-price">
+                <span>от </span>
+                2 810,93 грн.
+                </span>
+                    </div>
+                    <div class="clearfix">
+                        <a href="javascript:;" data-id="49" data-sku="16796" data-type="2" class="pi-cart addtocart"
+                           title="В
+            корзину">В
+                            корзину</a>
+                        <a href="javascript:;" class="pi-compare compare-add" data-product="49" title="Сравнить">Сравнить</a>
+                    </div>
+                    <div class="pi-details">
+                        <table>
+                            <tr>
+                                <td>Артикул:</td>
+                                <td>16796</td>
+                            </tr>
+                            <tr>
+                                <td>Тип товара:</td>
+                                <td>Декоративные штукатурки</td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>Giorgio Graesan & Friends</td>
+                            </tr>
+                            <tr>
+                                <td>Применение:</td>
+                                <td>Интерьер</td>
+                            </tr>
+                            <tr>
+                                <td>Расход:</td>
+                                <td>0.85</td>
+                            </tr>
+                            <tr>
+                                <td>Цвет:</td>
+                                <td><span class="pi-color" style="background:;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Наличие:</td>
+                                <td>В наличии</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="popularitem">
+                    <div class="pi-top" style="height: 334px;">
+                        <a href="/shop/grunt-primus-sabbia/" class="pi-img"
+                           style="background-image: url(/wa-data/public/shop/products/96/00/96/images/241/241.280x280.jpg)"
+                           title="Грунт Primus Sabbia"></a>
+                        <a href="/shop/grunt-primus-sabbia/" class="pi-name" title="Грунт Primus Sabbia">Грунт Primus
+                            Sabbia</a>
+                        <span class="pi-price">
+                <span>от </span>
+                780,49 грн.
+                </span>
+                    </div>
+                    <div class="clearfix">
+                        <a href="javascript:;" data-id="96" data-sku="16833" data-type="2" class="pi-cart addtocart"
+                           title="В
+            корзину">В
+                            корзину</a>
+                        <a href="javascript:;" class="pi-compare compare-add" data-product="96" title="Сравнить">Сравнить</a>
+                    </div>
+                    <div class="pi-details">
+                        <table>
+                            <tr>
+                                <td>Артикул:</td>
+                                <td>16833</td>
+                            </tr>
+                            <tr>
+                                <td>Тип товара:</td>
+                                <td>Грунты</td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>Giorgio Graesan & Friends</td>
+                            </tr>
+                            <tr>
+                                <td>Применение:</td>
+                                <td>Интерьер</td>
+                            </tr>
+                            <tr>
+                                <td>Расход:</td>
+                                <td>0.1</td>
+                            </tr>
+                            <tr>
+                                <td>Цвет:</td>
+                                <td><span class="pi-color" style="background:;"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Наличие:</td>
+                                <td>В наличии</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- .popularitemsgrid -->
+        </div>
+    </section>
+
+
+    <section class="mainnews">
+        <div class="wrap">
+            <h4 class="section-heading">Новости</h4>
+
+            <div class="mn-grid clearfix">
+
+                <a href="http://www.tbi.ua/blog/pages/kollektsiya-tkaney-tbi/" class="mn-item"
+                   title="Коллекция тканей TBI">
+                    <span class="mn-img"
+                          style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/ttttIMG_7095-1.jpg);"></span>
+                    <span class="mn-heading">Коллекция тканей TBI</span>
+                    <span class="mn-date">2016-05-16 16:58</span>
+                </a>
+
+                <a href="http://www.tbi.ua/blog/pages/khotite-kachestvennye-elektricheskie-karnizy-luchshie--u-nas/"
+                   class="mn-item" title="Хотите качественные электрические карнизы? Лучшие – у нас!">
+                    <span class="mn-img"
+                          style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/mot_4.jpg);"></span>
+                    <span class="mn-heading">Хотите качественные электрические карнизы? Лучшие – у нас!</span>
+                    <span class="mn-date">2016-05-04 14:06</span>
+                </a>
+
+                <a href="http://www.tbi.ua/blog/pages/naturalnaya-rzhavchina--eto-ironic-ot-novacolor-italiya/"
+                   class="mn-item" title="​Натуральная ржавчина – это IRONIC от NOVACOLOR (Италия)">
+                    <span class="mn-img"
+                          style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/ironic_3_2.jpg);"></span>
+                    <span class="mn-heading">​Натуральная ржавчина – это IRONIC от NOVACOLOR (Италия)</span>
+                    <span class="mn-date">2016-05-03 16:53</span>
+                </a>
+
+
+            </div>
+        </div>
+    </section>
+
+
     <section class="footernav">
         <div class="wrap clearfix">
             <div class="fn-left clearfix">
                 <div class="fn-list">
                     <strong>КОМПАНИЯ</strong>
                     <ul>
-                        <li><a href="javascript:;" title="О Нас">О Нас</a></li>
-                        <li><a href="javascript:;" title="Сотрудничество">Сотрудничество</a></li>
-                        <li><a href="javascript:;" title="Вакансии">Вакансии</a></li>
-                        <li><a href="javascript:;" title="Контакты">Контакты</a></li>
+                        <li><a href="/o-kompanii" title="О Нас">О Нас</a></li>
+                        <li><a href="/cooperation" title="Сотрудничество">Сотрудничество</a></li>
+                        <li><a href="/vacancies" title="Вакансии">Вакансии</a></li>
+                        <li><a href="/kontakty" title="Контакты">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="fn-list">
                     <strong>ПОКУПАТЕЛЮ</strong>
                     <ul>
-                        <li><a href="javascript:;" title="ЧаВо">ЧаВо</a></li>
-                        <li><a href="javascript:;" title="Подрарочные сертификаты">Подрарочные
+                        <li><a href="/faq" title="ЧаВо">ЧаВо</a></li>
+                        <li><a href="/shop/virtualnyy-vaucher/" title="Подрарочные сертификаты">Подрарочные
                                 сертификаты</a>
                         </li>
-                        <li><a href="javascript:;" title="Наши услуги">Наши услуги</a></li>
-                        <li><a href="javascript:;" title="Оплата">Оплата</a></li>
-                        <li><a href="javascript:;" title="Доставка">Доставка</a></li>
-                        <li><a href="javascript:;" title="Гарантии">Гарантии</a></li>
+                        <li><a href="/services/" title="Наши услуги">Наши услуги</a></li>
+                        <li><a href="/razlichnye-sposoby-oplaty" title="Оплата">Оплата</a></li>
+                        <li><a href="/dostavka" title="Доставка">Доставка</a></li>
+                        <li><a href="/guarantee" title="Гарантии">Гарантии</a></li>
                         <li><a href="http://www.vogueinteriors.ua" title="Шоу-рум" rel="nofollow">Шоу-рум</a></li>
                     </ul>
                 </div>
                 <div class="fn-list">
                     <strong>ИНФОРМАЦИЯ</strong>
                     <ul>
-                        <li><a href="javascript:;" title="Акции и предложения">Акции и предложения</a></li>
-                        <li><a href="javascript:;" title="Outlet">Outlet</a></li>
-                        <li><a href="javascript:;" title="Каталоги">Каталоги</a></li>
-                        <li><a href="javascript:;" title="Условия использования сайта">Условия использования сайта</a></li>
+                        <li><a href="/aktsii-i-predlozheniya/" title="Акции и предложения">Акции и предложения</a></li>
+                        <li><a href="/outlet/" title="Outlet">Outlet</a></li>
+                        <li><a href="/katalogi/" title="Каталоги">Каталоги</a></li>
+                        <li><a href="/usloviya-ispolzovaniya-sayta/" title="Условия использования сайта">Условия
+                                использования сайта</a></li>
                     </ul>
                 </div>
             </div>
+            <!-- .fn-left -->
+
             <div class="fn-right">
                 <div class="fnr-top clearfix">
                     <div class="fnr-left">
@@ -467,40 +1499,51 @@
                         <a href="javascript:;" class="fnr-phone" title="(050) 481-01-01">(050) 481-01-01</a>
                     </div>
                 </div>
+
                 <div class="fnr-bottom">
                     <span>Наши сайты в сети:</span>
+
                     <div>
-                        <a href="http://mottura.ua" target="_blank">
-                            <img src="/img/mottura.png" alt="" rel="nofollow">
-                        </a>
-                        <a href="http://giorgiograesan.ua" target="_blank">
-                            <img src="/img/giorgio.png" alt="" rel="nofollow">
-                        </a>
-                        <a href="http://novacolor.ua" target="_blank">
-                            <img src="/img/novacolor.png" alt="" rel="nofollow">
-                        </a>
-                        <a href="http://vogueinteriors.ua" target="_blank">
-                            <img src="/img/vogue.png" alt="" rel="nofollow">
-                        </a>
+                        <a href="http://mottura.ua" target="_blank"><img
+                                src="/wa-data/public/site/themes/tbi_site/img/mottura.png" alt=""
+                                rel="nofollow"></a>
+                        <a href="http://giorgiograesan.ua" target="_blank"><img
+                                src="/wa-data/public/site/themes/tbi_site/img/giorgio.png"
+                                alt="" rel="nofollow"></a>
+                        <a href="http://novacolor.ua" target="_blank"><img
+                                src="/wa-data/public/site/themes/tbi_site/img/novacolor.png"
+                                alt="" rel="nofollow"></a>
+                        <a href="http://vogueinteriors.ua" target="_blank"><img
+                                src="/wa-data/public/site/themes/tbi_site/img/vogue.png"
+                                alt="" rel="nofollow"></a>
                     </div>
                 </div>
             </div>
+            <!-- .fn-right -->
+
         </div>
     </section>
+
     <footer>
         <div class="wrap clearfix">
-            <div class="copy">© 2006–<?= date('Y'); ?> «TBI» Все права защищены</div>
+
+            <div class="copy">© 2006–2016 «TBI» Все права защищены</div>
+
             <div class="fsubscribe">
                 <span>Рассылка новостей:</span>
+
                 <div class="fsubscribe-input">
                     <form action="/?subscribe=1" method="POST">
-                        <input type="email" placeholder="Введите ваш email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        <input type="email" placeholder="Введите ваш email"
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         <input type="submit" value="">
                     </form>
                 </div>
             </div>
+
             <div class="fsocial">
                 <span>Оставайтесь с нами:</span>
+
                 <a href="https://www.facebook.com/tbi.ua" target="_blank" class="fb" rel="nofollow"></a>
                 <a href="https://twitter.com/TbiWww" target="_blank" class="tw" rel="nofollow"></a>
                 <a href="javascript:;" class="gp" rel="nofollow"></a>
@@ -508,11 +1551,11 @@
                 <a href="https://ru.pinterest.com/tbicompany" target="_blank" class="pi" rel="nofollow"></a>
                 <a href="https://www.instagram.com/tbicompany" target="_blank" class="in" rel="nofollow"></a>
             </div>
+
             <div class="fjaws">
-                <span>Создание сайта – </span>
-                <a title="Создание сайтов Киев" target="_blank" href="http://jaws.com.ua" rel="nofollow">
-                    <img src="/img/jaws.png" alt="Создание сайтов Киев">
-                </a>
+                <span>Создание сайта – </span><a title="Создание сайтов Киев" target="_blank" href="http://jaws.com.ua"
+                                                 rel="nofollow"><img
+                        src="/wa-data/public/site/themes/tbi_site/img/jaws.png" height="16" alt="Создание сайтов Киев"></a>
             </div>
         </div>
     </footer>
@@ -527,6 +1570,7 @@
             </section>
             <span>Мы внимательно ознакомимся с Вашим резюме и наш Hr-специалист свяжется с Вами.</span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-success thank-form">
             <section class="of-header thank_title">
@@ -535,6 +1579,7 @@
             </section>
             <span>В ближайшее время с Вами свяжется наш менеджер.</span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-contact thank-form">
             <section class="of-header thank_title">
@@ -543,6 +1588,7 @@
             </section>
             <span>Наши консультанты свяжутся с Вами в ближайшее время.</span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-password thank-form">
             <section class="of-header thank_title">
@@ -552,6 +1598,7 @@
             <span>Вы ввели неправильный е-мейл или пароль.
             </span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-register thank-form">
             <section class="of-header thank_title">
@@ -561,6 +1608,7 @@
             <span>Информация об этом выслана на Ваш е-мейл.
             </span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-subscribe thank-form">
             <section class="of-header thank_title">
@@ -570,6 +1618,7 @@
             <span>Каждую неделю мы будем отправлять Вам интересные новости, информацию о новых товарах и акциях.
             </span>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-signIn">
             <section class="of-header">
@@ -581,7 +1630,9 @@
                     <a href="/oauth.php?app=site&provider=twitter" class="tw"></a>
                     <a href="/oauth.php?app=site&provider=vkontakte" class="vk"></a>
                     <a href="/oauth.php?app=site&provider=facebook" class="fb"></a>
-                    <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше сервисами.</p>
+
+                    <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше
+                        сервисами.</p>
                 </div>
                 <script type="text/javascript">
                     $("div.social-sign a").click(function () {
@@ -594,16 +1645,21 @@
             </section>
             <section>
                 <form id="login-form" action="/login/" method="post">
-                    <input class="of-input input-fluid" type="text" name="login" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="E-Mail">
+
+                    <input class="of-input input-fluid" type="text" name="login"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="E-Mail">
                     <input class="of-input input-fluid" type="password" placeholder="Пароль" name="password">
                     <input type="hidden" name="wa_auth_login" value="1">
                     <input type="submit" class=" of-form-btn" value="Войти"></form>
                 <div class="of-signIn-bottom clearfix">
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-lostPasw" title="Забыли пароль?">Забыли пароль?</a>
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-lostPasw"
+                       title="Забыли пароль?">Забыли пароль?</a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp"
+                       title="Регистрация">Регистрация</a>
                 </div>
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-signUp">
             <section class="of-header">
@@ -615,7 +1671,9 @@
                     <a href="/oauth.php?app=site&provider=twitter" class="tw"></a>
                     <a href="/oauth.php?app=site&provider=vkontakte" class="vk"></a>
                     <a href="/oauth.php?app=site&provider=facebook" class="fb"></a>
-                    <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше сервисами.</p>
+
+                    <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше
+                        сервисами.</p>
                 </div>
                 <script type="text/javascript">
                     $("div.social-sign a").click(function () {
@@ -657,17 +1715,22 @@
                     </form>
                 </div>
                 <div class="of-signup-bottom clearfix">
-                    <p>или <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="войдите">войдите</a>,<br>если у вас уже есть аккаунт</p>
+                    <p>или <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn"
+                              title="войдите">войдите</a>,<br>если
+                        у вас уже есть аккаунт</p>
                 </div>
             </section>
         </div>
-
+        <!-- .of-form -->
         <div class="of-form form-cart">
             <section class="of-header">
                 ОФОРМИТЬ ЗАКАЗ
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <section class="cart-data"></section>
+            <section class="cart-data">
+
+
+            </section>
             <section>
                 <a href="javascript:;" class="backtopage of-close-trigger" title="Продолжить покупки">Продолжить
                     покупки</a>
@@ -675,6 +1738,7 @@
                    title="Оформить заказ">Оформить заказ</a>
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-sizeLong">
             <section class="of-header">
@@ -685,6 +1749,7 @@
                 <center><img src="" alt="" width="340px"/></center>
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-choseColor">
             <section class="of-header">
@@ -698,78 +1763,89 @@
                             <li class="clearfix">
                                 <div class="color-left" style="background:#ccc58f;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="386" data-sku="20736" data-type="1" class="addtocart">RAL 1000</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="386" data-sku="20736"
+                                       data-type="1" class="addtocart">RAL 1000</a><br/>
                                     Зелёно-бежевый
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#D1BC8A;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="479" data-sku="34788" data-type="1" class="addtocart">RAL 1001</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="479" data-sku="34788"
+                                       data-type="1" class="addtocart">RAL 1001</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#D2B773;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="480" data-sku="34789" data-type="1" class="addtocart">RAL 1002</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="480" data-sku="34789"
+                                       data-type="1" class="addtocart">RAL 1002</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#F7BA0B;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="481" data-sku="34790" data-type="1" class="addtocart">RAL 1003</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="481" data-sku="34790"
+                                       data-type="1" class="addtocart">RAL 1003</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#E2B007;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="482" data-sku="34791" data-type="1" class="addtocart">RAL 1004</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="482" data-sku="34791"
+                                       data-type="1" class="addtocart">RAL 1004</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#C89F04;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="483" data-sku="34792" data-type="1" class="addtocart">RAL 1005</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="483" data-sku="34792"
+                                       data-type="1" class="addtocart">RAL 1005</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#E1A100;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="484" data-sku="34793" data-type="1" class="addtocart">RAL 1006</a><br/>
+                                    <a href="javascript:;" data-id="484" data-sku="34793"
+                                       data-type="1" class="addtocart">RAL 1006</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#E79C00;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="485" data-sku="34794" data-type="1" class="addtocart">RAL 1007</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="485" data-sku="34794"
+                                       data-type="1" class="addtocart">RAL 1007</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#AF8A54;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="486" data-sku="34795" data-type="1" class="addtocart">RAL 1011</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="486" data-sku="34795"
+                                       data-type="1" class="addtocart">RAL 1011</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#D9C022;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="487" data-sku="34796" data-type="1" class="addtocart">RAL 1012</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="487" data-sku="34796"
+                                       data-type="1" class="addtocart">RAL 1012</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="color-left" style="background:#E9E5CE;"></div>
                                 <div class="color-right">
-                                    <a href="javascript:;" data-id="488" data-sku="34797" data-type="1" class="addtocart">RAL 1013</a>
-                                    <br/>
+                                    <a href="javascript:;" data-id="488" data-sku="34797"
+                                       data-type="1" class="addtocart">RAL 1013</a><br/>
+
                                 </div>
                             </li>
                             <li class="clearfix">
@@ -2385,6 +3461,7 @@
                 </div>
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-lokalization">
             <section class="of-header">
@@ -2399,6 +3476,7 @@
                     <label for="region"><span>Область</span></label><br>
                     <input id="your-city" type="radio" name="payment" value="your-city">
                     <label for="your-city"><span>Другой город</span></label>
+
                     <div class="orb-select">
                         <select name="" id="order-payoption">
                             <option value="" selected disabled>Ваш город</option>
@@ -2411,6 +3489,7 @@
                 <input type="submit" class="of-form-btn of-form-btn-small" value="Выбрать">
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-lostPasw">
             <section class="of-header of-header__biglet">
@@ -2419,6 +3498,7 @@
             </section>
             <section>
                 <p class="of-textbig">Введите Ваш E-mail и новый пароль будет<br/>выслан на указанный почтовый адрес</p>
+
                 <form action="/forgotpassword/" method="POST">
                     <input type="email" class="of-input" placeholder="E-mail" name="login"
                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
@@ -2426,12 +3506,14 @@
                 </form>
             </section>
         </div>
+        <!-- .of-form -->
 
         <div class="of-form form-sendEmail">
             <section class="of-header">
                 Заказать звонок
                 <a href="javascript:;" class="of-close"></a>
             </section>
+
             <section>
                 <div class="social-sign clearfix">
                     <p>Отправьте запрос, и мы свяжемся с вами в самое ближайшее время.</p>
@@ -2442,16 +3524,23 @@
                     <p class="message"></p>
                 </div>
             </section>
+
             <section>
                 <form action="" class="form-sendEmail-form">
                     <input type="text" class="of-input" name="name" placeholder="Имя" required>
-                    <input type="email" name="email" class="of-input" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+                    <input type="email" name="email" class="of-input" placeholder="Email" required
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     <input type="tel" name="phone" class="of-input phone_mask" placeholder="Телефон" required>
                     <input type="hidden" name="mailto" value="www.tbi.ua@gmail.com">
+
+
                     <input type="submit" class="of-form-btn" value="Отправить">
                 </form>
+
             </section>
         </div>
+        <!-- .of-form -->
     </div>
 
     <div class="of-form form-Color">
@@ -2461,14 +3550,20 @@
         </section>
         <section>
             <div class="block-scroll">
-                <div class="mCustomScrollbar clearfix"></div>
+                <div class="mCustomScrollbar clearfix">
+                </div>
             </div>
         </section>
         <section class="of-bottom">
-            <div class="color-choise"></div>
+            <div class="color-choise">
+            </div>
             <a href="javascript:;" class="qty-tocart addtocart-choise">В КОРЗИНУ</a>
         </section>
     </div>
+    <!-- .of-form -->
+
+
+    <!-- Когда товара нет в наличии -->
 
     <div class="of-form form-tovAv">
         <section class="of-header">
@@ -2479,7 +3574,8 @@
             <div class="ftov-cent">
                 <section class="result" style="display:none;">
                     <div>
-                        <p class="message">Вы получите уведомление о поступлении товара в продажу на указанные Вами контакты</p>
+                        <p class="message">Вы получите уведомление о поступлении товара в продажу на указанные Вами
+                            контакты</p>
                     </div>
                 </section>
                 <div class="ftov-cent__text">
@@ -2487,6 +3583,7 @@
                 </div>
                 <div class="ftov-cent__img">
                     <img src="" alt=""/>
+
                     <div></div>
                 </div>
                 <form id="product-arived-nologin">
@@ -2516,12 +3613,15 @@
                     </script>
                     <div class="ftov-cent__reg">
                         <a href="javascript:;" class="ftov-cent__regged">Я зарегистрирован на сайте</a>
+
                         <div class="ftov-cent__hide">
                             <input type="text" name="login" class="of-input" placeholder="E-mail">
                             <input type="password" name="password" class="of-input" placeholder="Пароль">
                             <input type="hidden" name="wa_auth_login" value="1">
-                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger" data-selector="form-lostPasw">Забыли пароль? </a>
-                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger" data-selector="form-signUp">Регистрация</a>
+                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger"
+                               data-selector="form-lostPasw">Забыли пароль? </a>
+                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger"
+                               data-selector="form-signUp">Регистрация</a>
                         </div>
                     </div>
                     <input type="submit" class="of-form-btn" value="Отправить">
@@ -2529,6 +3629,9 @@
             </div>
         </section>
     </div>
+    <!-- .of-form -->
+
+    <!-- Запросить цену -->
 
     <div class="of-form form-tovPrice">
         <section class="of-header">
@@ -2547,6 +3650,7 @@
                 </div>
                 <div class="ftov-cent__img">
                     <img src="" alt=""/>
+
                     <div></div>
                 </div>
                 <form id="get-price-no-login">
@@ -2554,13 +3658,15 @@
                         <input type="text" name="data[firstname]" class="of-input" placeholder="Имя">
                         <input type="text" name="data[lastname]" class="of-input" placeholder="Фамилия">
                         <input type="email" name="data[email]" class="of-input of-input_half" placeholder="E-mail">
-                        <input type="tel" name="data[phone]" class="of-input of-input_half of-input_half_m phone_mask" placeholder="Телефон">
+                        <input type="tel" name="data[phone]" class="of-input of-input_half of-input_half_m phone_mask"
+                               placeholder="Телефон">
                         <input type="hidden" name="data[password]" value="d83a">
                         <input type="hidden" name="data[password_confirm]" value="d83a">
                         <input type="hidden" name="getprice_email_nologin" value="www.tbi.ua@gmail.com">
                         <input type="hidden" name="getprice_product" id="getprice-product_nologin" value=""/>
                         <input type="hidden" name="getprice_price" id="getprice-price_nologin" value=""/>
                     </div>
+
                     <script>
                         window.onload = function () {
                             $('.ftov-cent__regged').on('click', function () {
@@ -2570,12 +3676,15 @@
                     </script>
                     <div class="ftov-cent__reg">
                         <a href="javascript:;" class="ftov-cent__regged">Я зарегистрирован на сайте</a>
+
                         <div class="ftov-cent__hide">
                             <input type="text" name="login" class="of-input" placeholder="E-mail">
                             <input type="password" name="password" class="of-input" placeholder="Пароль">
                             <input type="hidden" name="wa_auth_login" value="1">
-                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger" data-selector="form-lostPasw">Забыли пароль? </a>
-                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger" data-selector="form-signUp">Регистрация</a>
+                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger"
+                               data-selector="form-lostPasw">Забыли пароль? </a>
+                            <a href="javascript:;" class="ftov-cent__a overlayElementTrigger"
+                               data-selector="form-signUp">Регистрация</a>
                         </div>
                     </div>
                     <input type="submit" class="of-form-btn" value="Отправить">
@@ -2583,11 +3692,36 @@
             </div>
         </section>
     </div>
+    <!-- .of-form -->
 </section>
+
 <div id="to-top">вверх</div>
-<script src="/js/libs.js"></script>
-<script src="/js/flexslider.js" type="text/javascript"></script>
-<script src="/js/main.js"></script>
+<script src="/wa-data/public/site/themes/tbi_site/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js?v1"></script>
+
+
+
+
+<script src="/wa-data/public/site/themes/tbi_site/js/jquery.cookie.js?v1"></script>
+<script src="/wa-data/public/site/themes/tbi_site/js/vendor/libs.js?v3"></script>
+<script src="/wa-data/public/site/themes/tbi_site/js/flexslider.js?3205" type="text/javascript"></script>
+<script src="/wa-data/public/site/themes/tbi_site/js/lazy.load.js?v1" type="text/javascript"></script>
+<script src="/wa-data/public/site/themes/tbi_site/js/main-copy.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=FALSE"></script>
+<!--<script src="/wa-data/public/site/themes/tbi_site/js/checkout.js"></script>-->
+
+<!-- BEGIN JIVOSITE CODE  -->
+<script type='text/javascript'>
+    (function () {
+        var widget_id = 'cIFpZktyTU';
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = '//code.jivosite.com/script/widget/' + widget_id;
+        var ss = document.getElementsByTagName('script')[0];
+        ss.parentNode.insertBefore(s, ss);
+    })();</script>
+<!--  END JIVOSITE CODE -->
+
+
 </body>
 </html>

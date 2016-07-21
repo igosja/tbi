@@ -1,16 +1,16 @@
 <?php
 
-class BrandController extends AController
+class BlogController extends AController
 {
-    public $h1 = 'Бренды';
-    public $title = 'Бренды';
-    public $post_name = 'Brand';
+    public $h1 = 'Публикации';
+    public $title = 'Публикации';
+    public $post_name = 'Blog';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
         $model->unsetAttributes();
-        if (isset($_GET['Brand'])) {
+        if (isset($_GET[$this->post_name])) {
             $model->attributes = $_GET[$this->post_name];
         }
         $this->breadcrumbs = array(
@@ -26,10 +26,10 @@ class BrandController extends AController
     {
         $id = (int)$id;
         if (0 == $id) {
-            $this->h1 = 'Создание бренда';
+            $this->h1 = 'Создание публикации';
             $model = $this->getModel();
         } else {
-            $this->h1 = 'Редактирование бренда';
+            $this->h1 = 'Редактирование публикации';
             $model = $this->getModel()->findByPk($id);
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
@@ -122,7 +122,7 @@ class BrandController extends AController
 
     public function getModel($search = '')
     {
-        $model = new Brand($search);
+        $model = new Blog($search);
         return $model;
     }
 }

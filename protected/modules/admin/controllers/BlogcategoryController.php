@@ -1,16 +1,17 @@
 <?php
 
-class BrandController extends AController
+class BlogcategoryController extends AController
 {
-    public $h1 = 'Бренды';
-    public $title = 'Бренды';
-    public $post_name = 'Brand';
+    public $h1 = 'Категории блога';
+    public $title = 'Категории блога';
+    public $post_name = 'BlogCategory';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
+        $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
-        if (isset($_GET['Brand'])) {
+        if (isset($_GET[$this->post_name])) {
             $model->attributes = $_GET[$this->post_name];
         }
         $this->breadcrumbs = array(
@@ -26,10 +27,10 @@ class BrandController extends AController
     {
         $id = (int)$id;
         if (0 == $id) {
-            $this->h1 = 'Создание бренда';
+            $this->h1 = 'Создание категории';
             $model = $this->getModel();
         } else {
-            $this->h1 = 'Редактирование бренда';
+            $this->h1 = 'Редактирование категории';
             $model = $this->getModel()->findByPk($id);
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
@@ -89,14 +90,25 @@ class BrandController extends AController
         $this->getModel()->updateByPk($id, array('status' => 1 - $model->status));
     }
 
-    public function actionImage($id)
+    public function actionOrder($id)
     {
-        $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        $id = (int)$id;
+        $order_old = $_GET['order_old'];
+        $order_new = $_GET['order_new'];
+        $this->getModel()->updateByPk($id, array('order' => $order_new));
+        if ($order_old < $order_new) {
+            $a_model = $this->getModel()->findAll(array('condition' => '`order`>=' . $order_old . ' AND `order`<=' . $order_new . ' AND id!=' . $id));
+            foreach ($a_model as $model) {
+                $model->order--;
+                $model->save();
+            }
+        } else {
+            $a_model = $this->getModel()->findAll(array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id));
+            foreach ($a_model as $model) {
+                $model->order++;
+                $model->save();
+            }
         }
-        $o_image->delete();
-        $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function uploadImage($id)
@@ -122,7 +134,7 @@ class BrandController extends AController
 
     public function getModel($search = '')
     {
-        $model = new Brand($search);
+        $model = new BlogCategory($search);
         return $model;
     }
 }

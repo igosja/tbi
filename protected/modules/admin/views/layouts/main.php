@@ -43,10 +43,24 @@
                         <a href="javascript:;">Бренды<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('Бренды', array('brand/index')); ?>
+                                <?= CHtml::link('SEO-теги', array('brandpage/index')); ?>
                             </li>
                             <li>
-                                <?= CHtml::link('SEO-теги', array('brandpage/index')); ?>
+                                <?= CHtml::link('Бренды', array('brand/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Блог<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('SEO-теги', array('blogpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Категории', array('blogcategory/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Публикации', array('blog/index')); ?>
                             </li>
                         </ul>
                     </li>
@@ -66,7 +80,9 @@
         <?= $content; ?>
     </div>
 </div>
+<script src="/js/bootstrap-toggle.min.js"></script>
 <script src="/js/rowsorter.js"></script>
 <script src="/js/admin.min.js"></script>
+<script src="/js/admin.js"></script>
 </body>
 </html>

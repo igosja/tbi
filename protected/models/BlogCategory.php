@@ -1,19 +1,18 @@
 <?php
 
-class Brand extends CActiveRecord
+class BlogCategory extends CActiveRecord
 {
     public function tableName()
     {
-        return 'brand';
+        return 'blogcategory';
     }
 
     public function rules()
     {
         return array(
-            array('name, text', 'required'),
-            array('web', 'url'),
-            array('image_id, status', 'numerical', 'integerOnly' => true),
-            array('name, url, web, seo_title', 'length', 'max' => 255),
+            array('name', 'required'),
+            array('order, status', 'numerical', 'integerOnly' => true),
+            array('name, url, seo_title', 'length', 'max' => 255),
             array('seo_description, seo_keywords', 'safe'),
             array('id, name', 'safe', 'on' => 'search'),
         );
@@ -22,7 +21,7 @@ class Brand extends CActiveRecord
     public function relations()
     {
         return array(
-            'image' => array(self::HAS_ONE, 'Image', array('id' => 'image_id')),
+            'blog' => array(self::HAS_MANY, 'Blog', array('blogcategory_id' => 'id')),
         );
     }
 
@@ -30,12 +29,9 @@ class Brand extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'image_id' => 'Изображение',
             'name' => 'Название',
             'status' => 'Статус',
-            'text' => 'Описание',
             'url' => 'ЧП Url',
-            'web' => 'Web сайт',
             'seo_description' => 'SEO description',
             'seo_keywords' => 'SEO keywords',
             'seo_title' => 'SEO title',
@@ -52,20 +48,6 @@ class Brand extends CActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
-    }
-
-    public function beforeDelete()
-    {
-        if (parent::beforeDelete()) {
-            if (0 < $this->image_id) {
-                $o_image = Image::model()->findByPk($this->image_id);
-                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
-                }
-                $o_image->delete();
-            }
-        }
-        return true;
     }
 
     public static function model($className = __CLASS__)

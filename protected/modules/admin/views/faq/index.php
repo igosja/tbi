@@ -14,7 +14,7 @@
         'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'dataProvider' => $model->search(),
         'filter' => $model,
-        'itemsCssClass' => 'table table-striped table-bordered',
+        'itemsCssClass' => 'table table-striped table-bordered sort-table',
         'pager' => array(
             'header' => '',
             'footer' => '',
@@ -31,6 +31,8 @@
             'htmlOptions' => array('class' => 'pagination'),
         ),
         'pagerCssClass' => 'pager-css-class',
+        'rowCssClass' => array('sorter'),
+        'rowHtmlOptionsExpression' => 'array("data-id" => $data->id, "data-controller" => "' . $this->uniqueid . '")',
         'summaryCssClass' => 'text-left',
         'summaryText' => 'Показаны записи <strong>{start}</strong>-<strong>{end}</strong> из <strong>{count}</strong>.',
         'columns' => array(
@@ -39,7 +41,7 @@
                 'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             ),
             array(
-                'name' => 'name',
+                'name' => 'question',
             ),
             array(
                 'filter' => false,
