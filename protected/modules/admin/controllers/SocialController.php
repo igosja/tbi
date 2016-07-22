@@ -1,10 +1,10 @@
 <?php
 
-class FaqController extends AController
+class SocialController extends AController
 {
-    public $h1 = 'ЧаВо';
-    public $title = 'ЧаВо';
-    public $post_name = 'Faq';
+    public $h1 = 'Ссылки на соцсети';
+    public $title = 'Ссылки на соцсети';
+    public $post_name = 'Social';
 
     public function actionIndex()
     {
@@ -27,10 +27,10 @@ class FaqController extends AController
     {
         $id = (int)$id;
         if (0 == $id) {
-            $this->h1 = 'Создание вопроса';
+            $this->h1 = 'Создание соцсети';
             $model = $this->getModel();
         } else {
-            $this->h1 = 'Редактирование вопроса';
+            $this->h1 = 'Редактирование соцсети';
             $model = $this->getModel()->findByPk($id);
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
@@ -39,6 +39,7 @@ class FaqController extends AController
         if ($data = Yii::app()->request->getPost($this->post_name)) {
             $model->attributes = $data;
             if ($model->save()) {
+                $model = $this->getModel()->findByPk($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -46,7 +47,7 @@ class FaqController extends AController
             $this->title => array('index'),
         );
         if (0 != $id) {
-            $this->breadcrumbs[$model->question] = array('view', 'id' => $model->id);
+            $this->breadcrumbs[$model->name] = array('view', 'id' => $model->id);
         }
         $this->breadcrumbs[] = $this->h1;
         $this->render('form', array('model' => $model));
@@ -59,7 +60,7 @@ class FaqController extends AController
         if (null === $model) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->h1 = $model->question;
+        $this->h1 = $model->name;
         $this->breadcrumbs = array(
             $this->title => array('index'),
             $this->h1,
@@ -107,7 +108,7 @@ class FaqController extends AController
 
     public function getModel($search = '')
     {
-        $model = new Faq($search);
+        $model = new Social($search);
         return $model;
     }
 }

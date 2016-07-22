@@ -47,6 +47,7 @@ class Blog extends CActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('blogcategory_id', $this->blogcategory_id);
         $criteria->compare('name', $this->name, true);
 
         return new CActiveDataProvider($this, array(

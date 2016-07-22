@@ -64,6 +64,36 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:;">Статические страницы<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('О нас', array('aboutpage/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">ЧаВо<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('SEO-теги', array('faqpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Вопросы', array('faq/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Контакты<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Контакты и SEO-теги', array('contactpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Соц сети', array('social/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -109,99 +109,25 @@
         <h4 class="section-heading section-heading_brands">БРЕНДЫ</h4>
         <div>
             <div class="brandsslider">
-                <div class="slide">
-                    <div>
+                <?php foreach ($a_brand as $item) { ?>
+                    <div class="slide">
                         <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
+                            <div>
+                                <?= CHtml::link(
+                                    '<img src="' . ImageIgosja::resize($item->image_id, 200, 150) . '" alt="' . $item->name . '">',
+                                    array('brand/view', 'id' => $item->id)
+                                ); ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div>
-                        <div>
-                            <a href="javascript:;">
-                                <img src="/img/9.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
-        <a class="section__link" href="javascript:;" title="Все бренды">Все бренды</a>
+        <?= CHtml::link(
+            'Все бренды',
+            array('brand/index'),
+            array('class' => 'section__link', 'title' => 'Все бренды')
+        ); ?>
     </div>
 </section>
 
@@ -492,21 +418,15 @@
     <div class="wrap">
         <h4 class="section-heading">Новости</h4>
         <div class="mn-grid clearfix">
-            <a href="javascript:;" class="mn-item" title="Коллекция тканей TBI">
-                <span class="mn-img" style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/ttttIMG_7095-1.jpg);"></span>
-                <span class="mn-heading">Коллекция тканей TBI</span>
-                <span class="mn-date">2016-05-16 16:58</span>
-            </a>
-            <a href="javascript:;" class="mn-item" title="Хотите качественные электрические карнизы? Лучшие – у нас!">
-                <span class="mn-img" style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/mot_4.jpg);"></span>
-                <span class="mn-heading">Хотите качественные электрические карнизы? Лучшие – у нас!</span>
-                <span class="mn-date">2016-05-04 14:06</span>
-            </a>
-            <a href="javascript:;" class="mn-item" title="​Натуральная ржавчина – это IRONIC от NOVACOLOR (Италия)">
-                <span class="mn-img" style="background-image:url(http://www.tbi.ua/wa-data/public/blog/img/ironic_3_2.jpg);"></span>
-                <span class="mn-heading">​Натуральная ржавчина – это IRONIC от NOVACOLOR (Италия)</span>
-                <span class="mn-date">2016-05-03 16:53</span>
-            </a>
+            <?php foreach ($a_blog as $item) { ?>
+                <?= CHtml::link(
+                    '<span class="mn-img" style="background-image:url(' . ImageIgosja::resize($item->image_id, 600, 327) . ');"></span>
+                    <span class="mn-heading">' . $item->name . '</span>
+                    <span class="mn-date">' . date('H:i d.m.Y', $item->date) . '</span>',
+                    array('blog/view', 'id' => $item->url),
+                    array('class' =>  'mn-item', 'title' => $item->name)
+                ); ?>
+            <?php } ?>
         </div>
     </div>
 </section>

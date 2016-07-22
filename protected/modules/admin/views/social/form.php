@@ -21,17 +21,24 @@
         )); ?>
         <table class="table table-striped table-bordered table-hover">
             <tr>
-                <td class="col-lg-3"><?= $form->labelEx($model, 'question'); ?></td>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'name'); ?></td>
                 <td>
-                    <?= $form->textField($model, 'question', array('class' => 'form-control')); ?>
-                    <?= $form->error($model, 'question'); ?>
+                    <?= $form->textField($model, 'name', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'name'); ?>
                 </td>
             </tr>
             <tr>
-                <td class="col-lg-3"><?= $form->labelEx($model, 'answer'); ?></td>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'class'); ?></td>
                 <td>
-                    <?= $form->textArea($model, 'answer', array('class' => 'form-control', 'rows' => 10)); ?>
-                    <?= $form->error($model, 'answer'); ?>
+                    <?= $form->textField($model, 'class', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'class'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'web'); ?></td>
+                <td>
+                    <?= $form->textField($model, 'web', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'web'); ?>
                 </td>
             </tr>
         </table>
