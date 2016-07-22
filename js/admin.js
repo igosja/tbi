@@ -28,6 +28,8 @@ $(document).ready(function ($) {
             );
         }
     });
+
+    CGridViewAfterAjax();
 });
 
 function status_change() {
@@ -49,7 +51,13 @@ function toogle_on() {
     });
 }
 
+function filter_css_class() {
+    $('.filters input').addClass('form-control');
+    $('.filters select').addClass('form-control');
+}
+
 function CGridViewAfterAjax() {
     status_change();
     toogle_on();
+    filter_css_class();
 }
