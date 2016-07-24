@@ -70,6 +70,30 @@
                             <li>
                                 <?= CHtml::link('О нас', array('aboutpage/index')); ?>
                             </li>
+                            <li>
+                                <?= CHtml::link('Сотрудничество', array('cooperationpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Услуги', array('servicepage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Акции', array('sharepage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Outlet', array('outletpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Гарантии', array('warrantypage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Каталоги', array('catalogpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Условия использования', array('conditionpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Оплата', array('paymentpage/index')); ?>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -84,10 +108,32 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:;">Доставка<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Текст и SEO-теги', array('deliverypage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Способы доставки', array('delivery/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Вакансии<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('Текст и SEO-теги', array('vacancypage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Вакасии', array('vacancy/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:;">Контакты<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('Контакты и SEO-теги', array('contactpage/index')); ?>
+                                <?= CHtml::link('Контакты и SEO-теги', array('contacts/index')); ?>
                             </li>
                             <li>
                                 <?= CHtml::link('Соц сети', array('social/index')); ?>

@@ -4,7 +4,7 @@ class FaqController extends Controller
 {
     public function actionIndex()
     {
-        $o_faqpage = MainPage::model()->findByPk(1);
+        $o_faqpage = FaqPage::model()->findByPk(1);
         $this->setSEO($o_faqpage);
         $a_faq = Faq::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $title = 'ЧаВо';

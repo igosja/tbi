@@ -1653,17 +1653,19 @@ var markersArray = [];
 var map;
 
 function initializeMap() {
-    // var markersArray =[];
 
     map = new google.maps.Map(document.getElementById('contactsmap'), {
         zoom: 17,
         center: new google.maps.LatLng(50.449936, 30.523078),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+    
+    var locations = [
+        [$('#contactsmap').data('officelat'), $('#contactsmap').data('officelng'), 'Офис'],
+        [$('#contactsmap').data('salonlat'), $('#contactsmap').data('salonlng'), 'Салон']
+    ];
 
     var infowindow = new google.maps.InfoWindow({maxWidth: 400});
-    // var marker, i;
-    // var image = {url: '/img/pin.png'};
 
     for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
@@ -1681,10 +1683,6 @@ function initializeMap() {
                 infowindow.open(map, marker);
             }
         })(marker, i));
-
-        // markersArray.push(marker);
-        // map.setCenter(new google.maps.LatLng(locations[0][5], locations[0][6]));
-        // new google.maps.event.trigger( markersArray[0], 'click' );
         markersArray.push(marker);
         map.setCenter(new google.maps.LatLng(locations[0][0], locations[0][1]));
     }
