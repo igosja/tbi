@@ -15,6 +15,7 @@
         'dataProvider' => $model->search(),
         'filter' => $model,
         'itemsCssClass' => 'table table-striped table-bordered',
+        'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(
             'header' => '',
             'footer' => '',
@@ -60,7 +61,6 @@
                     }
                     $input = '<input
                                 class="status"
-                                data-controller="' . $this->uniqueid . '"
                                 data-id="' . $data->id . '"
                                 type="checkbox" ' . $checked . '
                                 data-toggle="toggle"

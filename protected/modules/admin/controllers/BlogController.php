@@ -19,7 +19,6 @@ class BlogController extends AController
         );
         $this->render('index', array(
             'model' => $model,
-            'controller' => $controller,
         ));
     }
 

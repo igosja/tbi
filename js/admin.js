@@ -1,6 +1,4 @@
 $(document).ready(function ($) {
-    status_change();
-
     $('#sort-table').rowSorter({
         handler: 'tr.sorter td',
         onDrop: function (tbody, row, new_index, old_index) {
@@ -35,7 +33,7 @@ $(document).ready(function ($) {
 function status_change() {
     $('.status').on('change', function () {
         var item_id = $(this).data('id');
-        var controller_name = $(this).data('controller');
+        var controller_name = $(this).closest('.grid-view').data('controller');
         $.ajax
         (
             {
