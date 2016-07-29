@@ -3,7 +3,7 @@
 class SharepageController extends AController
 {
     public $h1 = 'Акции';
-    public $post_name = 'SharePage';
+    public $model_name = 'SharePage';
 
     public function actionIndex()
     {
@@ -18,7 +18,7 @@ class SharepageController extends AController
     {
         $id = (int)$id;
         $model = $this->getModel()->findByPk($id);
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $this->redirect(array('index'));
@@ -33,7 +33,7 @@ class SharepageController extends AController
 
     public function getModel($search = '')
     {
-        $model = new SharePage($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }

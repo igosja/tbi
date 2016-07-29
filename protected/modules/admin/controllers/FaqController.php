@@ -4,15 +4,15 @@ class FaqController extends AController
 {
     public $h1 = 'ЧаВо';
     public $title = 'ЧаВо';
-    public $post_name = 'Faq';
+    public $model_name = 'Faq';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
         $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
-        if (isset($_GET[$this->post_name])) {
-            $model->attributes = $_GET[$this->post_name];
+        if (isset($_GET[$this->model_name])) {
+            $model->attributes = $_GET[$this->model_name];
         }
         $this->breadcrumbs = array(
             $this->title => array('index'),
@@ -36,7 +36,7 @@ class FaqController extends AController
                 throw new CHttpException(404, 'Страница не найдена.');
             }
         }
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
@@ -70,6 +70,9 @@ class FaqController extends AController
     public function actionDelete($id)
     {
         $model = $this->getModel()->findByPk($id);
+        if (null === $model) {
+            throw new CHttpException(404, 'Страница не найдена.');
+        }
         $model->delete();
         $this->redirect(array('index'));
     }
@@ -107,7 +110,7 @@ class FaqController extends AController
 
     public function getModel($search = '')
     {
-        $model = new Faq($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }

@@ -3,7 +3,7 @@
 class BlogpageController extends AController
 {
     public $h1 = 'SEO-теги блога';
-    public $post_name = 'BlogPage';
+    public $model_name = 'BlogPage';
 
     public function actionIndex()
     {
@@ -18,7 +18,7 @@ class BlogpageController extends AController
     {
         $id = (int)$id;
         $model = $this->getModel()->findByPk($id);
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $this->redirect(array('index'));
@@ -33,7 +33,7 @@ class BlogpageController extends AController
 
     public function getModel($search = '')
     {
-        $model = new BlogPage($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }

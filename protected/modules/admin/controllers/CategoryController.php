@@ -1,15 +1,14 @@
 <?php
 
-class DeliveryController extends AController
+class CategoryController extends AController
 {
-    public $h1 = 'Доставка';
-    public $title = 'Доставка';
-    public $model_name = 'Delivery';
+    public $h1 = 'Категории';
+    public $title = 'Категории';
+    public $model_name = 'Category';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
-        $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
         if (isset($_GET[$this->model_name])) {
             $model->attributes = $_GET[$this->model_name];
@@ -27,10 +26,10 @@ class DeliveryController extends AController
     {
         $id = (int)$id;
         if (0 == $id) {
-            $this->h1 = 'Создание вопроса';
+            $this->h1 = 'Создание категории';
             $model = $this->getModel();
         } else {
-            $this->h1 = 'Редактирование вопроса';
+            $this->h1 = 'Редактирование категории';
             $model = $this->getModel()->findByPk($id);
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
@@ -39,6 +38,12 @@ class DeliveryController extends AController
         if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
+                $model = $this->getModel()->findByPk($model->id);
+                if (empty($model->url)) {
+                    $model->url = strtolower($model->id . '-' . str_replace($this->rus, $this->lat, $model->name));
+                    $model->save();
+                }
+                $this->uploadImage($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -77,16 +82,6 @@ class DeliveryController extends AController
         $this->redirect(array('index'));
     }
 
-    public function actionStatus($id)
-    {
-        $id = (int)$id;
-        $model = $this->getModel()->findByPk($id);
-        if (null === $model) {
-            throw new CHttpException(404, 'Страница не найдена.');
-        }
-        $this->getModel()->updateByPk($id, array('status' => 1 - $model->status));
-    }
-
     public function actionOrder($id)
     {
         $id = (int)$id;
@@ -103,6 +98,47 @@ class DeliveryController extends AController
             $a_model = $this->getModel()->findAll(array('condition' => '`order`<=' . $order_old . ' AND `order`>=' . $order_new . ' AND id!=' . $id));
             foreach ($a_model as $model) {
                 $model->order++;
+                $model->save();
+            }
+        }
+    }
+
+    public function actionStatus($id)
+    {
+        $id = (int)$id;
+        $model = $this->getModel()->findByPk($id);
+        if (null === $model) {
+            throw new CHttpException(404, 'Страница не найдена.');
+        }
+        $this->getModel()->updateByPk($id, array('status' => 1 - $model->status));
+    }
+
+    public function actionImage($id)
+    {
+        $o_image = Image::model()->findByPk($id);
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        }
+        $o_image->delete();
+        $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function uploadImage($id)
+    {
+        if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
+            $image = $_FILES['image'];
+            $ext = $image['name'];
+            $ext = explode('.', $ext);
+            $ext = end($ext);
+            if (in_array($ext, array('jpg', 'jpeg', 'gif', 'png'))) {
+                $file = $image['tmp_name'];
+                $image_url = ImageIgosja::put_file($file, $ext);
+                $o_image = new Image();
+                $o_image->url = $image_url;
+                $o_image->save();
+                $image_id = $o_image->id;
+                $model = $this->getModel()->findByPk($id);
+                $model->image_id = $image_id;
                 $model->save();
             }
         }

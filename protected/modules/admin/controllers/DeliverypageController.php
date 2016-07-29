@@ -3,7 +3,7 @@
 class DeliverypageController extends AController
 {
     public $h1 = 'Доставка';
-    public $post_name = 'DeliveryPage';
+    public $model_name = 'DeliveryPage';
 
     public function actionIndex()
     {
@@ -18,7 +18,7 @@ class DeliverypageController extends AController
     {
         $id = (int)$id;
         $model = $this->getModel()->findByPk($id);
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $this->uploadImage($model->id);
@@ -65,7 +65,7 @@ class DeliverypageController extends AController
 
     public function getModel($search = '')
     {
-        $model = new DeliveryPage($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }

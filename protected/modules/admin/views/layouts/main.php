@@ -40,13 +40,24 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;">Бренды<span class="fa arrow"></span></a>
+                        <a href="javascript:;">Магазин<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('SEO-теги', array('brandpage/index')); ?>
+                                <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
                             </li>
                             <li>
-                                <?= CHtml::link('Бренды', array('brand/index')); ?>
+                                <?= CHtml::link('Категории', array('category/index')); ?>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Бренды<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('SEO-теги', array('brandpage/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Бренды', array('brand/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -94,47 +105,47 @@
                             <li>
                                 <?= CHtml::link('Оплата', array('paymentpage/index')); ?>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;">ЧаВо<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('SEO-теги', array('faqpage/index')); ?>
+                                <a href="javascript:;">ЧаВо<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('SEO-теги', array('faqpage/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Вопросы', array('faq/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <?= CHtml::link('Вопросы', array('faq/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;">Доставка<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Текст и SEO-теги', array('deliverypage/index')); ?>
-                            </li>
-                            <li>
-                                <?= CHtml::link('Способы доставки', array('delivery/index')); ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;">Вакансии<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <?= CHtml::link('Текст и SEO-теги', array('vacancypage/index')); ?>
+                                <a href="javascript:;">Доставка<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('Текст и SEO-теги', array('deliverypage/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Способы доставки', array('delivery/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <?= CHtml::link('Вакасии', array('vacancy/index')); ?>
+                                <a href="javascript:;">Вакансии<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('Текст и SEO-теги', array('vacancypage/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Вакасии', array('vacancy/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;">Контакты<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
                             <li>
                                 <?= CHtml::link('Контакты и SEO-теги', array('contacts/index')); ?>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Настройки<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
                             <li>
                                 <?= CHtml::link('Соц сети', array('social/index')); ?>
                             </li>

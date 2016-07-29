@@ -1,9 +1,9 @@
 <?php
 
-class MainpageController extends AController
+class ShoppageController extends AController
 {
-    public $h1 = 'Текст на главной';
-    public $model_name = 'MainPage';
+    public $h1 = 'SEO-теги магазина';
+    public $model_name = 'ShopPage';
 
     public function actionIndex()
     {

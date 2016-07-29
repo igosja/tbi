@@ -4,15 +4,15 @@ class VacancyController extends AController
 {
     public $h1 = 'Вакансии';
     public $title = 'Вакансии';
-    public $post_name = 'Vacancy';
+    public $model_name = 'Vacancy';
 
     public function actionIndex()
     {
         $model = $this->getModel('search');
         $model->dbCriteria->order = '`order` ASC';
         $model->unsetAttributes();
-        if (isset($_GET[$this->post_name])) {
-            $model->attributes = $_GET[$this->post_name];
+        if (isset($_GET[$this->model_name])) {
+            $model->attributes = $_GET[$this->model_name];
         }
         $this->breadcrumbs = array(
             $this->title => array('index'),
@@ -36,7 +36,7 @@ class VacancyController extends AController
                 throw new CHttpException(404, 'Страница не найдена.');
             }
         }
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $model = $this->getModel()->findByPk($model->id);
@@ -71,6 +71,9 @@ class VacancyController extends AController
     public function actionDelete($id)
     {
         $model = $this->getModel()->findByPk($id);
+        if (null === $model) {
+            throw new CHttpException(404, 'Страница не найдена.');
+        }
         $model->delete();
         $this->redirect(array('index'));
     }
@@ -108,7 +111,7 @@ class VacancyController extends AController
 
     public function getModel($search = '')
     {
-        $model = new Vacancy($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }

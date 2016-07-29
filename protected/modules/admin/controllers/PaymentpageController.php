@@ -3,7 +3,7 @@
 class PaymentpageController extends AController
 {
     public $h1 = 'Оплата';
-    public $post_name = 'PaymentPage';
+    public $model_name = 'PaymentPage';
 
     public function actionIndex()
     {
@@ -18,7 +18,7 @@ class PaymentpageController extends AController
     {
         $id = (int)$id;
         $model = $this->getModel()->findByPk($id);
-        if ($data = Yii::app()->request->getPost($this->post_name)) {
+        if ($data = Yii::app()->request->getPost($this->model_name)) {
             $model->attributes = $data;
             if ($model->save()) {
                 $this->redirect(array('index'));
@@ -33,7 +33,7 @@ class PaymentpageController extends AController
 
     public function getModel($search = '')
     {
-        $model = new PaymentPage($search);
+        $model = new $this->model_name($search);
         return $model;
     }
 }
