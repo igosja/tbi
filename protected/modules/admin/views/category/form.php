@@ -42,18 +42,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'category_id'); ?></td>
-                        <td>
-                            <?= $form->dropDownList(
-                                $model,
-                                'category_id',
-                                CHtml::listData(Category::model()->findAll(), 'id', 'name'),
-                                array('empty' => 'Выберите категорию', 'class' => 'form-control')
-                            ); ?>
-                            <?= $form->error($model, 'category_id'); ?>
-                        </td>
-                    </tr>
-                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'image_id'); ?></td>
                         <td>
                             <?php if (isset($model->image->url)) { ?>

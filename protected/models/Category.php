@@ -10,8 +10,8 @@ class Category extends CActiveRecord
     public function rules()
     {
         return array(
-            array('category_id, name, text', 'required'),
-            array('category_id, image_id, order, status', 'numerical', 'integerOnly' => true),
+            array('name, text', 'required'),
+            array('image_id, order, status', 'numerical', 'integerOnly' => true),
             array('name, url, seo_title', 'length', 'max' => 255),
             array('seo_description, seo_keywords', 'safe'),
             array('id, name', 'safe', 'on' => 'search'),
@@ -21,8 +21,6 @@ class Category extends CActiveRecord
     public function relations()
     {
         return array(
-            'parent' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
-            'child' => array(self::HAS_MANY, 'Category', array('category_id' => 'id')),
             'image' => array(self::HAS_ONE, 'Image', array('id' => 'image_id')),
         );
     }
