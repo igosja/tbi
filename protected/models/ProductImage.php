@@ -1,20 +1,17 @@
 <?php
 
-class Category extends CActiveRecord
+class ProductImage extends CActiveRecord
 {
     public function tableName()
     {
-        return 'category';
+        return 'productimage';
     }
 
     public function rules()
     {
         return array(
-            array('name, text', 'required'),
-            array('image_id, order, status', 'numerical', 'integerOnly' => true),
-            array('name, url, seo_title', 'length', 'max' => 255),
-            array('seo_description, seo_keywords', 'safe'),
-            array('id, name', 'safe', 'on' => 'search'),
+            array('image_id, product_id', 'required'),
+            array('image_id, product_id', 'numerical', 'integerOnly' => true),
         );
     }
 
@@ -29,8 +26,9 @@ class Category extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'image_id' => 'Изображение',
+            'category_id' => 'Категория',
             'name' => 'Название',
+            'price' => 'Цена, грн',
             'status' => 'Статус',
             'text' => 'Описание',
             'url' => 'ЧП Url',
@@ -38,18 +36,6 @@ class Category extends CActiveRecord
             'seo_keywords' => 'SEO keywords',
             'seo_title' => 'SEO title',
         );
-    }
-
-    public function search()
-    {
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('id', $this->id);
-        $criteria->compare('name', $this->name, true);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
     }
 
     public function beforeDelete()

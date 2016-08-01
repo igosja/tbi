@@ -47,7 +47,12 @@
                     <span>•</span>
                     <a href="javascript:;" class="hphone"><?= $this->salon_phone; ?></a>
                 </div>
-                <a href="javascript:;" data-selector="form-sendEmail" class="callrequest overlayElementTrigger" title="Заказать звонок">Заказать звонок</a>
+                <a
+                    href="javascript:;"
+                    data-selector="form-sendEmail"
+                    class="callrequest overlayElementTrigger" 
+                    title="Заказать звонок"
+                >Заказать звонок</a>
             </div>
             <a href="/" class="logo"><img src="/img/logo.png" alt=""></a>
             <div class="hright">
@@ -78,273 +83,30 @@
                     <li><?= CHtml::link('О компании', array('aboutus/index'), array('title' => 'О компании')); ?></li>
                     <li><?= CHtml::link('Блог', array('blog/index'), array('title' => 'Блог')); ?></li>
                     <li>
-                        <a href="javascript:;" title="Наши товары">Наши товары</a>
+                        <?= CHtml::link('Наши товары', array('shop/index'), array('title' => 'Наши товары')); ?>
                         <div class="first-m">
                             <div class="wrap">
                                 <ul class="clearfix">
-                                    <li>
-                                        <a href="javascript:;" title="Декоративные материалы" class="has-c">Декоративные материалы</a>
-                                        <div class="second-m">
-                                            <div class="wrap clearfix">
-                                                <div class="secon-m__left">
-                                                    <div class="clearfix">
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                Тип материала
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Фоновые материалы</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Декоративные краски</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Тонкослойные материалы</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Декоративные штукатурки</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                Тип помещения
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Интерьер</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Фасад</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По бренду
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Giorgio Graesan & Friends</a></div>
-                                                            <div>
-                                                                <a href="javascript:;">Novacolor</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="secon-m__left">
-                                                            <div class="clearfix">
-                                                                <div class="second-m__item second-m__item_full">
-                                                                    <div class="second-m__title">
-                                                                        Декоративные эффекты
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="secon-m__left">
-                                                            <div class="clearfix">
-                                                                <div class="second-m__item">
-                                                                    <div class="second-m__title">
-                                                                        По декорам
-                                                                    </div>
-                                                                    <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                                </div>
-                                                                <div class="second-m__item">
-                                                                    <div class="second-m__title">
-                                                                        Стиль декора
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Классический</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Арт-деко</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">High-tech/Loft/Минимализм</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Фьюжн</a>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="second-m__item">
-                                                                    <div class="second-m__title">
-                                                                        Эффект поверхности
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Камень/мрамор/траветин</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Бетон</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Коррозия/ржавчина</a>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a href="javascript:;">Шёлк/ткань/бархат</a>
-                                                                    </div>
-                                                                    <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                                </div>
-                                                            </div>
+                                    <?php foreach ($this->menu as $item) { ?>
+                                        <li>
+                                            <?= CHtml::link(
+                                                $item->name,
+                                                array('category/view', 'id' => $item->url),
+                                                array('title' => $item->name, 'class' => 'has-c')
+                                            ); ?>
+                                            <div class="second-m">
+                                                <div class="wrap clearfix">
+                                                    <div class="secon-m__left">
+                                                        <div class="clearfix">
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="secon-m__right">
-                                                    <img src="/img/menu-img-decormat.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" title="Карнизы" class="has-c">Карнизы</a>
-                                        <div class="second-m">
-                                            <div class="wrap clearfix">
-                                                <div class="secon-m__left">
-                                                    <div class="clearfix">
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По типу системы
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Карнизы для драпированных занавесей</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Карнизы для римских штор</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Карнизы для панельных штор</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Карнизные системы для мансардных окон</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Декоративные карнизы</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Специальные системы</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ламбрекенная планка</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Рулонные шторы</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Деревянные жалюзи</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Вертикальные жалюзи</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По типу управления
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Шнур</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Цепочка</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Корба</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ручное управление</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Моторизированная система</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                Тип крепления
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Потолочное</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Стеновое</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">На раму</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
+                                                    <div class="secon-m__right">
+                                                        <img src="<?= ImageIgosja::resize($item->image_id, 380, 380); ?>" alt="" />
                                                     </div>
                                                 </div>
-                                                <div class="secon-m__right">
-                                                    <img src="/img/menu-img-karnozi.jpg" alt="" />
-                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" title="Ткани" class="has-c">Ткани</a>
-                                        <div class="second-m">
-                                            <div class="wrap clearfix">
-                                                <div class="secon-m__left">
-                                                    <div class="clearfix">
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По типу
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Декоративные ткани</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Технические ткани</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ткани Atelier Mottura</a>
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Ткани Блекаут (Blackout)</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По бренду
-                                                            </div>
-                                                            <div>
-                                                                <a href="javascript:;">Mottura</a>
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="secon-m__right">
-                                                    <img src="/img/menu-img-tkani.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;" title="Обои" class="has-c">Обои</a>
-                                        <div class="second-m">
-                                            <div class="wrap clearfix">
-                                                <div class="secon-m__left">
-                                                    <div class="clearfix">
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По бренду
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                        <div class="second-m__item">
-                                                            <div class="second-m__title">
-                                                                По типу
-                                                            </div>
-                                                            <a href="javascript:;" class="second-m__all">Смотреть все</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="secon-m__right">
-                                                    <img src="/img/menu-img-oboi.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="javascript:;" title="Другое">Другое</a></li>
+                                        </li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>

@@ -1,27 +1,30 @@
 <?php
 
-class Category extends CActiveRecord
+class Product extends CActiveRecord
 {
     public function tableName()
     {
-        return 'category';
+        return 'product';
     }
 
     public function rules()
     {
         return array(
-            array('name, text', 'required'),
-            array('image_id, order, status', 'numerical', 'integerOnly' => true),
+            array('category_id, name, price, sku, text', 'required'),
+            array('category_id, order, status', 'numerical', 'integerOnly' => true),
+            array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
+            array('price', 'match', 'pattern'=>'/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
             array('seo_description, seo_keywords', 'safe'),
-            array('id, name', 'safe', 'on' => 'search'),
+            array('id, name, sku', 'safe', 'on' => 'search'),
         );
     }
 
     public function relations()
     {
         return array(
-            'image' => array(self::HAS_ONE, 'Image', array('id' => 'image_id')),
+            'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
+            'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
         );
     }
 
@@ -29,8 +32,11 @@ class Category extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'image_id' => 'Изображение',
+            'category_id' => 'Категория',
+            'image_id' => 'Изображения',
             'name' => 'Название',
+            'price' => 'Цена, грн',
+            'sku' => 'Артикул',
             'status' => 'Статус',
             'text' => 'Описание',
             'url' => 'ЧП Url',
@@ -55,12 +61,12 @@ class Category extends CActiveRecord
     public function beforeDelete()
     {
         if (parent::beforeDelete()) {
-            if (0 < $this->image_id) {
-                $o_image = Image::model()->findByPk($this->image_id);
-                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            $a_image = ProductImage::model()->findAllByAttributes(array('product_id' => $this->id));
+            foreach ($a_image as $item) {
+                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $item->url)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . $item->url);
                 }
-                $o_image->delete();
+                $item->delete();
             }
         }
         return true;

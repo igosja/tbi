@@ -1,10 +1,10 @@
 <?php
 
-class CategoryController extends AController
+class ProductController extends AController
 {
-    public $h1 = 'Категории';
-    public $title = 'Категории';
-    public $model_name = 'Category';
+    public $h1 = 'Товары';
+    public $title = 'Товары';
+    public $model_name = 'Product';
 
     public function actionIndex()
     {
@@ -27,10 +27,10 @@ class CategoryController extends AController
     {
         $id = (int)$id;
         if (0 == $id) {
-            $this->h1 = 'Создание категории';
+            $this->h1 = 'Создание товара';
             $model = $this->getModel();
         } else {
-            $this->h1 = 'Редактирование категории';
+            $this->h1 = 'Редактирование товара';
             $model = $this->getModel()->findByPk($id);
             if (null === $model) {
                 throw new CHttpException(404, 'Страница не найдена.');
@@ -126,21 +126,24 @@ class CategoryController extends AController
 
     public function uploadImage($id)
     {
-        if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
+        if (isset($_FILES['image']['name'][0]) && !empty($_FILES['image']['name'][0])) {
             $image = $_FILES['image'];
-            $ext = $image['name'];
-            $ext = explode('.', $ext);
-            $ext = end($ext);
-            if (in_array($ext, array('jpg', 'jpeg', 'gif', 'png'))) {
-                $file = $image['tmp_name'];
-                $image_url = ImageIgosja::put_file($file, $ext);
-                $o_image = new Image();
-                $o_image->url = $image_url;
-                $o_image->save();
-                $image_id = $o_image->id;
-                $model = $this->getModel()->findByPk($id);
-                $model->image_id = $image_id;
-                $model->save();
+            for ($i = 0, $count_image = count($image['name']); $i < $count_image; $i++) {
+                $ext = $image['name'][$i];
+                $ext = explode('.', $ext);
+                $ext = end($ext);
+                if (in_array($ext, array('jpg', 'jpeg', 'gif', 'png'))) {
+                    $file = $image['tmp_name'][$i];
+                    $image_url = ImageIgosja::put_file($file, $ext);
+                    $o_image = new Image();
+                    $o_image->url = $image_url;
+                    $o_image->save();
+                    $image_id = $o_image->id;
+                    $o_product_image = new ProductImage();
+                    $o_product_image->image_id = $image_id;
+                    $o_product_image->product_id = $id;
+                    $o_product_image->save();
+                }
             }
         }
     }

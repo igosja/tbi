@@ -46,47 +46,56 @@
 
 <section class="main3buttons">
     <div class="wrap clearfix">
-        <a href="javascript:;" title="Доставка по всей Украине">
-            <img src="/img/main1btn.png" alt="" style="top:34px;">
+        <?= CHtml::link(
+            '<img src="/img/main1btn.png" alt="" style="top:34px;">
             <strong>Доставка</strong>
-            <span>по всей Украине</span>
-        </a>
-        <a href="javascript:;" title="Различные способы оплаты">
-            <img src="/img/main2btn.png" alt="" style="top:24px;">
+            <span>по всей Украине</span>',
+            array('delivery/index'),
+            array('title' => 'Доставка по всей Украине')
+        ); ?>
+        <?= CHtml::link(
+            '<img src="/img/main2btn.png" alt="" style="top:24px;">
             <strong>Различные</strong>
-            <span>способы оплаты</span>
-        </a>
-        <a href="javascript:;" title="Партнерские программы">
-            <img src="/img/main4btn.png" alt="" style="top:24px;">
+            <span>способы оплаты</span>',
+            array('payment/index'),
+            array('title' => 'Различные способы оплаты')
+        ); ?>
+        <?= CHtml::link(
+            '<img src="/img/main4btn.png" alt="" style="top:24px;">
             <strong>Партнерские</strong>
-            <span>программы</span>
-        </a>
+            <span>программы</span>',
+            array('cooperation/index'),
+            array('title' => 'Партнерские программы')
+        ); ?>
     </div>
 </section>
 
 <section class="maincatblocks">
     <div class="wrap clearfix">
-        <a href="javascript:;" class="mcb-left" style="background-image:url(/img/mcb1.jpg);">
-            <div><span>Декоративные<br>материалы</span></div>
-            <span class="mcbbtn"><span>Смотреть каталог</span></span>
-        </a>
+        <?php if (isset($a_category[0])) { ?>
+            <?= CHtml::link(
+                '<div><span>' . $a_category[0]->name . '</span></div>
+                <span class="mcbbtn"><span>Смотреть каталог</span></span>',
+                array('category/view', 'id' => $a_category[0]->url),
+                array(
+                    'class' => 'mcb-left',
+                    'style' => 'background-image:url(' . ImageIgosja::resize($a_category[0]->image_id, 380, 530) . ');',
+                    'title' => $a_category[0]->name,
+                )
+            ); ?>
+        <?php } ?>
         <div class="mcb-right">
-            <a href="javascript:;" style="background-image:url(/img/mcb2.jpg);">
-                <div><span>Карнизы<br>и солнцезащитные<br>системы</span></div>
-                <span class="mcbbtn"><span>Смотреть каталог</span></span>
-            </a>
-            <a href="javascript:;" style="background-image:url(/img/mcb3.jpg);">
-                <div><span>Ткани</span></div>
-                <span class="mcbbtn"><span>Смотреть каталог</span></span>
-            </a>
-            <a href="javascript:;" style="background-image:url(/img/mcb5.jpg);">
-                <div><span>Обои</span></div>
-                <span class="mcbbtn"><span>Смотреть каталог</span></span>
-            </a>
-            <a href="javascript:;" style="background-image:url(/img/mcb4.jpg);">
-                <div><span>Другое</span></div>
-                <span class="mcbbtn"><span>Смотреть каталог</span></span>
-            </a>
+            <?php foreach (array_slice($a_category, 1) as $item) { ?>
+                <?= CHtml::link(
+                    '<div><span>' . $item->name . '</span></div>
+                    <span class="mcbbtn"><span>Смотреть каталог</span></span>',
+                    array('category/view', 'id' => $item->url),
+                    array(
+                        'style' => 'background-image:url(' . ImageIgosja::resize($item->image_id, 380, 250) . ');',
+                        'title' => $item->name,
+                    )
+                ); ?>
+            <?php } ?>
         </div>
     </div>
 </section>
@@ -131,288 +140,7 @@
     </div>
 </section>
 
-<section class="popularitems">
-    <div class="wrap">
-        <h4 class="section-heading">Популярные товары</h4>
-        <div class="popularitemsgrid clearfix">
-            <div class="popularitem">
-                <div class="pi-top" style="height: 334px;">
-                    <a href="javascript:;" class="pi-img"
-                       style="background-image: url(/img/794.280x280.jpg)"
-                       title="Декоративная краска Dune Gold "></a>
-                    <a href="javascript:;" class="pi-name" title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
-                    <span class="pi-price">
-                        <span>от </span> 2 955,29 грн.
-                    </span>
-                </div>
-                <div class="clearfix">
-                    <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart" title="В корзину">
-                        В корзину
-                    </a>
-                    <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">
-                        Сравнить
-                    </a>
-                </div>
-                <div class="pi-details">
-                    <table>
-                        <tr>
-                            <td>Артикул:</td>
-                            <td>36147</td>
-                        </tr>
-                        <tr>
-                            <td>Тип товара:</td>
-                            <td>Декоративные краски</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель:</td>
-                            <td>Novacolor</td>
-                        </tr>
-                        <tr>
-                            <td>Упаковка:</td>
-                            <td>5 kg</td>
-                        </tr>
-                        <tr>
-                            <td>Применение:</td>
-                            <td>Интерьер</td>
-                        </tr>
-                        <tr>
-                            <td>Расход:</td>
-                            <td>0.15</td>
-                        </tr>
-                        <tr>
-                            <td>Цвет:</td>
-                            <td><span class="pi-color" style="background:;"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Наличие:</td>
-                            <td>В наличии</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="popularitem">
-                <div class="pi-top" style="height: 334px;">
-                    <a href="javascript:;" class="pi-img"
-                       style="background-image: url(/img/794.280x280.jpg)"
-                       title="Декоративная краска Dune Gold "></a>
-                    <a href="javascript:;" class="pi-name" title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
-                    <span class="pi-price">
-                        <span>от </span> 2 955,29 грн.
-                    </span>
-                </div>
-                <div class="clearfix">
-                    <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart" title="В корзину">
-                        В корзину
-                    </a>
-                    <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">
-                        Сравнить
-                    </a>
-                </div>
-                <div class="pi-details">
-                    <table>
-                        <tr>
-                            <td>Артикул:</td>
-                            <td>36147</td>
-                        </tr>
-                        <tr>
-                            <td>Тип товара:</td>
-                            <td>Декоративные краски</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель:</td>
-                            <td>Novacolor</td>
-                        </tr>
-                        <tr>
-                            <td>Упаковка:</td>
-                            <td>5 kg</td>
-                        </tr>
-                        <tr>
-                            <td>Применение:</td>
-                            <td>Интерьер</td>
-                        </tr>
-                        <tr>
-                            <td>Расход:</td>
-                            <td>0.15</td>
-                        </tr>
-                        <tr>
-                            <td>Цвет:</td>
-                            <td><span class="pi-color" style="background:;"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Наличие:</td>
-                            <td>В наличии</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="popularitem">
-                <div class="pi-top" style="height: 334px;">
-                    <a href="javascript:;" class="pi-img"
-                       style="background-image: url(/img/794.280x280.jpg)"
-                       title="Декоративная краска Dune Gold "></a>
-                    <a href="javascript:;" class="pi-name" title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
-                    <span class="pi-price">
-                        <span>от </span> 2 955,29 грн.
-                    </span>
-                </div>
-                <div class="clearfix">
-                    <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart" title="В корзину">
-                        В корзину
-                    </a>
-                    <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">
-                        Сравнить
-                    </a>
-                </div>
-                <div class="pi-details">
-                    <table>
-                        <tr>
-                            <td>Артикул:</td>
-                            <td>36147</td>
-                        </tr>
-                        <tr>
-                            <td>Тип товара:</td>
-                            <td>Декоративные краски</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель:</td>
-                            <td>Novacolor</td>
-                        </tr>
-                        <tr>
-                            <td>Упаковка:</td>
-                            <td>5 kg</td>
-                        </tr>
-                        <tr>
-                            <td>Применение:</td>
-                            <td>Интерьер</td>
-                        </tr>
-                        <tr>
-                            <td>Расход:</td>
-                            <td>0.15</td>
-                        </tr>
-                        <tr>
-                            <td>Цвет:</td>
-                            <td><span class="pi-color" style="background:;"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Наличие:</td>
-                            <td>В наличии</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="popularitem">
-                <div class="pi-top" style="height: 334px;">
-                    <a href="javascript:;" class="pi-img"
-                       style="background-image: url(/img/794.280x280.jpg)"
-                       title="Декоративная краска Dune Gold "></a>
-                    <a href="javascript:;" class="pi-name" title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
-                    <span class="pi-price">
-                        <span>от </span> 2 955,29 грн.
-                    </span>
-                </div>
-                <div class="clearfix">
-                    <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart" title="В корзину">
-                        В корзину
-                    </a>
-                    <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">
-                        Сравнить
-                    </a>
-                </div>
-                <div class="pi-details">
-                    <table>
-                        <tr>
-                            <td>Артикул:</td>
-                            <td>36147</td>
-                        </tr>
-                        <tr>
-                            <td>Тип товара:</td>
-                            <td>Декоративные краски</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель:</td>
-                            <td>Novacolor</td>
-                        </tr>
-                        <tr>
-                            <td>Упаковка:</td>
-                            <td>5 kg</td>
-                        </tr>
-                        <tr>
-                            <td>Применение:</td>
-                            <td>Интерьер</td>
-                        </tr>
-                        <tr>
-                            <td>Расход:</td>
-                            <td>0.15</td>
-                        </tr>
-                        <tr>
-                            <td>Цвет:</td>
-                            <td><span class="pi-color" style="background:;"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Наличие:</td>
-                            <td>В наличии</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="popularitem">
-                <div class="pi-top" style="height: 334px;">
-                    <a href="javascript:;" class="pi-img"
-                       style="background-image: url(/img/794.280x280.jpg)"
-                       title="Декоративная краска Dune Gold "></a>
-                    <a href="javascript:;" class="pi-name" title="Декоративная краска Dune Gold ">Декоративная краска Dune Gold </a>
-                    <span class="pi-price">
-                        <span>от </span> 2 955,29 грн.
-                    </span>
-                </div>
-                <div class="clearfix">
-                    <a href="javascript:;" data-id="324" data-sku="36147" data-type="2" class="pi-cart addtocart" title="В корзину">
-                        В корзину
-                    </a>
-                    <a href="javascript:;" class="pi-compare compare-add" data-product="324" title="Сравнить">
-                        Сравнить
-                    </a>
-                </div>
-                <div class="pi-details">
-                    <table>
-                        <tr>
-                            <td>Артикул:</td>
-                            <td>36147</td>
-                        </tr>
-                        <tr>
-                            <td>Тип товара:</td>
-                            <td>Декоративные краски</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель:</td>
-                            <td>Novacolor</td>
-                        </tr>
-                        <tr>
-                            <td>Упаковка:</td>
-                            <td>5 kg</td>
-                        </tr>
-                        <tr>
-                            <td>Применение:</td>
-                            <td>Интерьер</td>
-                        </tr>
-                        <tr>
-                            <td>Расход:</td>
-                            <td>0.15</td>
-                        </tr>
-                        <tr>
-                            <td>Цвет:</td>
-                            <td><span class="pi-color" style="background:;"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Наличие:</td>
-                            <td>В наличии</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<?= $this->renderPartial('/include/popular'); ?>
 
 <section class="mainnews">
     <div class="wrap">

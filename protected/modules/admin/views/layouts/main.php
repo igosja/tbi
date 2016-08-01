@@ -43,7 +43,7 @@
                         <a href="javascript:;">Магазин<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
+                                <?= CHtml::link('Товары', array('product/index')); ?>
                             </li>
                             <li>
                                 <?= CHtml::link('Категории', array('category/index')); ?>
@@ -58,6 +58,9 @@
                                         <?= CHtml::link('Бренды', array('brand/index')); ?>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
                             </li>
                         </ul>
                     </li>
