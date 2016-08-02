@@ -74,11 +74,33 @@
                 </script>
             </section>
             <section>
-                <form id="login-form" action="/login/" method="post">
-                    <input class="of-input input-fluid" type="text" name="login" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="E-Mail">
-                    <input class="of-input input-fluid" type="password" placeholder="Пароль" name="password">
-                    <input type="hidden" name="wa_auth_login" value="1">
-                    <input type="submit" class=" of-form-btn" value="Войти"></form>
+                <?php $form = $this->beginWidget('CActiveForm', array(
+                    'id' => 'login-form',
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => false,
+                )); ?>
+                    <?= $form->textField(
+                        $this->model_login,
+                        'username',
+                        array('class' => 'of-input input-fluid', 'placeholder' => 'Логин')
+                    ); ?>
+                    <?= $form->passwordField(
+                        $this->model_login,
+                        'password',
+                        array('class' => 'of-input input-fluid', 'placeholder' => 'Пароль')
+                    ); ?>
+                    <?= CHtml::ajaxSubmitButton(
+                        'Войти',
+                        '/site/login',
+                        array(
+                            'type' => 'POST',
+                            'success' => 'function(data) {
+                                
+                            }'
+                        ),
+                        array('class' => 'of-form-btn')
+                    ); ?>
+                <?php $this->endWidget(); ?>
                 <div class="of-signIn-bottom clearfix">
                     <a href="javascript:;" class="overlayElementTrigger" data-selector="form-lostPasw" title="Забыли пароль?">Забыли пароль?</a>
                     <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>

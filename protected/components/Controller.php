@@ -8,6 +8,7 @@ class Controller extends CController
     public $breadcrumbs = array();
     public $contacts;
     public $menu = array();
+    public $model_login;
     public $office_address;
     public $office_phone;
     public $salon_address;
@@ -22,6 +23,7 @@ class Controller extends CController
         $this->a_social = Social::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->contacts = Contacts::model()->findByPk(1);
         $this->menu = Category::model()->findAllByAttributes(array('status' => 1), array('limit' => 5, 'order' => '`order`'));
+        $this->model_login = new User();
         $this->office_address = $this->contacts->office_address;
         $this->office_address = explode(';', $this->office_address);
         $this->office_address = end($this->office_address);

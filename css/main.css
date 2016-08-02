@@ -3037,7 +3037,7 @@ a.blog-item-heading {
 .blog-item article,
 .blogwrap p {
     font-weight: 300;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
 }
 .blog-item-btn {
@@ -3733,9 +3733,6 @@ section .profile-link:hover {
 }
 .order-table thead td:last-child {
     width: 150px;
-}
-.order-table td {
-    display: ;
 }
 .order-table td a {
     text-decoration: underline;
@@ -6792,7 +6789,7 @@ nav .wrap{
 }
 .effect-left {
     height: 565px!important;
-    background: url(/wa-data/public/site/img/lineyka.png) right top no-repeat;
+    background: url(../img/lineyka.png) right top no-repeat;
 }
 .pc-rashod{
    float: right;

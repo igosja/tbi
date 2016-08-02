@@ -124,7 +124,7 @@
                             <div>
                                 <?= CHtml::link(
                                     '<img src="' . ImageIgosja::resize($item->image_id, 200, 150) . '" alt="' . $item->name . '">',
-                                    array('brand/view', 'id' => $item->id)
+                                    array('brand/view', 'id' => $item->url)
                                 ); ?>
                             </div>
                         </div>

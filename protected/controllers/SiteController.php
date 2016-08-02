@@ -11,9 +11,27 @@ class SiteController extends Controller
             $identity = new UserIdentity($username, $password);
             if ($identity->authenticate()) {
                 Yii::app()->user->login($identity);
-                $this->redirect(array('admin/index'));
+                if (Yii::app()->request->isAjaxRequest) {
+                    print
+                    CHtml::link(
+                        'Личный кабинет',
+                        array('account/index'),
+                        array('title' => 'Личный кабинет')
+                    ) . ' ' . CHtml::link(
+                        'Выход',
+                        array('site/logout'),
+                        array('title' => 'Выход')
+                    );
+                    Yii::app()->end();
+                } else {
+                    $this->redirect(array('admin/index'));
+                }
             } else {
-                $model->error_login = 'Неправильная комбинация<br/>логин/пароль';
+                if (Yii::app()->request->isAjaxRequest) {
+                    $model->error_login = 'Неправильная комбинация<br/>логин/пароль';
+                } else {
+                    
+                }
             }
         }
         $this->layout = 'login';
@@ -23,6 +41,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->redirect(array('site/login'));
+        $this->redirect(array('index/index'));
     }
 }

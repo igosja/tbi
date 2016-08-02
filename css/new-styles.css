@@ -331,12 +331,6 @@
 .decor .bx-wrapper .bx-next{
     right:0;
 }
-.page-left {
-    float: right;
-    width: 900px;
-    margin-left: 30px;
-    margin-right: 0;
-}
 
 .pageinfo p {
     font-size: 16px;

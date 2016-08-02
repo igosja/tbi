@@ -57,8 +57,21 @@
             <a href="/" class="logo"><img src="/img/logo.png" alt=""></a>
             <div class="hright">
                 <div class="user-functions">
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="Вход">Вход</a>
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                    <?php if (Yii::app()->user->isGuest) { ?>
+                        <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="Вход">Вход</a>
+                        <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                    <?php } else { ?>
+                        <?= CHtml::link(
+                            'Личный кабинет',
+                            array('account/index'),
+                            array('title' => 'Личный кабинет')
+                        ); ?>
+                        <?= CHtml::link(
+                            'Выход',
+                            array('site/logout'),
+                            array('title' => 'Выход')
+                        ); ?>
+                    <?php } ?>
                 </div>
                 <div class="hsearch">
                     <form>
