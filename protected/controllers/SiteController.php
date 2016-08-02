@@ -30,7 +30,7 @@ class SiteController extends Controller
                 if (Yii::app()->request->isAjaxRequest) {
                     $model->error_login = 'Неправильная комбинация<br/>логин/пароль';
                 } else {
-                    
+
                 }
             }
         }
