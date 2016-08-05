@@ -30,8 +30,7 @@
                 Внимание!
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <span>Вы ввели неправильный е-мейл или пароль.
-            </span>
+            <span>Вы ввели неправильный е-мейл или пароль.</span>
         </div>
 
         <div class="of-form form-register thank-form">
@@ -39,8 +38,7 @@
                 Благодарим за регистрацию!
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <span>Информация об этом выслана на Ваш е-мейл.
-            </span>
+            <span>Информация об этом выслана на Ваш е-мейл.</span>
         </div>
 
         <div class="of-form form-subscribe thank-form">
@@ -48,8 +46,7 @@
                 Благодарим за подписку!
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <span>Каждую неделю мы будем отправлять Вам интересные новости, информацию о новых товарах и акциях.
-            </span>
+            <span>Каждую неделю мы будем отправлять Вам интересные новости, информацию о новых товарах и акциях.</span>
         </div>
 
         <div class="of-form form-signIn">
@@ -59,9 +56,9 @@
             </section>
             <section>
                 <div class="social-sign clearfix">
-                    <a href="/oauth.php?app=site&provider=twitter" class="tw"></a>
-                    <a href="/oauth.php?app=site&provider=vkontakte" class="vk"></a>
-                    <a href="/oauth.php?app=site&provider=facebook" class="fb"></a>
+                    <a href="javascript:;" class="tw"></a>
+                    <a href="javascript:;" class="vk"></a>
+                    <a href="javascript:;" class="fb"></a>
                     <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше сервисами.</p>
                 </div>
                 <script type="text/javascript">
@@ -74,6 +71,9 @@
                 </script>
             </section>
             <section>
+                <div id="login-error" style="color:red; display:none;">
+                    Неправильная комбинация логин/пароль
+                </div>
                 <?php $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'login-form',
                     'enableAjaxValidation' => false,
@@ -81,21 +81,26 @@
                 )); ?>
                     <?= $form->textField(
                         $this->model_login,
-                        'username',
-                        array('class' => 'of-input input-fluid', 'placeholder' => 'Логин')
+                        'email',
+                        array('class' => 'of-input input-fluid', 'placeholder' => $this->model_login->getAttributeLabel('username'))
                     ); ?>
                     <?= $form->passwordField(
                         $this->model_login,
                         'password',
-                        array('class' => 'of-input input-fluid', 'placeholder' => 'Пароль')
+                        array('class' => 'of-input input-fluid', 'placeholder' => $this->model_login->getAttributeLabel('password'))
                     ); ?>
                     <?= CHtml::ajaxSubmitButton(
                         'Войти',
                         '/site/login',
                         array(
                             'type' => 'POST',
-                            'success' => 'function(data) {
-                                
+                            'dataType' => 'json',
+                            'success' => 'function(data) {  
+                                if (1 == data.success) {
+                                    location.reload();
+                                } else {
+                                    $("#login-error").show();
+                                }
                             }'
                         ),
                         array('class' => 'of-form-btn')
@@ -115,9 +120,9 @@
             </section>
             <section>
                 <div class="social-sign clearfix">
-                    <a href="/oauth.php?app=site&provider=twitter" class="tw"></a>
-                    <a href="/oauth.php?app=site&provider=vkontakte" class="vk"></a>
-                    <a href="/oauth.php?app=site&provider=facebook" class="fb"></a>
+                    <a href="javascript:;" class="tw"></a>
+                    <a href="javascript:;" class="vk"></a>
+                    <a href="javascript:;" class="fb"></a>
                     <p>Авторизуйтесь, указав свои контактные данные, или воспользовавшись перечисленными выше сервисами.</p>
                 </div>
                 <script type="text/javascript">
@@ -131,36 +136,128 @@
             </section>
             <section>
                 <div class="wa-form">
-                    <form>
-                        <div class="wa-field wa-field-firstname">
-                            <div class="wa-name">Имя</div>
-                            <div class="wa-value"><input type="text" name="data[firstname]"></div>
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'register-form',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => false,
+                    )); ?>
+                    <div class="wa-field wa-field-firstname">
+                        <div class="wa-name">
+                            <?= $this->model_login->getAttributeLabel('name'); ?>
                         </div>
-                        <div class="wa-field wa-field-lastname">
-                            <div class="wa-name">Фамилия</div>
-                            <div class="wa-value"><input type="text" name="data[lastname]"></div>
+                        <div class="wa-value">
+                            <?= $form->textField(
+                                $this->model_login,
+                                'name'
+                            ); ?>
                         </div>
-                        <div class="wa-field wa-field-email">
-                            <div class="wa-name">Email</div>
-                            <div class="wa-value"><input type="text" name="data[email]"
-                                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></div>
+                    </div>
+                    <div id="register-error-name" class="register-error" style="color:red; display:none;"></div>
+                    <div class="wa-field wa-field-lastname">
+                        <div class="wa-name">
+                            <?= $this->model_login->getAttributeLabel('surname'); ?>
                         </div>
-                        <div class="wa-field wa-field-password">
-                            <div class="wa-name">Пароль</div>
-                            <div class="wa-value"><input type="password" name="data[password]"></div>
+                        <div class="wa-value">
+                            <?= $form->textField(
+                                $this->model_login,
+                                'surname'
+                            ); ?>
                         </div>
-                        <div class="wa-field wa-field-password_confirm">
-                            <div class="wa-name">Подтвердите пароль</div>
-                            <div class="wa-value"><input type="password" name="data[password_confirm]"></div>
+                    </div>
+                    <div id="register-error-surname" class="register-error" style="color:red; display:none;"></div>
+                    <div class="wa-field wa-field-email">
+                        <div class="wa-name">
+                            <?= $this->model_login->getAttributeLabel('email'); ?>
                         </div>
-                        <div class="wa-field">
-                            <div class="wa-value wa-submit">
-                                <input type="submit" value="Регистрация"></div>
+                        <div class="wa-value">
+                            <?= $form->textField(
+                                $this->model_login,
+                                'email'
+                            ); ?>
                         </div>
-                    </form>
+                    </div>
+                    <div id="register-error-email" class="register-error" style="color:red; display:none;"></div>
+                    <div class="wa-field wa-field-password">
+                        <div class="wa-name">
+                            <?= $this->model_login->getAttributeLabel('password'); ?>
+                        </div>
+                        <div class="wa-value">
+                            <?= $form->passwordField(
+                                $this->model_login,
+                                'password'
+                            ); ?>
+                        </div>
+                    </div>
+                    <div id="register-error-password" class="register-error" style="color:red; display:none;"></div>
+                    <div class="wa-field wa-field-password_confirm">
+                        <div class="wa-name">
+                            <?= $this->model_login->getAttributeLabel('password_repeat'); ?>
+                        </div>
+                        <div class="wa-value">
+                            <?= $form->passwordField(
+                                $this->model_login,
+                                'password_repeat'
+                            ); ?>
+                        </div>
+                    </div>
+                    <div id="register-error-password_repeat" class="register-error" style="color:red; display:none;"></div>
+                    <div class="wa-field">
+                        <div class="wa-value wa-submit">
+                            <?= CHtml::ajaxSubmitButton(
+                                'Регистрация',
+                                '/site/signup',
+                                array(
+                                    'type' => 'POST',
+                                    'dataType' => 'json',
+                                    'success' => 'function(data) {
+                                        if (1 == data.success) {
+                                            location.reload();
+                                        } else {
+                                            if (data.error.email != null) {
+                                                $("#register-error-email").text(data.error.email);
+                                            } else {
+                                                $("#register-error-email").empty();
+                                            }
+                                            if (data.error.name != null) {
+                                                $("#register-error-name").text(data.error.name);
+                                            } else {
+                                                $("#register-error-name").empty();
+                                            }
+                                            if (data.error.password != null) {
+                                                $("#register-error-password").text(data.error.password);
+                                            } else {
+                                                $("#register-error-password").empty();
+                                            }
+                                            if (data.error.surname != null) {
+                                                $("#register-error-surname").text(data.error.surname);
+                                            } else {
+                                                $("#register-error-surname").empty();
+                                            }
+                                            if (data.error.password_repeat != null) {
+                                                $("#register-error-password_repeat").text(data.error.password_repeat);
+                                            } else {
+                                                $("#register-error-password_repeat").empty();
+                                            }
+                                            $(".register-error").show();
+                                        }
+                                    }'
+                                )
+                            ); ?>
+                        </div>
+                    </div>
+                    <?php $this->endWidget(); ?>
                 </div>
                 <div class="of-signup-bottom clearfix">
-                    <p>или <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="войдите">войдите</a>,<br>если у вас уже есть аккаунт</p>
+                    <p>
+                        или
+                        <a
+                            href="javascript:;"
+                            class="overlayElementTrigger"
+                            data-selector="form-signIn"
+                            title="войдите"
+                        >войдите</a>,
+                        <br>если у вас уже есть аккаунт
+                    </p>
                 </div>
             </section>
         </div>

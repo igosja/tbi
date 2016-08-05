@@ -147,6 +147,20 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="javascript:;">Пользователи<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('SEO-теги кабинета', array('accountpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Страны', array('country/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Области', array('region/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:;">Настройки<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
