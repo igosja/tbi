@@ -2,11 +2,6 @@
 
 class ProductImage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'productimage';
-    }
-
     public function rules()
     {
         return array(

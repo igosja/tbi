@@ -263,13 +263,21 @@
         if ($(this).hasClass('qty-more')) {
             qtyInput.val(parseInt(qtyInput.val()) + 1);
         }
+        if ($(this).parent().hasClass('cart-qty-input')) {
+            var cart_id = $(this).parent().find('input').data('id');
+            var quantity = $(this).parent().find('input').val();
+            $.ajax({
+                async: false,
+                beforeSend: function() {$('.cart-data').addClass('loading');},
+                url: '/cart/quantity/' + cart_id + '/?quantity=' + quantity,
+                success: function() {
+                    get_cart();
+                    count_cart();
+                    $('.cart-data').removeClass('loading');
+                }
+            });
+        }
     });
-
-    $('html').on('click', '.cart-qty-input a', function () {
-
-        changeQuantity($(this).parent().data('id'), $(this).parent().find('input').val());
-    });
-
 
     $('.productinfo-btn').on('click', function () {
         if ($('.product-info').hasClass('product-info-opened')) {
@@ -410,67 +418,6 @@
         location.href = '/shop/?currency=' + $(this).val();
     });
 
-    $('.addtocart').on('click', function () {
-
-        if ($('.sku_id:checked').val() == 'undefined') {
-            var sku = $('.sku_id:checked').val();
-        }
-        else {
-            var sku = $(this).data('sku');
-        }
-
-        var product_obj = {
-            'product_id': $(this).data('id'),
-            'sku_id': sku
-        };
-        if ($(this).data('type') == 1) {
-            product_obj.quantity = $('.qty-input').find('input').val();
-        }
-        $.post('/shop/cart/add/?html=1', product_obj, function (response) {
-            var cart = $('.navcart');
-            var data = $.parseJSON(response);
-
-            if (data.status == "ok") {
-                cart.find('span').text(data.data.count);
-                if (data.data.count > 0) {
-                    cart.removeClass('empty');
-                } else {
-                    cart.addClass('empty');
-
-                }
-            }
-        });
-
-        //console.info('item with product id ' + $(this).data('id') + ' and sky id ' + $(this).data('sku') + ' clicked');
-    });
-
-    $('.addtocart-accessory').on('click', function () {
-        var sku = $(this).data('sku');
-
-        var product_obj = {
-            'product_id': $(this).data('id'),
-            'sku_id': sku
-        };
-
-        product_obj.quantity = $(this).parent().parent().find('.qty-input').find('input').val();
-
-        $.post('/shop/cart/add/?html=1', product_obj, function (response) {
-            var cart = $('.navcart');
-            var data = $.parseJSON(response);
-
-            if (data.status == "ok") {
-                cart.find('span').text(data.data.count);
-                if (data.data.count > 0) {
-                    cart.removeClass('empty');
-                } else {
-                    cart.addClass('empty');
-
-                }
-            }
-        });
-
-        //console.info('item with product id ' + $(this).data('id') + ' and sky id ' + $(this).data('sku') + ' clicked');
-    });
     $('html').on('click', '.cart-remove', function () {
 
         //console.info(product_obj);
@@ -482,18 +429,7 @@
 
 
     });
-    $('.navcart').on('click', function () {
-        $(this).addClass('loading');
-        $.post('/shop/', {'ajax': 1, 'method': 'getShoppingCart'}, function (response) {
-            var data = $.parseJSON(response);
-            changeCartCount(data.count);
-            $('.cart-data').replaceWith(data.html);
-            $('.qty-input input').numeric();
-            $('.overlay-forms').stop().fadeIn();
-            $('.form-cart').stop().fadeIn();
-            $('.navcart').removeClass('loading');
-        });
-    });
+
     $('.consumption_calc_submit').on('click', function () {
         var block = $(this).parent().parent();
         var square = block.find('.square');
@@ -809,600 +745,6 @@
     });
     /*Конец адресной доставки новой почты (Бойко Игорь)*/
 
-    //LAZYLOADING
-    $('.lazyloading-load-more').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 12);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.catalog-grid',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.catalog-grid');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.catalog-grid img').retina();
-                            }
-                            product_list.append(tmp.find('.catalog-grid').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    //LAZYLOADING
-    $('.lazyloading-load-all').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 1000);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.catalog-grid',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.catalog-grid');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.catalog-grid img').retina();
-                            }
-                            product_list.append(tmp.find('.catalog-grid').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    $('.lazyloading-load-more-line').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 12);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.catalog-line',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.catalog-line');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.catalog-line img').retina();
-                            }
-                            product_list.append(tmp.find('.catalog-line').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more-line').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more-line">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more-line').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    $('.lazyloading-load-all-line').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 1000);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.catalog-line',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.catalog-line');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.catalog-line img').retina();
-                            }
-                            product_list.append(tmp.find('.catalog-line').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more-line').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more-line">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more-line').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    $('.lazyloading-load-more-blog').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 12);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.list-blog-div',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.list-blog-div');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.list-blog-div img').retina();
-                            }
-                            product_list.append(tmp.find('.list-blog-div').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more-blog').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more-blog">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more-blog').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-
-                            console.log('yo');
-                        });
-                    }
-                });
-            }
-        }
-    });
-
-    $('.lazyloading-load-all-blog').on('click', function () {
-        if ($.fn.lazyLoad) {
-            var paging = $('.lazyloading-paging');
-            if (!paging.length) {
-                return;
-            }
-
-            var times = parseInt(1, 1000);
-            var link_text = paging.data('linkText') || 'Load more';
-            var loading_str = paging.data('loading-str') || 'Loading...';
-
-            // check need to initialize lazy-loading
-            var current = paging.find('a.current');
-            /*if (current.text() != '1') {
-             return;
-             }*/
-            /*paging.hide();*/
-            var win = $(window);
-
-            // prevent previous launched lazy-loading
-            win.lazyLoad('stop');
-
-            // check need to initialize lazy-loading
-            var next = current.next();
-            if (next.length) {
-                win.lazyLoad({
-                    container: '.list-blog-div',
-                    load: function () {
-                        win.lazyLoad('sleep');
-
-                        var paging = $('.lazyloading-paging')/*.hide()*/;
-
-                        // determine actual current and next item for getting actual url
-                        var current = paging.find('a.current');
-                        var next = current.next();
-                        var url = next.attr('href');
-                        if (!url) {
-                            win.lazyLoad('stop');
-                            return;
-                        }
-
-                        var product_list = $('.list-blog-div');
-
-                        $.get(url, function (html) {
-                            var tmp = $('<div></div>').html(html);
-                            if ($.Retina) {
-                                tmp.find('.list-blog-div img').retina();
-                            }
-                            product_list.append(tmp.find('.list-blog-div').children());
-                            var tmp_paging = tmp.find('.lazyloading-paging')/*.hide()*/;
-                            paging.replaceWith(tmp_paging);
-                            paging = tmp_paging;
-
-                            times -= 1;
-
-                            // check need to stop lazy-loading
-                            var current = paging.find('a.current');
-                            var next = current.next();
-                            if (next.length) {
-                                if (!isNaN(times) && times <= 0) {
-                                    win.lazyLoad('sleep');
-                                    if (!$('.lazyloading-load-more-blog').length) {
-                                        $('<a href="javascript:;" class="catalog-more lazyloading-load-more-blog">Загрузить еще</a>').insertBefore(paging)
-                                            .click(function () {
-                                                loading.show();
-                                                times = 1;      // one more time
-                                                win.lazyLoad('wake');
-                                                win.lazyLoad('force');
-                                                return false;
-                                            });
-                                    }
-                                } else {
-                                    win.lazyLoad('wake');
-                                }
-                            } else {
-                                win.lazyLoad('stop');
-                                $('.lazyloading-load-more-blog').hide();
-                            }
-
-                            tmp.remove();
-
-                            var pagination_to_current = $('.pagination-item');
-
-                            for (var i = 0; i < pagination_to_current.length; i++) {
-                                if ($(pagination_to_current[i]).hasClass('current')) {
-                                    break;
-                                }
-                                else {
-                                    $(pagination_to_current[i]).addClass('currents');
-                                }
-                            }
-
-                            console.log('yo');
-                        });
-                    }
-                });
-            }
-        }
-    });
-
     $('#zoom_01').elevateZoom({
         cursor: "crosshair",
         lensSize: 50
@@ -1511,14 +853,14 @@
     });
 
     $('#arrive-data-email').on('change', function ()
-        //Форма сообщить когда появится, поле email
+    //Форма сообщить когда появится, поле email
     {
         var email_value = $(this).val();
         $('#arrive-email').val(email_value);
     });
 
     $('#product-review-form').submit(function ()
-        //Написать отзыв
+    //Написать отзыв
     {
         var self = $(this);
         $.ajax({
@@ -1534,7 +876,7 @@
     });
 
     $('.comment-more').on('click', function ()
-        //Комментарии - загрузить еще
+    //Комментарии - загрузить еще
     {
         var current_id = $(this).data('current');
         var all_id = $(this).data('all');
@@ -1555,14 +897,14 @@
     });
 
     $('.comment-all').on('click', function ()
-        //Комментарии - загрузить все
+    //Комментарии - загрузить все
     {
         $('.comment').show();
         $('.catalog-btns').hide();
     });
 
     $('.color-footer').on('change', function ()
-        //Синхронная смена цвета
+    //Синхронная смена цвета
     {
         var color_value = $(this).data('color');
         var color_name = $(this).data('name');
@@ -1571,7 +913,7 @@
     });
 
     $('.decor-color').on('change', function ()
-        //Синхронная смена цвета
+    //Синхронная смена цвета
     {
         var color_value = $(this).data('color');
         $('#color-footer-' + color_value).trigger('click');
@@ -1608,44 +950,159 @@
                 $('#blog-info').remove();
             }
         });
-    })
+    });
+
+    $('#User_country_id').on('change', function () {
+        var country_id = $(this).val();
+        $.ajax({
+            url: '/account/region/' + country_id,
+            dataType: 'json',
+            success: function(data) {
+                select_html = '';
+                $.each(data, function (key, value) {
+                    select_html = select_html + '<option value="' + key + '">' + value + '</option>';
+                });
+                $('#User_region_id').html(select_html);
+                //$('#User_region_id').customSelect({customClass: 'profile-select-styled'});
+            }
+        });
+    });
+
+    $('.add-to-cart').on('click', function () {
+        var product = $(this).data('product');
+        $.ajax({
+            url: '/cart/add/' + product,
+            dataType: 'json',
+            success: function(data) {
+                if (1 == data.status) {
+                    var cart = $('.navcart');
+                    cart.find('span').text(data.count);
+                    if (0 == data.count) {
+                        cart.addClass('empty');
+                    } else {
+                        cart.removeClass('empty');
+                    }
+                }
+            }
+        });
+    });
+
+    $('.navcart').on('click', function () {
+        get_cart();
+        $('.overlay-forms').stop().fadeIn();
+        $('.form-cart').stop().fadeIn();
+    });
+
+    if ('undefined' !== typeof(user_account_edit) && user_account_edit) {
+        $('.profileEditToggle').click();
+    }
+
+    if ('undefined' !== typeof(user_account_password) && user_account_password) {
+        $('#password_change_link').click();
+    }
+
+    if ('undefined' !== typeof(contacts_call_send) && contacts_call_send) {
+        $('#form-contact-link').click();
+    }
+
+    if ('undefined' !== typeof(register_success) && register_success) {
+        $('#form-register-link').click();
+    }
+
+    if ('undefined' !== typeof(resume_success) && resume_success) {
+        $('#form-vacancies-link').click();
+    }
 });
 
-function changeQuantity(cart_item_id, new_quantity) {
-
-    //console.info(cart_item_id);
-    //console.info(new_quantity);
-    //return;
-    $.post('/shop/cart/save/', {'html': 1, 'id': cart_item_id, 'quantity': new_quantity}, function () {
-        updateShoppingCart('.cart-data');
+function get_cart()
+{
+    $.ajax({
+        async: false,
+        beforeSend: function() {$('.navcart').addClass('loading');},
+        url: '/cart/',
+        dataType: 'json',
+        success: function(data) {
+            table_body = '';
+            for (var i=0; i<data.product.length; i++) {
+                table_body = table_body
+                + '<tr>'
+                + '<td><a href="' + data.product[i].url + '">' + data.product[i].name + '</a></td>'
+                + '<td>'
+                + '<div class="qty-input cart-qty-input clearfix">'
+                + '<a href="javascript:;" class="qty-less"></a>'
+                + '<input type="text" value="' + data.product[i].quantity + '" data-id="' + data.product[i].id + '">'
+                + '<a href="javascript:;" class="qty-more"></a>'
+                + '</div>'
+                + '</td>'
+                + '<td>' + data.product[i].price + ' UAH</td>'
+                + '<td><a href="javascript:;" data-id="' + data.product[i].id + '" class="cart-remove"></a></td>'
+                + '</tr>';
+            }
+            $('#cart-table tbody').html(table_body);
+            $('#cart-total-price').html(data.total);
+            $('.qty-input input').numeric();
+            $('.navcart').removeClass('loading');
+            change_cart_change();
+            remove_cart();
+        }
     });
-
-
 }
-function changeCartCount(count) {
-    var cart = $('.navcart');
 
-    if (count <= 0) {
-        $('.cart-actions').addClass('inactive');
-        cart.find('span').text(0);
-        cart.addClass('empty');
-    } else {
-        $('.cart-actions').removeClass('inactive');
-        cart.find('span').text(count);
-        cart.removeClass('empty');
-    }
-}
-function updateShoppingCart(loading_selector) {
-    $(loading_selector).addClass('loading');
-    $.post('/shop/', {'ajax': 1, 'method': 'getShoppingCart'}, function (response) {
-        var data = $.parseJSON(response);
-        changeCartCount(data.count);
-        $('.cart-data').replaceWith(data.html);
-
-        $('.qty-input input').numeric();
-        $(loading_selector).removeClass('loading');
+function change_cart_change()
+{
+    $('.cart-qty-input input').on('change', function() {
+        var cart_id = $(this).data('id');
+        var quantity = $(this).val();
+        if (quantity < 1) {
+            quantity = 1;
+        }
+        $.ajax({
+            async: false,
+            beforeSend: function() {$('.cart-data').addClass('loading');},
+            url: '/cart/quantity/' + cart_id + '/?quantity=' + quantity,
+            success: function() {
+                get_cart();
+                count_cart();
+                $('.cart-data').removeClass('loading');
+            }
+        });
     });
+}
 
+function remove_cart()
+{
+    $('.cart-remove').on('click', function() {
+        var cart_id = $(this).data('id');
+        $.ajax({
+            async: false,
+            beforeSend: function() {$('.cart-data').addClass('loading');},
+            url: '/cart/remove/' + cart_id + '/',
+            success: function() {
+                get_cart();
+                count_cart();
+                $('.cart-data').removeClass('loading');
+            }
+        });
+    });
+}
+
+function count_cart()
+{
+    $.ajax({
+        beforeSend: function() {$('.navcart').addClass('loading');},
+        dataType: 'json',
+        url: '/cart/',
+        success: function(data) {
+            var cart = $('.navcart');
+            cart.find('span').text(data.count);
+            if (0 == data.count) {
+                cart.addClass('empty');
+            } else {
+                cart.removeClass('empty');
+            }
+            $('.navcart').removeClass('loading');
+        }
+    });
 }
 
 var marker, i;

@@ -2,11 +2,6 @@
 
 class WarrantyPage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'warrantypage';
-    }
-
     public function rules()
     {
         return array(

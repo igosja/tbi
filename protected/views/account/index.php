@@ -47,11 +47,11 @@
                                 </li>
                                 <li>
                                     <small><?= $o_user->getAttributeLabel('country_id'); ?>:</small>
-                                    <span><?= $o_user->country; ?></span>
+                                    <span><?= isset($o_user->country->name) ? $o_user->country->name : ''; ?></span>
                                 </li>
                                 <li>
                                     <small><?= $o_user->getAttributeLabel('region_id'); ?>:</small>
-                                    <span><?= $o_user->region; ?></span>
+                                    <span><?= isset($o_user->region->name) ? $o_user->region->name : ''; ?></span>
                                 </li>
                                 <li>
                                     <small><?= $o_user->getAttributeLabel('zip'); ?>:</small>
@@ -101,182 +101,101 @@
                     </section>
                 </div>
                 <div class="profile-form profile-editing">
-                    <form action="" method="post" class="profile-form profile-editing" style="display: block;">
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'account-form',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                        'htmlOptions' => array('class' => 'profile-form profile-editing'),
+                    )); ?>
                         <div class="clearfix">
                             <div class="profile-form__left" style="padding-left:20px;">
                                 <h4 class="profile-list__title">Контактные данные:</h4>
-                                <label for="">Имя :</label>
-                                <input type="text" value="Максим" name="profile[firstname]">
-                                <label for="">Фамилия :</label>
-                                <input type="text" value="Adminovich" name="profile[lastname]">
-                                <label for="">Телефон :</label>
-                                <input type="tel" value="0679625526" name="profile[phone]" class="phone_mask">
-                                <label for="">Email :</label>
-                                <input type="email" value="www.tbi.ua@gmail.com" name="profile[email]" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <?= $form->labelEx($o_user, 'name'); ?>
+                                <?= $form->textField($o_user, 'name'); ?>
+                                <?= $form->error($o_user, 'name'); ?>
+                                <?= $form->labelEx($o_user, 'surname'); ?>
+                                <?= $form->textField($o_user, 'surname'); ?>
+                                <?= $form->error($o_user, 'surname'); ?>
+                                <?= $form->labelEx($o_user, 'phone'); ?>
+                                <?= $form->telField($o_user, 'phone', array('class' => 'phone_mask')); ?>
+                                <?= $form->error($o_user, 'phone'); ?>
+                                <?= $form->labelEx($o_user, 'email'); ?>
+                                <?= $form->emailField($o_user, 'email'); ?>
+                                <?= $form->error($o_user, 'email'); ?>
                                 <div id="password_change_block" style="display:none;">
-                                    <label for="">Новый пароль :</label>
-                                    <input type="password" name="profile[password]">
-                                    <label for="">Подтвердите пароль :</label>
-                                    <input type="password" name="profile[password_confirm]">
+                                    <?= $form->labelEx($o_user, 'password_new'); ?>
+                                    <?= $form->passwordField($o_user, 'password_new'); ?>
+                                    <?= $form->error($o_user, 'password_new'); ?>
+                                    <?= $form->labelEx($o_user, 'password_repeat'); ?>
+                                    <?= $form->passwordField($o_user, 'password_repeat'); ?>
+                                    <?= $form->error($o_user, 'password_repeat'); ?>
                                 </div>
-                                <a href="javascript:;" class="profile-btn__pasw" id="password_change_link" title="Изменить пароль">Изменить пароль</a>
+                                <a
+                                    href="javascript:;"
+                                    class="profile-btn__pasw"
+                                    id="password_change_link"
+                                    title="Изменить пароль"
+                                >Изменить пароль</a>
                             </div>
                             <div class="profile-form__right_big">
                                 <h4 class="profile-list__title">Адрес:</h4>
                                 <div class="clearfix">
                                     <div class="profile-inleft">
-                                        <label for="">Страна</label>
+                                        <?= $form->labelEx($o_user, 'country_id'); ?>
                                         <div class="profile-select">
-                                            <select name="profile[address][country]" id="profile_country">
-                                                <option value="can">Канада</option>
-                                                <option value="rus">Российская Федерация</option>
-                                                <option value="usa">Соединенные Штаты Америки (США)</option>
-                                                <option value="ukr" selected>Украина</option>
-                                            </select>
+                                            <?= $form->dropDownList(
+                                                $o_user,
+                                                'country_id',
+                                                CHtml::listData($a_country, 'id', 'name')
+                                            ); ?>
                                         </div>
+                                        <?= $form->error($o_user, 'country_id'); ?>
                                     </div>
                                     <div class="profile-inright">
-                                        <label for="">Область</label>
-                                        <div class="profile-select" id="profile_region">
-                                            <select name="profile[address][region]">
-                                                <option value="09"
-                                                >
-                                                    Івано-Франківська область
-                                                </option>
-                                                <option value="01"
-                                                >
-                                                    Автономна Республіка Крим
-                                                </option>
-                                                <option value="02"
-                                                >
-                                                    Вінницька область
-                                                </option>
-                                                <option value="03"
-                                                >
-                                                    Волинська область
-                                                </option>
-                                                <option value="04"
-                                                >
-                                                    Дніпропетровська область
-                                                </option>
-                                                <option value="05"
-                                                >
-                                                    Донецька область
-                                                </option>
-                                                <option value="06"
-                                                >
-                                                    Житомирська область
-                                                </option>
-                                                <option value="07"
-                                                >
-                                                    Закарпатська область
-                                                </option>
-                                                <option value="08"
-                                                >
-                                                    Запорізька область
-                                                </option>
-                                                <option value="12"
-                                                >
-                                                    Кіровоградська область
-                                                </option>
-                                                <option value="10"
-                                                >
-                                                    Київська область
-                                                </option>
-                                                <option value="13"
-                                                >
-                                                    Луганська область
-                                                </option>
-                                                <option value="14"
-                                                >
-                                                    Львівська область
-                                                </option>
-                                                <option value="11"
-                                                        selected
-                                                >
-                                                    місто Київ
-                                                </option>
-                                                <option value="27"
-                                                >
-                                                    місто Севастополь
-                                                </option>
-                                                <option value="15"
-                                                >
-                                                    Миколаївська область
-                                                </option>
-                                                <option value="16"
-                                                >
-                                                    Одеська область
-                                                </option>
-                                                <option value="17"
-                                                >
-                                                    Полтавська область
-                                                </option>
-                                                <option value="18"
-                                                >
-                                                    Рівненська область
-                                                </option>
-                                                <option value="19"
-                                                >
-                                                    Сумська область
-                                                </option>
-                                                <option value="20"
-                                                >
-                                                    Тернопільська область
-                                                </option>
-                                                <option value="21"
-                                                >
-                                                    Харківська область
-                                                </option>
-                                                <option value="22"
-                                                >
-                                                    Херсонська область
-                                                </option>
-                                                <option value="23"
-                                                >
-                                                    Хмельницька область
-                                                </option>
-                                                <option value="24"
-                                                >
-                                                    Черкаська область
-                                                </option>
-                                                <option value="26"
-                                                >
-                                                    Чернівецька область
-                                                </option>
-                                                <option value="25"
-                                                >
-                                                    Чернігівська область
-                                                </option>
-                                            </select>
+                                        <?= $form->labelEx($o_user, 'region_id'); ?>
+                                        <div class="profile-select">
+                                            <?= $form->dropDownList(
+                                                $o_user,
+                                                'region_id',
+                                                CHtml::listData($a_region, 'id', 'name')
+                                            ); ?>
                                         </div>
+                                        <?= $form->error($o_user, 'region_id'); ?>
                                     </div>
                                     <div class="profile-inleft">
-                                        <label for="">Город</label>
-                                        <input type="text" value="Коростень" name="profile[address][city]">
+                                        <?= $form->labelEx($o_user, 'city'); ?>
+                                        <?= $form->textField($o_user, 'city'); ?>
+                                        <?= $form->error($o_user, 'city'); ?>
                                     </div>
                                     <div class="profile-inright">
-                                        <label for="">Индекс</label>
-                                        <input type="text" value="07500" name="profile[address][zip]">
+                                        <?= $form->labelEx($o_user, 'zip'); ?>
+                                        <?= $form->textField($o_user, 'zip'); ?>
+                                        <?= $form->error($o_user, 'zip'); ?>
                                     </div>
                                     <div class="profile-inleft__full">
-                                        <label for="">Улица, дом, квартира</label>
-                                        <input type="text" value="Отделение №2 (до 30 кг на одно место): ул. Сосновського 25" name="profile[address][street]">
+                                        <?= $form->labelEx($o_user, 'street'); ?>
+                                        <?= $form->textField($o_user, 'street'); ?>
+                                        <?= $form->error($o_user, 'street'); ?>
                                     </div>
                                 </div>
-                                <div class="profile-choiseuser">
-                                </div>
+                                <div class="profile-choiseuser"></div>
                             </div>
                         </div>
                         <section>
-                            <input type="hidden" name="_csrf" value="57a2dfc475c859.29567258" />
-                            <input type="hidden" name="profile[address][id]" value="1">
                             <a href="javascript:;" class="profile-link profileCancelToggle" title="Отмена">Отмена</a>
-                            <input type="submit" class="profile-btn profile-btn_margin profileSaveToggle" value="Сохранить">
+                            <?= CHtml::submitButton('Сохранить', array('class' => 'profile-btn profile-btn_margin')); ?>
                         </section>
-                    </form>
+                    <?php $this->endWidget(); ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php if ($o_user->hasErrors()) { ?>
+<script>
+    var user_account_edit = true;
+    <?php if ($o_user->hasErrors('password_new')) { ?>
+        var user_account_password = true;
+    <?php } ?>
+</script>
+<?php } ?>

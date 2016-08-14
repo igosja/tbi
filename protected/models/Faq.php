@@ -2,11 +2,6 @@
 
 class Faq extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'faq';
-    }
-
     public function rules()
     {
         return array(

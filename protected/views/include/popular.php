@@ -24,10 +24,10 @@
                         </span>
                     </div>
                     <div class="clearfix">
-                        <a href="javascript:;" data-id="324" data-sku="36147" class="pi-cart" title="В корзину">
+                        <a href="javascript:;" data-product="<?= $item->id; ?>" class="add-to-cart pi-cart" title="В корзину">
                             В корзину
                         </a>
-                        <a href="javascript:;" class="pi-compare" data-product="324" title="Сравнить">
+                        <a href="javascript:;" class="pi-compare" title="Сравнить">
                             Сравнить
                         </a>
                     </div>
@@ -35,7 +35,7 @@
                         <table>
                             <tr>
                                 <td>Артикул:</td>
-                                <td>36147</td>
+                                <td><?= $item->sku; ?></td>
                             </tr>
                             <tr>
                                 <td>Тип товара:</td>

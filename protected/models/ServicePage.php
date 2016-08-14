@@ -2,11 +2,6 @@
 
 class ServicePage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'servicepage';
-    }
-
     public function rules()
     {
         return array(

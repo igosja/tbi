@@ -45,46 +45,69 @@
                     <div class="cb-heading cb-heading_center">
                         Отправить резюме
                     </div>
-                    <form class="vacancies__form">
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'resume-form',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                        'htmlOptions' => array('class' => 'vacancies__form', 'enctype' => 'multipart/form-data'),
+                    )); ?>
                         <div class="cb-form clearfix">
                             <div class="vacancies__form__left">
                                 <section>
-                                <label>Ф.И.О.</label>
-                                <input type="name" class="cb-text-input" name="name" required>
-                                <label>Телефон</label>
-                                <input type="tel" class="cb-text-input phone_mask" name="phone" required>
-                                <label>Email</label>
-                                <input type="email" class="cb-text-input" name="email" required>
-                                <label>Должность</label>
-                                <div class="pco-select vacancy__pco-select">
-                                    <select name="position">
-                                        <?php foreach ($a_vacancy as $item) { ?>
-                                            <option value="<?= $item->position; ?>"><?= $item->position; ?></option>
-                                        <?php } ?>
-                                        <option value="Продавец">Продавец</option>
-                                    </select>
-                                </div>
+                                    <?= $model->getAttributeLabel('name'); ?>
+                                    <?= $form->textField(
+                                        $model,
+                                        'name',
+                                        array('class' => 'cb-text-input')
+                                    ); ?>
+                                    <?= $form->error($model, 'name'); ?>
+                                    <?= $model->getAttributeLabel('phone'); ?>
+                                    <?= $form->telField(
+                                        $model,
+                                        'phone',
+                                        array('class' => 'cb-text-input phone_mask')
+                                    ); ?>
+                                    <?= $form->error($model, 'phone'); ?>
+                                    <?= $model->getAttributeLabel('email'); ?>
+                                    <?= $form->emailField(
+                                        $model,
+                                        'email',
+                                        array('class' => 'cb-text-input')
+                                    ); ?>
+                                    <?= $form->error($model, 'email'); ?>
+                                    <?= $model->getAttributeLabel('position'); ?>
+                                    <div class="pco-select vacancy__pco-select">
+                                        <?= $form->dropDownList(
+                                            $model,
+                                            'position',
+                                            CHtml::listData($a_vacancy, 'position', 'position'),
+                                            array('empty' => 'Выберите должность')
+                                        ); ?>
+                                    </div>
+                                    <?= $form->error($model, 'position'); ?>
                                 </section>
                             </div>
                             <div class="vacancies__form__right clearfix">
                                 <section>
-                                Сопроводительное письмо
-                                <textarea name="letter" id="" required></textarea>
-                                <div class="attach">
-                                    <a class="attach__link" href="javascript:;">Прикрепить файл</a>
-                                    <input type="file" id="vacancies-attach" name="uploadfile" style="display:none;">
-                                    .pdf
-                                    .doc
-                                    .word
-                                </div>
-                                <input type="hidden" name="mailto" value="www.tbi.ua@gmail.com">
-                                <input type="submit" value="Отправить">
+                                    <?= $model->getAttributeLabel('text'); ?>
+                                    <?= $form->textArea($model, 'text'); ?>
+                                    <div class="attach">
+                                        <a class="attach__link" href="javascript:;">Прикрепить файл</a>
+                                        <input type="file" id="vacancies-attach" name="file" style="display:none;">
+                                        <?= $model->getAttributeLabel('file'); ?>
+                                    </div>
+                                    <?= CHtml::submitButton('Отправить'); ?>
                                 </section>
                             </div>
                         </div>
-                    </form>
+                    <?php $this->endWidget(); ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php if(Yii::app()->user->hasFlash('resume_success')) { ?>
+    <script>
+        var resume_success = <?= Yii::app()->user->getFlash('resume_success'); ?>;
+    </script>
+<?php } ?>

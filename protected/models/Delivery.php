@@ -2,11 +2,6 @@
 
 class Delivery extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'delivery';
-    }
-
     public function rules()
     {
         return array(

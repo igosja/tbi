@@ -7,8 +7,11 @@ class Controller extends CController
     public $a_social;
     public $breadcrumbs = array();
     public $contacts;
+    public $count_cart;
     public $menu = array();
+    public $model_call;
     public $model_login;
+    public $model_subscribe;
     public $office_address;
     public $office_phone;
     public $salon_address;
@@ -19,11 +22,20 @@ class Controller extends CController
 
     public function init()
     {
-        $this->a_popular = Product::model()->findAllByAttributes(array('status' => 1), array('limit' => 5, 'order' => 'RAND()'));
+        $this->a_popular = Product::model()->findAllByAttributes(
+            array('status' => 1),
+            array('limit' => 5, 'order' => 'RAND()')
+        );
         $this->a_social = Social::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->contacts = Contacts::model()->findByPk(1);
-        $this->menu = Category::model()->findAllByAttributes(array('status' => 1), array('limit' => 5, 'order' => '`order`'));
+        $this->count_cart = Cart::model()->countItems();
+        $this->menu = Category::model()->findAllByAttributes(
+            array('status' => 1),
+            array('limit' => 5, 'order' => '`order`')
+        );
+        $this->model_call = new Call();
         $this->model_login = new User();
+        $this->model_subscribe = new Subscribe();
         $this->office_address = $this->contacts->office_address;
         $this->office_address = explode(';', $this->office_address);
         $this->office_address = end($this->office_address);
@@ -36,6 +48,11 @@ class Controller extends CController
         $this->salon_phone = $this->contacts->salon_phone;
         $this->salon_phone = explode(';', $this->salon_phone);
         $this->salon_phone = $this->salon_phone[0];
+
+        $clientScript = Yii::app()->getClientScript();
+        $clientScript->scriptMap = array(
+           'jquery.js' => false,
+        );
     }
 
     public function setSEO($model)

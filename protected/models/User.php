@@ -4,26 +4,25 @@ class User extends CActiveRecord
 {
     const SCENARIO_SIGNUP = 'signup';
     const SCENARIO_LOGIN = 'login';
+    const SCENARIO_ACCOUNT = 'account';
 
     public $error_login;
     public $password_repeat;
-
-    public function tableName()
-    {
-        return 'user';
-    }
+    public $password_new;
 
     public function rules()
     {
         return array(
             array('username', 'required', 'on' => self::SCENARIO_LOGIN),
-            array('password', 'required'),
+            array('password', 'required', 'on' => self::SCENARIO_LOGIN),
+            array('password', 'required', 'on' => self::SCENARIO_SIGNUP),
             array('country_id, region_id', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('email', 'unique'),
             array('email, name, password_repeat, surname', 'required', 'on' => self::SCENARIO_SIGNUP),
             array('password', 'compare', 'compareAttribute' => 'password_repeat', 'on' => self::SCENARIO_SIGNUP),
-            array('email, city, name, password, street, surname, username', 'length', 'max' => 255),
+            array('password_new', 'compare', 'compareAttribute' => 'password_repeat', 'on' => self::SCENARIO_ACCOUNT),
+            array('email, city, name, password, password_new, password_repeat, street, surname, username', 'length', 'max' => 255),
             array('zip', 'length', 'max' => 10),
             array('phone', 'length', 'max' => 50),
         );
@@ -38,6 +37,7 @@ class User extends CActiveRecord
             'email' => 'Email',
             'name' => 'Имя',
             'password' => 'Пароль',
+            'password_new' => 'Новый пароль',
             'password_repeat' => 'Подтвердите пароль',
             'phone' => 'Телефон',
             'region_id' => 'Область',
@@ -55,6 +55,9 @@ class User extends CActiveRecord
                 $this->username = $this->email;
                 $this->date_register = time();
                 $this->password = $this->hashPassword($this->password);
+            } elseif (!empty($this->password_new)) {
+                $this->username = $this->email;
+                $this->password = $this->hashPassword($this->password_new);
             }
             return true;
         }

@@ -2,11 +2,6 @@
 
 class Category extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'category';
-    }
-
     public function rules()
     {
         return array(

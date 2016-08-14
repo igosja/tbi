@@ -2,11 +2,6 @@
 
 class BlogCategory extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'blogcategory';
-    }
-
     public function rules()
     {
         return array(

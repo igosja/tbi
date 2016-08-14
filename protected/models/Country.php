@@ -2,11 +2,6 @@
 
 class Country extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'country';
-    }
-
     public function rules()
     {
         return array(

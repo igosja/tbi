@@ -119,13 +119,13 @@ footer > .wrap > div {
 /* Спасибо за подписку */
 
 .thank-form {
-    width: 540px;
-    position: fixed;
-    top: 215px;
-    left: 33%;
-    text-align: center;
-    background-color: #ffffff;  
-    padding: 0 0 18px 0;
+    width: 540px!important;
+    position: fixed!important;
+    top: 215px!important;
+    left: 33%!important;
+    text-align: center!important;
+    background-color: #ffffff!important;  
+    padding: 0 0 18px 0!important;
 }
 .thank_title {
     border-bottom: 1px solid #d8d9d9;

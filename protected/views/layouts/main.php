@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=1260">
     <meta name="p:domain_verify" content="e2f098dcc8774e0ba7df70e2dba39d27"/>
     <meta name="google-site-verification" content="1tZDe5lIeTnoLqSvQWJY26R2XkfhOuYZpkJbO0lUiBU"/>
+    <script src="/js/jquery.js"></script>
     <title><?= $this->seo_title; ?></title>
     <meta name="description" content="<?= $this->seo_description; ?>">
     <meta name="keywords" content="<?= $this->seo_keywords; ?>">
@@ -23,7 +24,6 @@
     <link rel="stylesheet" href="/css/new_style.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/new-styles.css">
-    <script src="/js/jquery.js"></script>
 </head>
 <body>
 <script src="https://apis.google.com/js/platform.js" async defer>
@@ -130,8 +130,12 @@
                 </ul>
             </div>
             <div class="navright">
-                <a href="javascript:;" title="0" class="navcart <?php if (1) { ?>empty<?php } ?>">
-                    <span>0</span>
+                <a
+                    class="navcart <?php if (0 == $this->count_cart) { ?>empty<?php } ?>"
+                    href="javascript:;"
+                    title="<?= $this->count_cart; ?>"
+                >
+                    <span><?= $this->count_cart; ?></span>
                 </a>
             </div>
             <a href="javascript:;" class="compare-block" id="compare-leash" <?php if (1) { ?>style="display:none;"<?php } ?> title="Сравнить товары">Сравнить товары</a>
@@ -211,10 +215,32 @@
             <div class="fsubscribe">
                 <span>Рассылка новостей:</span>
                 <div class="fsubscribe-input">
-                    <form>
-                        <input type="email" placeholder="Введите ваш email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                        <input type="submit" value="">
-                    </form>
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'subscribe-form',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => false,
+                    )); ?>
+                        <?= $form->emailField(
+                            $this->model_subscribe,
+                            'email',
+                            array('placeholder' => $this->model_subscribe->getAttributeLabel('email'))
+                        ); ?>
+                        <?= CHtml::ajaxSubmitButton(
+                            '',
+                            '/site/subscribe',
+                            array(
+                                'type' => 'POST',
+                                'dataType' => 'json',
+                                'success' => 'function(data) {  
+                                    if (1 == data.success) {
+                                        $("#form-subscribe-link").click();
+                                    } else {
+                                        $("#form-subscribe-error").click();
+                                    }
+                                }'
+                            )
+                        ); ?>
+                    <?php $this->endWidget(); ?>
                 </div>
             </div>
             <div class="fsocial">

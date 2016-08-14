@@ -2,11 +2,6 @@
 
 class SharePage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'sharepage';
-    }
-
     public function rules()
     {
         return array(

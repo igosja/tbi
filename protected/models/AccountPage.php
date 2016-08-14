@@ -2,11 +2,6 @@
 
 class AccountPage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'accountpage';
-    }
-
     public function rules()
     {
         return array(

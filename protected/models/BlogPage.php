@@ -2,11 +2,6 @@
 
 class BlogPage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'blogpage';
-    }
-
     public function rules()
     {
         return array(

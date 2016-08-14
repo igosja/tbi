@@ -2,11 +2,6 @@
 
 class PaymentPage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'paymentpage';
-    }
-
     public function rules()
     {
         return array(

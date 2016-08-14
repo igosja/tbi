@@ -36,22 +36,56 @@
                     <article><?= $this->contacts->text; ?></article>
                 </div>
                 <div class="contacts-right">
-                    <form class="contact-form">
+                    <?php $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'contacts-form',
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                    )); ?>
                         <div class="cb-form">
                             <div class="cb-heading">Связаться с нами</div>
                             <section>
-                                <input type="text" name="name" class="cb-text-input" placeholder="Имя">
+                                <?= $form->error($model, 'name'); ?>
+                                <?= $form->error($model, 'phone'); ?>
+                                <?= $form->error($model, 'email'); ?>
+                                <?= $form->error($model, 'message'); ?>
+                                <?= $form->textField(
+                                    $model,
+                                    'name',
+                                    array(
+                                        'class' => 'cb-text-input',
+                                        'placeholder' => $model->getAttributeLabel('name')
+                                    )
+                                ); ?>
                                 <div class="clearfix">
-                                    <input type="tel" name="phone" class="cb-text-input phone_mask" placeholder="Телефон">
-                                    <input type="email" name="email" class="cb-text-input" placeholder="Email" required>
+                                    <?= $form->telField(
+                                        $model,
+                                        'phone',
+                                        array(
+                                            'class' => 'cb-text-input phone_mask',
+                                            'placeholder' => $model->getAttributeLabel('phone')
+                                        )
+                                    ); ?>
+                                    <?= $form->emailField(
+                                        $model,
+                                        'email',
+                                        array(
+                                            'class' => 'cb-text-input',
+                                            'placeholder' => $model->getAttributeLabel('email')
+                                        )
+                                    ); ?>
                                 </div>
-                                <textarea name="message" id="" placeholder="Сообщение" required></textarea>
+                                <?= $form->textArea(
+                                    $model,
+                                    'text',
+                                    array(
+                                        'placeholder' => $model->getAttributeLabel('text')
+                                    )
+                                ); ?>
                                 <p>Будем рады ответить на Ваши вопросы</p>
-                                <input type="hidden" name="mailto" value="www.tbi.ua@gmail.com" />
-                                <input type="submit" id="feedback_submit" value="Отправить">
+                                <?= CHtml::submitButton('Отправить'); ?>
                             </section>
                         </div>
-                    </form>
+                    <?php $this->endWidget(); ?>
                 </div>
                 <br style="clear:both;">
                 <div
@@ -65,3 +99,8 @@
         </div>
     </div>
 </section>
+<?php if(Yii::app()->user->hasFlash('contacts_success')) { ?>
+    <script>
+        var contacts_call_send = <?= Yii::app()->user->getFlash('contacts_success'); ?>;
+    </script>
+<?php } ?>

@@ -2,11 +2,6 @@
 
 class DeliveryPage extends CActiveRecord
 {
-    public function tableName()
-    {
-        return 'deliverypage';
-    }
-
     public function rules()
     {
         return array(

@@ -6,7 +6,8 @@
                 Благодарим за Ваше резюме!
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <span>Мы внимательно ознакомимся с Вашим резюме и наш Hr-специалист свяжется с Вами.</span>
+            <span>Мы внимательно ознакомимся с Вашим резюме и<br/>наш Hr-специалист свяжется с Вами.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-vacancies" id="form-vacancies-link"></a>
         </div>
 
         <div class="of-form form-success thank-form">
@@ -23,6 +24,7 @@
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <span>Наши консультанты свяжутся с Вами в ближайшее время.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-contact" id="form-contact-link"></a>
         </div>
 
         <div class="of-form form-password thank-form">
@@ -31,6 +33,16 @@
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <span>Вы ввели неправильный е-мейл или пароль.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-password" id="form-password-error"></a>
+        </div>
+
+        <div class="of-form form-subscribe-error thank-form">
+            <section class="of-header thank_title">
+                Внимание!
+                <a href="javascript:;" class="of-close"></a>
+            </section>
+            <span>Вы ввели неправильный е-мейл.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-subscribe-error" id="form-subscribe-error"></a>
         </div>
 
         <div class="of-form form-register thank-form">
@@ -39,6 +51,7 @@
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <span>Информация об этом выслана на Ваш е-мейл.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-register" id="form-register-link"></a>
         </div>
 
         <div class="of-form form-subscribe thank-form">
@@ -47,6 +60,7 @@
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <span>Каждую неделю мы будем отправлять Вам интересные новости, информацию о новых товарах и акциях.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-subscribe" id="form-subscribe-link"></a>
         </div>
 
         <div class="of-form form-signIn">
@@ -71,9 +85,6 @@
                 </script>
             </section>
             <section>
-                <div id="login-error" style="color:red; display:none;">
-                    Неправильная комбинация логин/пароль
-                </div>
                 <?php $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'login-form',
                     'enableAjaxValidation' => false,
@@ -81,13 +92,16 @@
                 )); ?>
                     <?= $form->textField(
                         $this->model_login,
-                        'email',
-                        array('class' => 'of-input input-fluid', 'placeholder' => $this->model_login->getAttributeLabel('username'))
+                        'username',
+                        array('class' => 'of-input input-fluid', 'placeholder' => $this->model_login->getAttributeLabel('email'))
                     ); ?>
                     <?= $form->passwordField(
                         $this->model_login,
                         'password',
-                        array('class' => 'of-input input-fluid', 'placeholder' => $this->model_login->getAttributeLabel('password'))
+                        array(
+                            'class' => 'of-input input-fluid',
+                            'placeholder' => $this->model_login->getAttributeLabel('password')
+                        )
                     ); ?>
                     <?= CHtml::ajaxSubmitButton(
                         'Войти',
@@ -99,7 +113,7 @@
                                 if (1 == data.success) {
                                     location.reload();
                                 } else {
-                                    $("#login-error").show();
+                                    $("#form-password-error").click();
                                 }
                             }'
                         ),
@@ -107,15 +121,19 @@
                     ); ?>
                 <?php $this->endWidget(); ?>
                 <div class="of-signIn-bottom clearfix">
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-lostPasw" title="Забыли пароль?">Забыли пароль?</a>
-                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-lostPasw" title="Забыли пароль?">
+                        Забыли пароль?
+                    </a>
+                    <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">
+                        Регистрация
+                    </a>
                 </div>
             </section>
         </div>
 
         <div class="of-form form-signUp">
             <section class="of-header">
-                Вход
+                Регистрация
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <section>
@@ -267,7 +285,23 @@
                 ОФОРМИТЬ ЗАКАЗ
                 <a href="javascript:;" class="of-close"></a>
             </section>
-            <section class="cart-data"></section>
+            <section class="cart-data">
+                <table id="cart-table">
+                    <thead>
+                        <tr>
+                            <td>Наименование</td>
+                            <td>Количество</td>
+                            <td>Итого</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="form-cart-total">
+                    <span>Итого:</span>
+                    <span id="cart-total-price">1 346,92 UAH.</span>
+                </div>
+            </section>
             <section>
                 <a href="javascript:;" class="backtopage of-close-trigger" title="Продолжить покупки">Продолжить покупки</a>
                 <a href="javascript:;" style="text-decoration: none;" class="of-form-btn of-form-btn-small" title="Оформить заказ">Оформить заказ</a>
@@ -358,19 +392,54 @@
                     <p>Отправьте запрос, и мы свяжемся с вами в самое ближайшее время.</p>
                 </div>
             </section>
-            <section class="result" style="display:none;">
-                <div>
-                    <p class="message"></p>
-                </div>
-            </section>
             <section>
-                <form action="" class="form-sendEmail-form">
-                    <input type="text" class="of-input" name="name" placeholder="Имя" required>
-                    <input type="email" name="email" class="of-input" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                    <input type="tel" name="phone" class="of-input phone_mask" placeholder="Телефон" required>
-                    <input type="hidden" name="mailto" value="www.tbi.ua@gmail.com">
-                    <input type="submit" class="of-form-btn" value="Отправить">
-                </form>
+                <?php $form = $this->beginWidget('CActiveForm', array(
+                    'id' => 'call-form',
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => true,
+                )); ?>
+                    <?= $form->textField(
+                        $this->model_call,
+                        'name',
+                        array(
+                            'class' => 'of-input',
+                            'placeholder' => $this->model_call->getAttributeLabel('name')
+                        )
+                    ); ?>
+                    <?= $form->error($this->model_call, 'name'); ?>
+                    <?= $form->emailField(
+                        $this->model_call,
+                        'email',
+                        array(
+                            'class' => 'of-input',
+                            'placeholder' => $this->model_call->getAttributeLabel('email')
+                        )
+                    ); ?>
+                    <?= $form->error($this->model_call, 'email'); ?>
+                    <?= $form->telField(
+                        $this->model_call,
+                        'phone',
+                        array(
+                            'class' => 'of-input phone_mask',
+                            'placeholder' => $this->model_call->getAttributeLabel('phone')
+                        )
+                    ); ?>
+                    <?= $form->error($this->model_call, 'phone'); ?>
+                    <?= CHtml::ajaxSubmitButton(
+                        'Отправить',
+                        '/site/call',
+                        array(
+                            'type' => 'POST',
+                            'dataType' => 'json',
+                            'success' => 'function(data) {  
+                                if (1 == data.success) {
+                                    $("#form-contact-link").click();
+                                }
+                            }'
+                        ),
+                        array('class' => 'of-form-btn')
+                    ); ?>
+                <?php $this->endWidget(); ?>
             </section>
         </div>
     </div>
@@ -505,3 +574,8 @@
         </section>
     </div>
 </section>
+<?php if(Yii::app()->user->hasFlash('register_success')) { ?>
+    <script>
+        var register_success = <?= Yii::app()->user->getFlash('register_success'); ?>;
+    </script>
+<?php } ?>

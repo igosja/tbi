@@ -1,5 +1,5 @@
 <?php
-
+//www.tbi.ua@gmail.com
 return array(
     'defaultController' => 'index',
     'language' => 'ru',
