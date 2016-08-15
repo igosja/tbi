@@ -46,33 +46,16 @@
                     ); ?>
                     <?= $form->error($model, 'email'); ?>
                     <div class="checkboxes-tick">
-                        <?= $form->checkBox(
-                            $model,
-                            'subscribe',
-                            array(
-                                'class' => 'input-fluid input-fluid_nomarg',
-                                'placeholder' => $model->getAttributeLabel('email')
-                            )
-                        ); ?>
-                        <input type="checkbox" id="news" checked="">
-                        <label for="news">Подписаться на новости и скидки</label>
+                        <?= $form->checkBox($model, 'subscribe'); ?>
+                        <?= $form->labelEx($model, 'subscribe'); ?>
                     </div>
                     <div class="orderpage-subheading">Способы оплаты:</div>
                     <div class="radiobuttons">
-                        <input id="payment_3" type="radio" name="payment_id" value="3" checked>
-                        <label for="payment_3"><span>НАЛИЧНЫМИ ПРИ ПОЛУЧЕНИИ ТОВАРА</span></label><br/>
-                        <div class="check check_payment_3">Оплата наличными при получении товара</div>
-                        <input id="payment_4" type="radio" name="payment_id" value="4">
-                        <label for="payment_4"><span>ПЛАСТИКОВОЙ КАРТОЙ НА САЙТЕ LIQPAY</span></label><br/>
-                        <div class="check check_payment_4">Самый удобный и быстрый способ оплаты, подтверждение
-                            поступает в течении нескольких минут.
-                        </div>
-                        <input id="payment_7" type="radio" name="payment_id" value="7">
-                        <label for="payment_7"><span>БЕЗНАЛИЧНАЯ ОПЛАТА (СЧЕТ-ФАКТУРА)</span></label><br/>
-                        <div class="check check_payment_7">Счет может быть оплачен в кассе любого банка, а подтверждение
-                            об оплате мы получим в течении двух рабочих дней. Заказ будет отправлен после поступления
-                            денег на счет. Банк можем взымать комиссию за перевод согласно своих внутренних тарифов.
-                        </div>
+                        <?= $form->radioButtonList(
+                            $model,
+                            'payment_id',
+                            CHtml::listData($a_payment, 'id', 'name')
+                        ); ?>
                     </div>
                 </div>
                 <div class="orderpage-right">

@@ -4,14 +4,16 @@ class Checkout extends CFormModel
 {
     public $email;
     public $name;
+    public $payment_id;
     public $phone;
-    public $subscribe;
+    public $subscribe = 1;
     public $surname;
 
     public function rules()
     {
         return array(
             array('email, name, phone, surname', 'required'),
+            array('payment_id', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('subscribe', 'boolean'),
             array('email, name, phone, surname', 'length', 'max' => 255),

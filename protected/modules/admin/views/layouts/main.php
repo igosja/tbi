@@ -65,6 +65,9 @@
                                     <li>
                                         <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
                                     </li>
+                                    <li>
+                                        <?= CHtml::link('Способы оплаты', array('payment/index')); ?>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
