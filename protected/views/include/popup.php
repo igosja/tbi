@@ -304,7 +304,15 @@
             </section>
             <section>
                 <a href="javascript:;" class="backtopage of-close-trigger" title="Продолжить покупки">Продолжить покупки</a>
-                <a href="javascript:;" style="text-decoration: none;" class="of-form-btn of-form-btn-small" title="Оформить заказ">Оформить заказ</a>
+                <?= CHtml::link(
+                    'Оформить заказ',
+                    array('checkout/index'),
+                    array(
+                        'style' => 'text-decoration: none;',
+                        'class' => 'of-form-btn of-form-btn-small',
+                        'title' => 'Оформить заказ'
+                    )
+                ); ?>
             </section>
         </div>
 

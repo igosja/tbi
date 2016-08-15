@@ -60,6 +60,14 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="javascript:;">Оформление заказа<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
                             </li>
                         </ul>

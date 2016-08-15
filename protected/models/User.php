@@ -55,9 +55,13 @@ class User extends CActiveRecord
                 $this->username = $this->email;
                 $this->date_register = time();
                 $this->password = $this->hashPassword($this->password);
-            } elseif (!empty($this->password_new)) {
-                $this->username = $this->email;
-                $this->password = $this->hashPassword($this->password_new);
+            } else {
+                if (1 != $this->id) {
+                    $this->username = $this->email;
+                }
+                if (!empty($this->password_new)) {
+                    $this->password = $this->hashPassword($this->password_new);
+                }
             }
             return true;
         }
