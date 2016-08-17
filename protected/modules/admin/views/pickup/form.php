@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-lg-12">
         <?php $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'country-form',
+            'id' => 'brand-form',
             'enableAjaxValidation' => false,
             'enableClientValidation' => true,
         )); ?>
@@ -25,6 +25,20 @@
                 <td>
                     <?= $form->textField($model, 'name', array('class' => 'form-control')); ?>
                     <?= $form->error($model, 'name'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'address'); ?></td>
+                <td>
+                    <?= $form->textField($model, 'address', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'address'); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3"><?= $form->labelEx($model, 'phone'); ?></td>
+                <td>
+                    <?= $form->textField($model, 'phone', array('class' => 'form-control')); ?>
+                    <?= $form->error($model, 'phone'); ?>
                 </td>
             </tr>
         </table>

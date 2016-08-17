@@ -60,18 +60,32 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:;">Оформление заказа<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
-                                    </li>
-                                    <li>
-                                        <?= CHtml::link('Способы оплаты', array('payment/index')); ?>
-                                    </li>
-                                </ul>
+                                <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">Оформление заказа<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
                             </li>
                             <li>
-                                <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
+                                <?= CHtml::link('Способы оплаты', array('payment/index')); ?>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Способы доставки<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('Способы доставки', array('shipping/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Новая почта', array('newpost/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Самовывоз', array('pickup/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

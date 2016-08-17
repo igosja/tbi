@@ -71,45 +71,34 @@
                                                title="Самовывоз">Самовывоз <span>(Киев)</span></a></li>
                         </ul>
                         <div id="courier">
-                            <label for="">Адрес:</label>
-                            <input type="text" class="input-fluid" name="customer[address.shipping][street]"
-                                   id="1-address">
-                            <input type="hidden" name="customer[address.shipping][city]" value="Киев" id="1-city">
-                            <label for="">Ваше сообщение:</label>
-                            <textarea name="comment" id="1-comment" class="input-fluid"></textarea>
+                            <?= $form->labelEx($model, 'kyiv_address'); ?>
+                            <?= $form->textField($model, 'kyiv_address', array('class' => 'input-fluid')); ?>
+                            <?= $form->error($model, 'kyiv_address'); ?>
+                            <?= $form->labelEx($model, 'kyiv_message'); ?>
+                            <?= $form->textArea($model, 'kyiv_message', array('class' => 'input-fluid')); ?>
+                            <?= $form->error($model, 'kyiv_message'); ?>
                         </div>
 
                         <div id="transporter">
-                            <label for="">Город:</label>
+                            <?= $form->labelEx($model, 'post_city'); ?>
                             <div class="clearfix">
                                 <div class="orb-select orb-select_short" id="city_select">
-                                    <select name="" id="order-payoption">
-                                        <option value="" selected disabled>Выбрать</option>
-                                        <option value="">Приват 24</option>
-                                        <option value="">Liqpay</option>
-                                        <option value="">Наличные</option>
-                                    </select>
+                                    <?= $form->dropDownList($model, 'post_city', array()); ?>
                                 </div>
                                 <div class="checkboxes-tick">
                                     <input type="checkbox" id="podmat">
                                     <label for="podmat">Адресная доставка</label>
                                 </div>
                             </div>
-                            <label for="">Склад:</label>
+                            <?= $form->labelEx($model, 'post_warehouse'); ?>
                             <div class="orb-select" id="warehouse_select">
-                                <select name="" id="order-payoption">
-                                    <option value="" selected disabled>Выбрать</option>
-                                    <option value="">Склад 1</option>
-                                    <option value="">Склад 2</option>
-                                    <option value="">Склад 3</option>
-                                </select>
+                                <?= $form->dropDownList($model, 'post_warehouse', array()); ?>
                             </div>
-                            <label for="checkout-new-post-address">Адрес:</label>
-                            <input type="text" class="input-fluid" id="checkout-new-post-address">
+                            <?= $form->labelEx($model, 'post_address'); ?>
+                            <?= $form->textField($model, 'post_address'); ?>
                         </div>
 
                         <div id="pickup">
-
                             <table style="margin-bottom:15px;">
                                 <tbody>
                                 <tr>
