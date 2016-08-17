@@ -12,10 +12,12 @@ class CheckoutController extends Controller
             $title
         );
         $a_payment = Payment::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
+        $a_pickup = Pickup::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->render('index', array(
             'title' => $title,
             'model' => $model,
             'a_payment' => $a_payment,
+            'a_pickup' => $a_pickup,
         ));
     }
 }

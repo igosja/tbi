@@ -95,10 +95,15 @@
                                 <?= $form->dropDownList($model, 'post_warehouse', array()); ?>
                             </div>
                             <?= $form->labelEx($model, 'post_address'); ?>
-                            <?= $form->textField($model, 'post_address'); ?>
+                            <?= $form->textField($model, 'post_address', array('class' => 'input-fluid')); ?>
                         </div>
 
                         <div id="pickup">
+                            <?= $form->radioButtonList(
+                                $model,
+                                'pickup',
+                                CHtml::listData($a_pickup, 'id', 'name')
+                            ); ?>
                             <table style="margin-bottom:15px;">
                                 <tbody>
                                 <tr>

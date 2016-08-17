@@ -8,6 +8,7 @@ class Checkout extends CFormModel
     public $name;
     public $payment_id;
     public $phone;
+    public $pickup;
     public $post_address;
     public $post_city;
     public $post_warehouse;
@@ -18,7 +19,7 @@ class Checkout extends CFormModel
     {
         return array(
             array('email, name, phone, surname', 'required'),
-            array('payment_id', 'numerical', 'integerOnly' => true),
+            array('payment_id, pickup', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
             array('subscribe', 'boolean'),
             array('email, kyiv_address, name, phone, post_city, post_warehouse, surname', 'length', 'max' => 255),
