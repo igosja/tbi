@@ -466,8 +466,9 @@
 
     }
 
-    if ($("div").is("#city_select")) {
+    if ($("#city_select").length) {
         var first_city = '';
+        var key = $("#city_select").data('key');
 
         $.ajax(
             {
@@ -477,7 +478,7 @@
                 crossDomain: true, // enable this
 
                 data: {
-                    "apiKey": "3b1c454bbdcaa28c50f37c1f9e160e14",
+                    "apiKey": key,
                     "modelName": "Address",
                     "calledMethod": "getCities",
                     "methodProperties": {}
@@ -508,7 +509,7 @@
                             crossDomain: true, // enable this
 
                             data: {
-                                "apiKey": "3b1c454bbdcaa28c50f37c1f9e160e14",
+                                "apiKey": key,
                                 "modelName": "Address",
                                 "calledMethod": "getWarehouses",
                                 "methodProperties": {
@@ -539,6 +540,7 @@
 
     $('body').on('change', '#6-city', function () {
         var value_select = $('body #6-city option:selected').attr('data-city-id');
+        var key = $("#city_select").data('key');
 
         $.ajax(
             {
@@ -548,7 +550,7 @@
                 crossDomain: true, // enable this
 
                 data: {
-                    "apiKey": "3b1c454bbdcaa28c50f37c1f9e160e14",
+                    "apiKey": key,
                     "modelName": "Address",
                     "calledMethod": "getWarehouses",
                     "methodProperties": {
@@ -725,12 +727,12 @@
         $('#checkout-new-post-address').prop('disabled', true);
     }
 
-    $('#podmat').on('change', function () {
+    $('#Checkout_post_to_door').on('change', function () {
         if ($(this).is(':checked')) {
-            $('#checkout-new-post-address').prop('disabled', false);
+            $('#Checkout_post_address').prop('disabled', false);
         }
         else {
-            $('#checkout-new-post-address').prop('disabled', true);
+            $('#Checkout_post_address').prop('disabled', true);
         }
     });
 

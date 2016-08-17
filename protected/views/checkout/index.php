@@ -53,13 +53,21 @@
                     <div class="radiobuttons">
                         <?= $form->radioButtonList(
                             $model,
-                            'payment_id',
-                            CHtml::listData($a_payment, 'id', 'name')
+                            'shipping_id',
+                            CHtml::listData($a_shipping, 'id', 'name')
                         ); ?>
+                        <div class="check">Оплата наличными при получении товара</div>
                     </div>
                 </div>
                 <div class="orderpage-right">
                     <div class="orderpage-subheading">Способы доставки товара:</div>
+                    <span style="display:none;">
+                        <?= $form->radioButtonList(
+                            $model,
+                            'payment_id',
+                            CHtml::listData($a_payment, 'id', 'name')
+                        ); ?>
+                    </span>
                     <div id="orderpage-tabs" class="tab-container orderpage-tabs">
                         <ul class='etabs clearfix'>
                             <li class='tab'><a href="#courier" class="shipping_method_link" data-shipping-id="1"
@@ -82,12 +90,12 @@
                         <div id="transporter">
                             <?= $form->labelEx($model, 'post_city'); ?>
                             <div class="clearfix">
-                                <div class="orb-select orb-select_short" id="city_select">
+                                <div class="orb-select orb-select_short" id="city_select" data-key="<?= $o_newpost->key; ?>">
                                     <?= $form->dropDownList($model, 'post_city', array()); ?>
                                 </div>
                                 <div class="checkboxes-tick">
-                                    <input type="checkbox" id="podmat">
-                                    <label for="podmat">Адресная доставка</label>
+                                    <?= $form->checkBox($model, 'post_to_door'); ?>
+                                    <?= $form->labelEx($model, 'post_to_door'); ?>
                                 </div>
                             </div>
                             <?= $form->labelEx($model, 'post_warehouse'); ?>
@@ -95,7 +103,7 @@
                                 <?= $form->dropDownList($model, 'post_warehouse', array()); ?>
                             </div>
                             <?= $form->labelEx($model, 'post_address'); ?>
-                            <?= $form->textField($model, 'post_address', array('class' => 'input-fluid')); ?>
+                            <?= $form->textField($model, 'post_address', array('class' => 'input-fluid', 'disabled' => 'disabled')); ?>
                         </div>
 
                         <div id="pickup">

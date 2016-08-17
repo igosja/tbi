@@ -11,7 +11,9 @@ class Checkout extends CFormModel
     public $pickup;
     public $post_address;
     public $post_city;
+    public $post_to_door;
     public $post_warehouse;
+    public $shipping_id;
     public $subscribe = 1;
     public $surname;
 
@@ -19,9 +21,9 @@ class Checkout extends CFormModel
     {
         return array(
             array('email, name, phone, surname', 'required'),
-            array('payment_id, pickup', 'numerical', 'integerOnly' => true),
+            array('payment_id, pickup, shipping_id', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
-            array('subscribe', 'boolean'),
+            array('post_to_door, subscribe', 'boolean'),
             array('email, kyiv_address, name, phone, post_city, post_warehouse, surname', 'length', 'max' => 255),
             array('kyiv_address, kyiv_message', 'safe')
         );
@@ -37,6 +39,7 @@ class Checkout extends CFormModel
             'phone' => 'Номер телефона',
             'post_address' => 'Адрес',
             'post_city' => 'Город',
+            'post_to_door' => 'Адресная доставка',
             'post_warehouse' => 'Склад',
             'subscribe' => 'Подписаться на новости и скидки',
             'surname' => 'Фамилия',
