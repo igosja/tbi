@@ -2,6 +2,11 @@
 
 class ShopPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'shoppage';
+    }
+
     public function rules()
     {
         return array(

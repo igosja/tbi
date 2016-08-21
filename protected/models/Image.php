@@ -2,6 +2,11 @@
 
 class Image extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'image';
+    }
+
     public function beforeDelete()
     {
         if (parent::beforeDelete()) {

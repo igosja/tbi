@@ -2,6 +2,12 @@
 
 class Subscribe extends CActiveRecord
 {
+
+    public function tableName()
+    {
+        return 'subscribe';
+    }
+
     public function rules()
     {
         return array(

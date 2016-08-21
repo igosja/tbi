@@ -2,6 +2,11 @@
 
 class CooperationPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'cooperationpage';
+    }
+
     public function rules()
     {
         return array(

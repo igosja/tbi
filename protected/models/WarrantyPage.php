@@ -2,6 +2,11 @@
 
 class WarrantyPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'warantypage';
+    }
+
     public function rules()
     {
         return array(
@@ -25,4 +30,5 @@ class WarrantyPage extends CActiveRecord
     {
         return parent::model($className);
     }
+
 }

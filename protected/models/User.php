@@ -10,6 +10,12 @@ class User extends CActiveRecord
     public $password_repeat;
     public $password_new;
 
+
+    public function tableName()
+    {
+        return 'user';
+    }
+
     public function rules()
     {
         return array(

@@ -2,6 +2,11 @@
 
 class Brand extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'brand';
+    }
+
     public function rules()
     {
         return array(

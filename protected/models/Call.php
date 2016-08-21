@@ -2,6 +2,11 @@
 
 class Call extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'call';
+    }
+
     public function rules()
     {
         return array(

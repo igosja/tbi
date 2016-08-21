@@ -2,6 +2,11 @@
 
 class Social extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'social';
+    }
+
     public function rules()
     {
         return array(

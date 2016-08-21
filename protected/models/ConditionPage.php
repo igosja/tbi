@@ -2,6 +2,11 @@
 
 class ConditionPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'conditionpage';
+    }
+
     public function rules()
     {
         return array(

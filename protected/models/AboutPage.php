@@ -2,6 +2,11 @@
 
 class AboutPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'aboutpage';
+    }
+
     public function rules()
     {
         return array(

@@ -2,6 +2,11 @@
 
 class CheckoutPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'checkoutpage';
+    }
+
     public function rules()
     {
         return array(

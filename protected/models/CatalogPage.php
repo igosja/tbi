@@ -2,6 +2,11 @@
 
 class CatalogPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'catalogpage';
+    }
+
     public function rules()
     {
         return array(

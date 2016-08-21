@@ -2,6 +2,11 @@
 
 class OutletPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'outletpage';
+    }
+
     public function rules()
     {
         return array(

@@ -5,6 +5,11 @@ class CheckoutController extends Controller
     public function actionIndex()
     {
         $model = new Checkout();
+        if ($data = Yii::app()->request->getPost('Checkout')) {
+            print '<pre>';
+            print_r($data);
+            exit;
+        }
         $o_checkoutpage = CheckoutPage::model()->findByPk(1);
         $this->setSEO($o_checkoutpage);
         $title = CHtml::decode('Оформить заказ');

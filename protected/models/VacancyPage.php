@@ -2,6 +2,11 @@
 
 class VacancyPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'vacancypage';
+    }
+
     public function rules()
     {
         return array(

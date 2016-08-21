@@ -2,6 +2,11 @@
 
 class Newpost extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'newpost';
+    }
+
     public function rules()
     {
         return array(

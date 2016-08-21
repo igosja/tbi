@@ -2,6 +2,11 @@
 
 class Pickup extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'pickup';
+    }
+
     public function rules()
     {
         return array(

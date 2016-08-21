@@ -2,6 +2,11 @@
 
 class Cart extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'cart';
+    }
+
     public function rules()
     {
         return array(

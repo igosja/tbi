@@ -2,6 +2,11 @@
 
 class Product extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'product';
+    }
+
     public function rules()
     {
         return array(

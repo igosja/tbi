@@ -2,6 +2,11 @@
 
 class Region extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'region';
+    }
+
     public function rules()
     {
         return array(

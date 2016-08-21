@@ -2,6 +2,11 @@
 
 class Resume extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'resume';
+    }
+
     public function rules()
     {
         return array(

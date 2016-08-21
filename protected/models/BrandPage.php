@@ -2,6 +2,11 @@
 
 class BrandPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'brandpage';
+    }
+
     public function rules()
     {
         return array(

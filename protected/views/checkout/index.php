@@ -51,12 +51,28 @@
                     </div>
                     <div class="orderpage-subheading">Способы оплаты:</div>
                     <div class="radiobuttons">
-                        <?= $form->radioButtonList(
-                            $model,
-                            'shipping_id',
-                            CHtml::listData($a_shipping, 'id', 'name')
-                        ); ?>
-                        <div class="check">Оплата наличными при получении товара</div>
+                        <?php foreach ($a_payment as $item) { ?>
+                            <?= $form->radioButton(
+                                $model,
+                                'payment_id',
+                                array(
+                                    'value' => $item->id,
+                                    'uncheckValue' => null,
+                                    'id' => 'Checkout_payment_id_' . $item->id
+                                )
+                            ); ?>
+                            <?= $form->labelEx(
+                                $model,
+                                'payment_id',
+                                array(
+                                    'label' => $item->name,
+                                    'for' => 'Checkout_payment_id_' . $item->id
+                                )
+                            ); ?>
+                            <div class="check check_Checkout_payment_id_<?= $item->id; ?>" style="display: none;">
+                                <?= $item->text; ?>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="orderpage-right">
@@ -64,86 +80,98 @@
                     <span style="display:none;">
                         <?= $form->radioButtonList(
                             $model,
-                            'payment_id',
-                            CHtml::listData($a_payment, 'id', 'name')
+                            'shipping_id',
+                            CHtml::listData($a_shipping, 'id', 'name')
                         ); ?>
                     </span>
-                    <div id="orderpage-tabs" class="tab-container orderpage-tabs">
+                    <div id="orderpage-tabs" class="tab-container orderpage-tabs" data-shipping-id="<?= $a_shipping[0]->id; ?>">
                         <ul class='etabs clearfix'>
-                            <li class='tab'><a href="#courier" class="shipping_method_link" data-shipping-id="1"
-                                               title="Доставка по Киеву">Доставка по Киеву</a></li>
-                            <li class='tab'><a href="#transporter" class="shipping_method_link" data-shipping-id="6"
-                                               title="Доставка по Украине">Доставка по Украине
-                                    <span>(Новая почта)</span></a></li>
-                            <li class='tab'><a href="#pickup" class="shipping_method_link" data-shipping-id="2"
-                                               title="Самовывоз">Самовывоз <span>(Киев)</span></a></li>
+                            <?php foreach ($a_shipping as $item) { ?>
+                                <li class='tab'>
+                                    <a
+                                        href="#shipping_<?= $item->id; ?>"
+                                        class="shipping_method_link"
+                                        data-shipping-id="<?= $item->id; ?>"
+                                        title="<?= $item->name; ?>"
+                                    >
+                                        <?= $item->name; ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
-                        <div id="courier">
-                            <?= $form->labelEx($model, 'kyiv_address'); ?>
-                            <?= $form->textField($model, 'kyiv_address', array('class' => 'input-fluid')); ?>
-                            <?= $form->error($model, 'kyiv_address'); ?>
-                            <?= $form->labelEx($model, 'kyiv_message'); ?>
-                            <?= $form->textArea($model, 'kyiv_message', array('class' => 'input-fluid')); ?>
-                            <?= $form->error($model, 'kyiv_message'); ?>
-                        </div>
-
-                        <div id="transporter">
-                            <?= $form->labelEx($model, 'post_city'); ?>
-                            <div class="clearfix">
-                                <div class="orb-select orb-select_short" id="city_select" data-key="<?= $o_newpost->key; ?>">
-                                    <?= $form->dropDownList($model, 'post_city', array()); ?>
+                        <?php foreach ($a_shipping as $item) { ?>
+                            <?php if (1 == $item->id) { ?>
+                                <div id="shipping_<?= $item->id; ?>">
+                                    <?= $form->labelEx($model, 'kyiv_address'); ?>
+                                    <?= $form->textField($model, 'kyiv_address', array('class' => 'input-fluid')); ?>
+                                    <?= $form->error($model, 'kyiv_address'); ?>
+                                    <?= $form->labelEx($model, 'kyiv_message'); ?>
+                                    <?= $form->textArea($model, 'kyiv_message', array('class' => 'input-fluid')); ?>
+                                    <?= $form->error($model, 'kyiv_message'); ?>
                                 </div>
-                                <div class="checkboxes-tick">
-                                    <?= $form->checkBox($model, 'post_to_door'); ?>
-                                    <?= $form->labelEx($model, 'post_to_door'); ?>
+                            <?php } elseif (2 == $item->id) { ?>
+                                <div id="shipping_<?= $item->id; ?>">
+                                    <?= $form->labelEx($model, 'post_city'); ?>
+                                    <div class="clearfix">
+                                        <div class="orb-select orb-select_short" id="city_select" data-key="<?= $o_newpost->key; ?>">
+                                            <?= $form->dropDownList($model, 'post_city', array()); ?>
+                                        </div>
+                                        <div class="checkboxes-tick">
+                                            <?= $form->checkBox($model, 'post_to_door'); ?>
+                                            <?= $form->labelEx($model, 'post_to_door'); ?>
+                                        </div>
+                                    </div>
+                                    <?= $form->labelEx($model, 'post_warehouse'); ?>
+                                    <div class="orb-select" id="warehouse_select">
+                                        <?= $form->dropDownList($model, 'post_warehouse', array()); ?>
+                                    </div>
+                                    <?= $form->labelEx($model, 'post_address'); ?>
+                                    <?= $form->textField($model, 'post_address', array('class' => 'input-fluid', 'disabled' => 'disabled')); ?>
                                 </div>
-                            </div>
-                            <?= $form->labelEx($model, 'post_warehouse'); ?>
-                            <div class="orb-select" id="warehouse_select">
-                                <?= $form->dropDownList($model, 'post_warehouse', array()); ?>
-                            </div>
-                            <?= $form->labelEx($model, 'post_address'); ?>
-                            <?= $form->textField($model, 'post_address', array('class' => 'input-fluid', 'disabled' => 'disabled')); ?>
-                        </div>
-
-                        <div id="pickup">
-                            <?= $form->radioButtonList(
-                                $model,
-                                'pickup',
-                                CHtml::listData($a_pickup, 'id', 'name')
-                            ); ?>
-                            <table style="margin-bottom:15px;">
-                                <tbody>
-                                <tr>
-                                    <td style="width:300px;">
-                                        <div class="radiobuttons">
-                                            <input id="1" type="radio" name="rate_id[2]" value="1">
-                                            <label for="1"><span>Салон "VOGUE INTERIORS"</span></label>
-                                        </div>
-                                    </td>
-                                    <td style="width:225px;"><a href="javascript:;" class="haddr"
-                                                                title="ул. Гоголевская, 15">ул. Гоголевская, 15</a></td>
-                                    <td style="width:170px;"><a href="javascript:;" class="cb-phone"
-                                                                title="(044) 482-01-01">(044) 482-01-01</a></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:300px;">
-                                        <div class="radiobuttons">
-                                            <input id="2" type="radio" name="rate_id[2]" value="2">
-                                            <label for="2"><span>Компания "ТБИ"</span></label>
-                                        </div>
-                                    </td>
-                                    <td style="width:225px;"><a href="javascript:;" class="haddr"
-                                                                title="ул. Гоголевская, 23">ул. Гоголевская, 23</a></td>
-                                    <td style="width:170px;"><a href="javascript:;" class="cb-phone"
-                                                                title="(050) 481-01-01">(050) 481-01-01</a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <label for="">Ваше сообщение:</label>
-                            <textarea name="" id="2-comment" class="input-fluid"></textarea>
-                        </div>
-
+                            <?php } elseif (3 == $item->id) { ?>
+                                <div id="shipping_<?= $item->id; ?>">
+                                    <table style="margin-bottom:15px;">
+                                        <?php foreach ($a_pickup as $item) { ?>
+                                            <tr>
+                                                <td style="width:300px;">
+                                                    <div class="radiobuttons">
+                                                        <?= $form->radioButton(
+                                                            $model,
+                                                            'pickup_id',
+                                                            array(
+                                                                'value' => $item->id,
+                                                                'uncheckValue' => null,
+                                                                'id' => 'Checkout_pickup_id_' . $item->id
+                                                            )
+                                                        ); ?>
+                                                        <?= $form->labelEx(
+                                                            $model,
+                                                            'pickup_id',
+                                                            array(
+                                                                'label' => $item->name,
+                                                                'for' => 'Checkout_pickup_id_' . $item->id
+                                                            )
+                                                        ); ?>
+                                                    </div>
+                                                </td>
+                                                <td style="width:225px;">
+                                                    <a href="javascript:;" class="haddr" title="<?= $item->address; ?>">
+                                                        <?= $item->address; ?>
+                                                    </a>
+                                                </td>
+                                                <td style="width:170px;">
+                                                    <a href="javascript:;" class="cb-phone" title="<?= $item->phone; ?>">
+                                                        <?= $item->phone; ?>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+                                    <?= $form->labelEx($model, 'pickup_message'); ?>
+                                    <?= $form->textArea($model, 'pickup_message', array('class' => 'input-fluid')); ?>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="orderpage-submitarea">

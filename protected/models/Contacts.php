@@ -2,6 +2,11 @@
 
 class Contacts extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'contacts';
+    }
+
     public function rules()
     {
         return array(

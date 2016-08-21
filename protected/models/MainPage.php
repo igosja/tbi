@@ -2,6 +2,11 @@
 
 class MainPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'mainpage';
+    }
+
     public function rules()
     {
         return array(

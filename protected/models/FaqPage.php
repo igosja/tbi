@@ -2,6 +2,11 @@
 
 class FaqPage extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'faqpage';
+    }
+
     public function rules()
     {
         return array(

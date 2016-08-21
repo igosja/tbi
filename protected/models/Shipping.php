@@ -2,6 +2,11 @@
 
 class Shipping extends CActiveRecord
 {
+    public function tableName()
+    {
+        return 'shipping';
+    }
+
     public function rules()
     {
         return array(

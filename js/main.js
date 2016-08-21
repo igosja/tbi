@@ -469,127 +469,95 @@
     if ($("#city_select").length) {
         var first_city = '';
         var key = $("#city_select").data('key');
-
-        $.ajax(
-            {
-                type: "POST",
-                url: "http://api.novaposhta.ua/v2.0/json/",
-                dataType: 'jsonp',
-                crossDomain: true, // enable this
-
-                data: {
-                    "apiKey": key,
-                    "modelName": "Address",
-                    "calledMethod": "getCities",
-                    "methodProperties": {}
-                },
-
-                success: function (data) {
-                    var item = jQuery(data).attr('data');
-
-                    var city_select = '<select name="" id="6-city">';
-                    first_city = jQuery(item[0]).attr('Ref');
-
-                    for (var i = 0; i < item.length; i++) {
-                        var desc = jQuery(item[i]).attr('DescriptionRu');
-                        var city_id = jQuery(item[i]).attr('Ref');
-
-                        city_select = city_select + '<option value="' + desc + '" data-city-id="' + city_id + '">' + desc + '</option>';
-                    }
-
-                    city_select = city_select + '</select>';
-                    $('#city_select').html(city_select);
-                    $('#city_select select').customSelect({customClass: 'orb-select-styled'});
-
-                    $.ajax(
-                        {
-                            type: "POST",
-                            url: "http://api.novaposhta.ua/v2.0/json/",
-                            dataType: 'jsonp',
-                            crossDomain: true, // enable this
-
-                            data: {
-                                "apiKey": key,
-                                "modelName": "Address",
-                                "calledMethod": "getWarehouses",
-                                "methodProperties": {
-                                    "CityRef": first_city
-                                }
-                            },
-
-                            success: function (data) {
-                                var item = jQuery(data).attr('data');
-
-                                var warehouse_select = '<select name="" id="6-address">';
-                                var first_city = jQuery(item[0]).attr('Ref');
-
-                                for (var i = 0; i < item.length; i++) {
-                                    var desc = jQuery(item[i]).attr('DescriptionRu');
-
-                                    warehouse_select = warehouse_select + '<option value="' + desc + '">' + desc + '</option>';
-                                }
-
-                                warehouse_select = warehouse_select + '</select>';
-                                $('#warehouse_select').html(warehouse_select);
-                                $('#warehouse_select select').customSelect({customClass: 'orb-select-styled'});
-                            }
-                        });
+        $.ajax({
+            type: "POST",
+            url: "http://api.novaposhta.ua/v2.0/json/",
+            dataType: 'jsonp',
+            crossDomain: true, // enable this
+            data: {
+                "apiKey": key,
+                "modelName": "Address",
+                "calledMethod": "getCities",
+                "methodProperties": {}
+            },
+            success: function (data) {
+                var item = jQuery(data).attr('data');
+                var city_select = '';
+                first_city = jQuery(item[0]).attr('Ref');
+                for (var i = 0; i < item.length; i++) {
+                    var desc = jQuery(item[i]).attr('DescriptionRu');
+                    var city_id = jQuery(item[i]).attr('Ref');
+                    city_select = city_select + '<option value="' + desc + '" data-city-id="' + city_id + '">' + desc + '</option>';
                 }
-            });
+                $('#Checkout_post_city').html(city_select);
+                $('#Checkout_post_city').customSelect({customClass: 'orb-select-styled'});
+                $.ajax({
+                    type: "POST",
+                    url: "http://api.novaposhta.ua/v2.0/json/",
+                    dataType: 'jsonp',
+                    crossDomain: true,
+                    data: {
+                        "apiKey": key,
+                        "modelName": "Address",
+                        "calledMethod": "getWarehouses",
+                        "methodProperties": {
+                            "CityRef": first_city
+                        }
+                    },
+                    success: function (data) {
+                        var item = jQuery(data).attr('data');
+                        var warehouse_select = '';
+                        var first_city = jQuery(item[0]).attr('Ref');
+                        for (var i = 0; i < item.length; i++) {
+                            var desc = jQuery(item[i]).attr('DescriptionRu');
+                            warehouse_select = warehouse_select + '<option value="' + desc + '">' + desc + '</option>';
+                        }
+                        $('#Checkout_post_warehouse').html(warehouse_select);
+                        $('#Checkout_post_warehouse').customSelect({customClass: 'orb-select-styled'});
+                    }
+                });
+            }
+        });
     }
 
-    $('body').on('change', '#6-city', function () {
-        var value_select = $('body #6-city option:selected').attr('data-city-id');
+    $('#Checkout_post_city').on('change', function () {
+        var value_select = $('#Checkout_post_city option:selected').attr('data-city-id');
         var key = $("#city_select").data('key');
-
-        $.ajax(
-            {
-                type: "POST",
-                url: "http://api.novaposhta.ua/v2.0/json/",
-                dataType: 'jsonp',
-                crossDomain: true, // enable this
-
-                data: {
-                    "apiKey": key,
-                    "modelName": "Address",
-                    "calledMethod": "getWarehouses",
-                    "methodProperties": {
-                        "CityRef": value_select
-                    }
-                },
-
-                success: function (data) {
-                    var item = jQuery(data).attr('data');
-
-                    var warehouse_select = '<select name="customer[address.shipping][street]" id="6-address">';
-                    var first_city = jQuery(item[0]).attr('Ref');
-
-                    for (var i = 0; i < item.length; i++) {
-                        var desc = jQuery(item[i]).attr('DescriptionRu');
-
-                        warehouse_select = warehouse_select + '<option value="' + desc + '">' + desc + '</option>';
-                    }
-
-                    warehouse_select = warehouse_select + '</select>';
-                    $('#warehouse_select').html(warehouse_select);
-                    $('#warehouse_select select').customSelect({customClass: 'orb-select-styled'});
+        $.ajax({
+            type: "POST",
+            url: "http://api.novaposhta.ua/v2.0/json/",
+            dataType: 'jsonp',
+            crossDomain: true, // enable this
+            data: {
+                "apiKey": key,
+                "modelName": "Address",
+                "calledMethod": "getWarehouses",
+                "methodProperties": {
+                    "CityRef": value_select
                 }
-            });
+            },
+            success: function (data) {
+                var item = jQuery(data).attr('data');
+                var warehouse_select = '';
+                var first_city = jQuery(item[0]).attr('Ref');
+                for (var i = 0; i < item.length; i++) {
+                    var desc = jQuery(item[i]).attr('DescriptionRu');
+                    warehouse_select = warehouse_select + '<option value="' + desc + '">' + desc + '</option>';
+                }
+                $('#Checkout_post_warehouse').html(warehouse_select);
+                $('#Checkout_post_warehouse').customSelect({customClass: 'orb-select-styled'});
+            }
+        });
     });
 
-    $('.shipping_method_link').on('click', function () {
-        var shipping_id = $(this).attr('data-shipping-id');
-        $('#hidden_shipping').val(shipping_id);
-        $('body #1-address').attr('name', '');
-        $('body #6-address').attr('name', '');
-        $('body #1-city').attr('name', '');
-        $('body #6-city').attr('name', '');
-        $('body #1-comment').attr('name', '');
-        $('body #2-comment').attr('name', '');
+    if ($('#ytCheckout_shipping_id').length) {
+        var shipping_id = $('#orderpage-tabs').data('shipping-id');
+        $('#ytCheckout_shipping_id').val(shipping_id);
+    }
 
-        $('body #' + shipping_id + '-address').attr('name', 'customer[address.shipping][street]');
-        $('body #' + shipping_id + '-city').attr('name', 'customer[address.shipping][city]');
-        $('body #' + shipping_id + '-comment').attr('name', 'comment');
+    $('.shipping_method_link').on('click', function () {
+        var shipping_id = $(this).data('shipping-id');
+        $('#ytCheckout_shipping_id').val(shipping_id);
     });
 
     $('body').on('click', ".page-left a.compare-add", function () {
@@ -716,13 +684,10 @@
         $('#password_change_link').hide();
     });
 
-    /*Смена цены при смене упаковки (Бойко Игорь)*/
     $('.sku_id').on('change', function () {
         $('.pc-price').find('strong').text($(this).attr('data-price'));
     });
-    /*Конец смены цены при смене упаковки (Бойко Игорь)*/
 
-    /*Адресная доставка новой почты (Бойко Игорь)*/
     if ($('input').is('#checkout-new-post-address')) {
         $('#checkout-new-post-address').prop('disabled', true);
     }
@@ -735,17 +700,6 @@
             $('#Checkout_post_address').prop('disabled', true);
         }
     });
-
-    $('#checkout-new-post-address').on('change', function () {
-        var address_value = $(this).val();
-        var option_array = $('#warehouse_select option');
-
-        for (var i = 0; i < option_array.length; i++) {
-            var option_text = $(option_array[i]).text()
-            $(option_array[i]).val(option_text + ', адресная доставка, ' + address_value);
-        }
-    });
-    /*Конец адресной доставки новой почты (Бойко Игорь)*/
 
     $('#zoom_01').elevateZoom({
         cursor: "crosshair",
