@@ -21,9 +21,10 @@ class Checkout extends CFormModel
     public function rules()
     {
         return array(
-            array('email, name, phone, surname', 'required'),
+            array('email, name, payment_id, phone, surname', 'required'),
             array('payment_id, pickup_id, shipping_id', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
+            array('email', 'emailcheck'),
             array('post_to_door, subscribe', 'boolean'),
             array('email, kyiv_address, name, phone, post_city, post_warehouse, surname', 'length', 'max' => 255),
             array('kyiv_address, kyiv_message, pickup_message', 'safe')
@@ -37,6 +38,7 @@ class Checkout extends CFormModel
             'kyiv_address' => 'Адрес',
             'kyiv_message' => 'Ваше сообщение',
             'name' => 'Имя',
+            'payment_id' => 'Способ оплаты',
             'phone' => 'Номер телефона',
             'pickup_message' => 'Ваше сообщение',
             'post_address' => 'Адрес',
@@ -51,5 +53,32 @@ class Checkout extends CFormModel
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+    
+    public function emailcheck($attribute)
+    {
+        $error = false;
+        if (Yii::app()->user->isGuest) {
+            $count_email = User::model()->countByAttributes(array('email' => $this->$attribute));
+            if (0 != $count_email) {
+                $error = true;
+            }
+        } else {
+            $count_email = User::model()->countByAttributes(array('email' => $this->$attribute, 'id' => Yii::app()->user->id));
+            if (0 == $count_email) {
+                $error = true;
+            }
+        }
+        if (true == $error) {
+            $this->addError(
+                $attribute,
+                'Этот email уже используется в системе.
+                Введите другой email или
+                <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="войдите">
+                войдите
+                </a>
+                в свой аккаунт'
+            );
+        }
     }
 }

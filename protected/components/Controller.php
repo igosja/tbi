@@ -22,6 +22,11 @@ class Controller extends CController
 
     public function init()
     {
+        $a = 'I-X36H82YH9AWU';
+        $b = 'I-X36H82YH9AWU';
+        print '<pre>';
+        print_r($a == $b);
+        exit;
         $this->a_popular = Product::model()->findAllByAttributes(
             array('status' => 1),
             array('limit' => 5, 'order' => 'RAND()')

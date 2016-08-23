@@ -16,6 +16,7 @@
                 <a href="javascript:;" class="of-close"></a>
             </section>
             <span>В ближайшее время с Вами свяжется наш менеджер.</span>
+            <a href="javascript:;" class="overlayElementTrigger" data-selector="form-success" id="form-checkout-link"></a>
         </div>
 
         <div class="of-form form-contact thank-form">
@@ -299,7 +300,7 @@
                 </table>
                 <div class="form-cart-total">
                     <span>Итого:</span>
-                    <span id="cart-total-price">1 346,92 UAH.</span>
+                    <span id="cart-total-price"></span>
                 </div>
             </section>
             <section>
@@ -585,5 +586,10 @@
 <?php if(Yii::app()->user->hasFlash('register_success')) { ?>
     <script>
         var register_success = <?= Yii::app()->user->getFlash('register_success'); ?>;
+    </script>
+<?php } ?>
+<?php if(Yii::app()->user->hasFlash('checkout_success')) { ?>
+    <script>
+        var checkout_success = <?= Yii::app()->user->getFlash('checkout_success'); ?>;
     </script>
 <?php } ?>

@@ -13,7 +13,7 @@ class Product extends CActiveRecord
             array('category_id, name, price, sku, text', 'required'),
             array('category_id, order, status', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
-            array('price', 'match', 'pattern'=>'/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
+            array('price', 'match', 'pattern' => '/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
             array('seo_description, seo_keywords', 'safe'),
             array('id, name, sku', 'safe', 'on' => 'search'),

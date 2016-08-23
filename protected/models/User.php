@@ -92,6 +92,21 @@ class User extends CActiveRecord
         return md5($password . md5('user-salt'));
     }
 
+    public function generatePassword()
+    {
+        $password = '';
+        for ($i=0; $i<7; $i++) {
+            if (0 == $i%2) {
+                $str = 'bcdfghjklmnpqrstvwxz';
+                $password = $password . $str[rand(0, strlen($str)-1)];
+            } else {
+                $str = 'aeiouy';
+                $password = $password . $str[rand(0, strlen($str)-1)];
+            }
+        }
+        return $password;
+    }
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);

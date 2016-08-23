@@ -9,7 +9,7 @@
                         <a class="active" href="javascript:;" title="Мой профиль">Мой профиль</a>
                     </li>
                     <li class='tab'>
-                        <a href="javascript:;" title="Мои заказы">Мои заказы</a>
+                        <?= CHtml::link('Мои заказы', array('orders'), array('title' => 'Мои заказы')); ?>
                     </li>
                 </ul>
                 <div class="profile-form profile-static">

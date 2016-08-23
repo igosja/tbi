@@ -65,10 +65,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;">Оформление заказа<span class="fa arrow"></span></a>
+                        <a href="javascript:;">Заказы<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Статусы', array('status/index')); ?>
                             </li>
                             <li>
                                 <?= CHtml::link('Способы оплаты', array('payment/index')); ?>

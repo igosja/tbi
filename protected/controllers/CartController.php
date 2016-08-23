@@ -4,6 +4,7 @@ class CartController extends Controller
 {
     public function actionIndex()
     {
+        Cart::model()->deleteAll('`session_id`!=0 AND `date`<' . (time()-86400));
         print Cart::model()->getCart();
     }
 

@@ -53,9 +53,42 @@ class AccountController extends Controller
         ));
     }
 
+    public function actionOrders()
+    {
+        $title = CHtml::decode('Мои заказы');
+        $this->breadcrumbs = array(
+            'Мой профиль' => array('account/index'),
+            $title
+        );
+        $a_order = Order::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id), array('order' => 'id DESC'));
+        $this->render('orders', array(
+            'title' => $title,
+            'a_order' => $a_order,
+        ));
+    }
+
+    public function actionOrder($id)
+    {
+        $id = (int)$id;
+        $o_order = Order::model()->findByPk($id);
+        if (null === $o_order) {
+            throw new CHttpException(404, 'Страница не найдена.');
+        }
+        $title = CHtml::decode('Заказ #' . $id);
+        $this->breadcrumbs = array(
+            'Мой профиль' => array('account/index'),
+            'Мои заказы' => array('account/orders'),
+            $title
+        );
+        $this->render('order', array(
+            'title' => $title,
+            'o_order' => $o_order,
+        ));
+    }
+
     public function actionRegion($id)
     {
-        $id = (int) $id;
+        $id = (int)$id;
         $a_region = Region::model()->findAllByAttributes(
             array('status' => 1, 'country_id' => $id),
             array('order' => 'name')

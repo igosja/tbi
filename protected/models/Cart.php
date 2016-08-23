@@ -91,6 +91,71 @@ class Cart extends CActiveRecord
         return json_encode(array('product' => $product, 'total' => $total . ' UAH'));
     }
 
+    public function getCartProductList()
+    {
+        if (Yii::app()->user->isGuest) {
+            $user_id = 0;
+            $session_id = Yii::app()->getSession()->getSessionId();
+        } else {
+            $user_id = Yii::app()->user->id;
+            $session_id = 0;
+        }
+        $a_product = array();
+        $o_cart = Cart::model()->findByAttributes(array('user_id' => $user_id, 'session_id' => $session_id));
+        if (null === $o_cart) {
+            return $a_product;
+        }
+        $a_product = CartProduct::model()->findAllByAttributes(array('cart_id' => $o_cart->id));
+        return $a_product;
+    }
+
+    public function getCartPrice()
+    {
+        if (Yii::app()->user->isGuest) {
+            $user_id = 0;
+            $session_id = Yii::app()->getSession()->getSessionId();
+        } else {
+            $user_id = Yii::app()->user->id;
+            $session_id = 0;
+        }
+        $total = 0;
+        $o_cart = Cart::model()->findByAttributes(array('user_id' => $user_id, 'session_id' => $session_id));
+        if (null === $o_cart) {
+            return $total;
+        }
+        $a_product = CartProduct::model()->findAllByAttributes(array('cart_id' => $o_cart->id));
+        foreach ($a_product as $item) {
+            $total = $total + $item->product->price * $item->quantity;
+        }
+        return $total;
+    }
+
+    public function deleteCart()
+    {
+        if (Yii::app()->user->isGuest) {
+            $user_id = 0;
+            $session_id = Yii::app()->getSession()->getSessionId();
+        } else {
+            $user_id = Yii::app()->user->id;
+            $session_id = 0;
+        }
+        $o_cart = Cart::model()->findByAttributes(array('user_id' => $user_id, 'session_id' => $session_id));
+        if (null !== $o_cart) {
+            $o_cart->delete();
+        }
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $a_product = CartProduct::model()->findAllByAttributes(array('cart_id' => $this->id));
+            foreach ($a_product as $item) {
+                $item->delete();
+            }
+        }
+        return true;
+    }
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);

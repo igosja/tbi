@@ -27,6 +27,7 @@
                             'placeholder' => $model->getAttributeLabel('surname')
                         )
                     ); ?>
+                    <?= $form->error($model, 'surname'); ?>
                     <?= $form->telField(
                         $model,
                         'phone',
@@ -61,7 +62,7 @@
                                     'id' => 'Checkout_payment_id_' . $item->id
                                 )
                             ); ?>
-                            <?= $form->labelEx(
+                            <?= $form->label(
                                 $model,
                                 'payment_id',
                                 array(
@@ -74,6 +75,7 @@
                             </div>
                         <?php } ?>
                     </div>
+                    <?= $form->error($model, 'payment_id'); ?>
                 </div>
                 <div class="orderpage-right">
                     <div class="orderpage-subheading">Способы доставки товара:</div>

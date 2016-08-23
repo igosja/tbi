@@ -968,6 +968,10 @@
     if ('undefined' !== typeof(resume_success) && resume_success) {
         $('#form-vacancies-link').click();
     }
+
+    if ('undefined' !== typeof(checkout_success) && checkout_success) {
+        $('#form-checkout-link').click();
+    }
 });
 
 function get_cart()
