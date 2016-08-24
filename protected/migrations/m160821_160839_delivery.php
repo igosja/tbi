@@ -2,24 +2,47 @@
 
 class m160821_160839_delivery extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('delivery', array(
+            'id' => 'pk',
+            'description' => 'text NOT NULL',
+            'name' => 'varchar(255) NOT NULL',
+            'order' => 'int(11) DEFAULT 0',
+            'payment' => 'text NOT NULL',
+            'status' => 'tinyint(1) DEFAULT 1',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160839_delivery does not support migration down.\n";
-		return false;
-	}
+        $this->createIndex('order', 'delivery', 'order');
+        $this->createIndex('status', 'delivery', 'status');
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+        $this->insert('delivery', array(
+            'description' => 'Заказы, принятые до 15:30, выдаются «день в день». Заказы, принятые после 15:30, выдаются на следующий день. В рабочее время ( 9:00 - 18:00 )Вы сможете забрать покупку без дополнительных затрат на доставку.',
+            'name' => 'Самовывоз',
+            'order' => '0',
+            'payment' => 'Наличными при получении, оплата на карту Приват Банка, автоматическое пополнение через сервис Приват24.',
+            'status' => '1',
+        ));
 
-	public function safeDown()
-	{
-	}
-	*/
+        $this->insert('delivery', array(
+            'description' => 'Заказы, принятые до 15:30, доставляются «день в день». Заказы, принятые после 15:30, доставляются на следующий день. Время и адрес доставки обсуждается с менеджером по телефону. Курьерская доставка осуществляется при заказе от 500 грн. Стоимость доставки 40 грн.',
+            'name' => 'Доставка курьером по Киеву',
+            'order' => '1',
+            'payment' => 'Наличными при получении, оплата на карту Приват Банка, автоматическое пополнение через сервис Приват24.',
+            'status' => '1',
+        ));
+
+        $this->insert('delivery', array(
+            'description' => 'Заказы, принятые до 15:30, отправляются «день в день» на отделения Новой Почты. Заказы принятые после 15:30, отправляются на следующий день. Стоимость доставки по Украине и Киеву согласно тарифам Новой Почты.',
+            'name' => 'Новая Почта (Украина, Киев)',
+            'order' => '2',
+            'payment' => 'Наличными при получении, оплата на карту Приват Банка, автоматическое пополнение через сервис Приват24.',
+            'status' => '1',
+        ));
+    }
+
+    public function down()
+    {
+        $this->dropTable('delivery');
+    }
 }

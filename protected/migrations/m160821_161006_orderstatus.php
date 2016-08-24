@@ -2,24 +2,21 @@
 
 class m160821_161006_orderstatus extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('orderstatus', array(
+            'id' => 'pk',
+            'date' => 'int(11) DEFAULT 0',
+            'order_id' => 'int(11) DEFAULT 0',
+            'status_id' => 'int(11) DEFAULT 0',
+        ));
 
-	public function down()
-	{
-		echo "m160821_161006_orderstatus does not support migration down.\n";
-		return false;
-	}
+        $this->createIndex('order_id', 'orderstatus', 'order_id');
+        $this->createIndex('status_id', 'orderstatus', 'status_id');
+    }
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('orderstatus');
+    }
 }

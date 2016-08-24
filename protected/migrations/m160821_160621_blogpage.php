@@ -2,24 +2,24 @@
 
 class m160821_160621_blogpage extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('blogpage', array(
+            'id' => 'pk',
+            'seo_description' => 'text NOT NULL',
+            'seo_keywords' => 'text NOT NULL',
+            'seo_title' => 'varchar(255) NOT NULL',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160621_blogpage does not support migration down.\n";
-		return false;
-	}
+        $this->insert('blogpage', array(
+            'seo_description' => 'Блог',
+            'seo_keywords' => 'Блог',
+            'seo_title' => 'Блог',
+        ));
+    }
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('blogpage');
+    }
 }

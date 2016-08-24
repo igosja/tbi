@@ -2,8 +2,8 @@
 
 class m160821_160551_accountpage extends CDbMigration
 {
-	public function up()
-	{
+    public function up()
+    {
         $this->createTable('accountpage', array(
             'id' => 'pk',
             'seo_description' => 'text NOT NULL',
@@ -16,10 +16,10 @@ class m160821_160551_accountpage extends CDbMigration
             'seo_keywords' => 'Личный кабинет',
             'seo_title' => 'Личный кабинет',
         ));
-	}
+    }
 
-	public function down()
-	{
-		$this->dropTable('accountpage');
-	}
+    public function down()
+    {
+        $this->dropTable('accountpage');
+    }
 }

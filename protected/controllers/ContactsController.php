@@ -9,8 +9,8 @@ class ContactsController extends Controller
         $this->breadcrumbs = array(
             $title,
         );
-        $model = new CallContacts();
-        if ($data = Yii::app()->request->getPost('CallContacts')) {
+        $model = new Message();
+        if ($data = Yii::app()->request->getPost('Message')) {
             $model->attributes = $data;
             if ($model->save()) {
                 Yii::app()->user->setFlash('contacts_success', 'true');

@@ -2,24 +2,26 @@
 
 class m160821_161237_subscribe extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('subscribe', array(
+            'id' => 'pk',
+            'date' => 'int(11) DEFAULT 0',
+            'email' => 'varchar(255) NOT NULL',
+            'status' => 'tinyint(1) DEFAULT 1',
+        ));
 
-	public function down()
-	{
-		echo "m160821_161237_subscribe does not support migration down.\n";
-		return false;
-	}
+        $this->createIndex('status', 'subscribe', 'status');
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+        $this->insert('subscribe', array(
+            'date' => '1471091485',
+            'email' => 'igosja@ukr.net',
+            'status' => '1',
+        ));
+    }
 
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('subscribe');
+    }
 }

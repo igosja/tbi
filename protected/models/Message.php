@@ -1,6 +1,6 @@
 <?php
 
-class CallContacts extends CActiveRecord
+class Message extends CActiveRecord
 {
     public function tableName()
     {

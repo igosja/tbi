@@ -2,24 +2,24 @@
 
 class m160821_160637_brandpage extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('brandpage', array(
+            'id' => 'pk',
+            'seo_description' => 'text NOT NULL',
+            'seo_keywords' => 'text NOT NULL',
+            'seo_title' => 'varchar(255) NOT NULL',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160637_brandpage does not support migration down.\n";
-		return false;
-	}
+        $this->insert('brandpage', array(
+            'seo_description' => 'Бренды',
+            'seo_keywords' => 'Бренды',
+            'seo_title' => 'Бренды',
+        ));
+    }
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('brandpage');
+    }
 }

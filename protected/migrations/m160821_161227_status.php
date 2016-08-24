@@ -2,24 +2,40 @@
 
 class m160821_161227_status extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('status', array(
+            'id' => 'pk',
+            'name' => 'varchar(255) NOT NULL',
+        ));
 
-	public function down()
-	{
-		echo "m160821_161227_status does not support migration down.\n";
-		return false;
-	}
+        $this->insert('status', array(
+            'name' => 'Новый',
+        ));
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+        $this->insert('status', array(
+            'name' => 'Подтвержден',
+        ));
 
-	public function safeDown()
-	{
-	}
-	*/
+        $this->insert('status', array(
+            'name' => 'Оплачен',
+        ));
+
+        $this->insert('status', array(
+            'name' => 'Отправлен',
+        ));
+
+        $this->insert('status', array(
+            'name' => 'Выполнен',
+        ));
+
+        $this->insert('status', array(
+            'name' => 'Возврат',
+        ));
+    }
+
+    public function down()
+    {
+        $this->dropTable('status');
+    }
 }

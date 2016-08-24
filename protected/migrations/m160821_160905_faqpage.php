@@ -2,24 +2,24 @@
 
 class m160821_160905_faqpage extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('faqpage', array(
+            'id' => 'pk',
+            'seo_description' => 'text NOT NULL',
+            'seo_keywords' => 'text NOT NULL',
+            'seo_title' => 'varchar(255) NOT NULL',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160905_faqpage does not support migration down.\n";
-		return false;
-	}
+        $this->insert('faqpage', array(
+            'seo_description' => 'ЧаВо',
+            'seo_keywords' => 'ЧаВо',
+            'seo_title' => 'ЧаВо',
+        ));
+    }
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('faqpage');
+    }
 }

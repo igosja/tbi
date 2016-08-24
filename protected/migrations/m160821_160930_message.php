@@ -1,31 +1,33 @@
 <?php
 
-class m160821_160648_call extends CDbMigration
+class m160821_160930_message extends CDbMigration
 {
     public function up()
     {
-        $this->createTable('call', array(
+        $this->createTable('message', array(
             'id' => 'pk',
             'date' => 'int(11) DEFAULT 0',
             'email' => 'varchar(255) NOT NULL',
             'name' => 'varchar(255) NOT NULL',
             'phone' => 'varchar(255) NOT NULL',
             'status' => 'tinyint(1) DEFAULT 0',
+            'text' => 'text NOT NULL',
         ));
 
-        $this->createIndex('status', 'call', 'status');
+        $this->createIndex('status', 'message', 'status');
 
-        $this->insert('call', array(
-            'date' => '1471092956',
+        $this->insert('message', array(
+            'date' => '1471096229',
             'email' => 'igosja@ukr.net',
             'name' => 'igosja@ukr.net',
             'phone' => '(050) 137-15-67',
             'status' => '0',
+            'text' => 'Тестовое сообщение',
         ));
     }
 
     public function down()
     {
-        $this->dropTable('call');
+        $this->dropTable('message');
     }
 }

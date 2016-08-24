@@ -2,24 +2,39 @@
 
 class m160821_160827_country extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('country', array(
+            'id' => 'pk',
+            'name' => 'varchar(255) NOT NULL',
+            'status' => 'tinyint(1) DEFAULT 1',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160827_country does not support migration down.\n";
-		return false;
-	}
+        $this->createIndex('status', 'country', 'status');
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+        $this->insert('country', array(
+            'name' => 'Канада',
+            'status' => '1',
+        ));
 
-	public function safeDown()
-	{
-	}
-	*/
+        $this->insert('country', array(
+            'name' => 'Российская Федерация',
+            'status' => '1',
+        ));
+
+        $this->insert('country', array(
+            'name' => 'Соединенные Штаты Америки (США)',
+            'status' => '1',
+        ));
+
+        $this->insert('country', array(
+            'name' => 'Украина',
+            'status' => '1',
+        ));
+    }
+
+    public function down()
+    {
+        $this->dropTable('country');
+    }
 }

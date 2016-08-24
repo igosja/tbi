@@ -2,24 +2,30 @@
 
 class m160821_161102_productimage extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('productimage', array(
+            'id' => 'pk',
+            'image_id' => 'int(11) DEFAULT 0',
+            'product_id' => 'int(11) DEFAULT 0',
+        ));
 
-	public function down()
-	{
-		echo "m160821_161102_productimage does not support migration down.\n";
-		return false;
-	}
+        $this->createIndex('image_id', 'productimage', 'image_id');
+        $this->createIndex('product_id', 'productimage', 'product_id');
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
+        $this->insert('productimage', array(
+            'image_id' => '24',
+            'product_id' => '1',
+        ));
 
-	public function safeDown()
-	{
-	}
-	*/
+        $this->insert('productimage', array(
+            'image_id' => '38',
+            'product_id' => '2',
+        ));
+    }
+
+    public function down()
+    {
+        $this->dropTable('productimage');
+    }
 }

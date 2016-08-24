@@ -2,8 +2,8 @@
 
 class m160821_160525_aboutpage extends CDbMigration
 {
-	public function up()
-	{
+    public function up()
+    {
         $this->createTable('aboutpage', array(
             'id' => 'pk',
             'name' => 'varchar(255) NOT NULL',
@@ -30,10 +30,10 @@ class m160821_160525_aboutpage extends CDbMigration
             'seo_keywords' => 'О компании',
             'seo_title' => 'О компании',
         ));
-	}
+    }
 
-	public function down()
-	{
-		$this->dropTable('aboutpage');
-	}
+    public function down()
+    {
+        $this->dropTable('aboutpage');
+    }
 }

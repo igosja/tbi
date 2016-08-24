@@ -49,7 +49,7 @@
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>',
-                    array('message/call')
+                    array('call/index')
                 ); ?>
             </div>
         </div>
@@ -79,26 +79,29 @@
             </div>
         </div>
     <?php } ?>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-info-circle fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">123</div>
-                        <div>qwer</div>
+    <?php if ($vacancy) { ?>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?= $vacancy; ?></div>
+                            <div>Сообщения</div>
+                        </div>
                     </div>
                 </div>
+                <?= CHtml::link(
+                    '<div class="panel-footer">
+                        <span class="pull-left">Подробнее</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>',
+                    array('vacancy/index')
+                ); ?>
             </div>
-            <a href="javascript:;">
-                <div class="panel-footer">
-                    <span class="pull-left">Подробнее</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
         </div>
-    </div>
+    <?php } ?>
 </div>

@@ -2,24 +2,20 @@
 
 class m160821_160938_newpost extends CDbMigration
 {
-	public function up()
-	{
-	}
+    public function up()
+    {
+        $this->createTable('newpost', array(
+            'id' => 'pk',
+            'key' => 'varchar(255) NOT NULL',
+        ));
 
-	public function down()
-	{
-		echo "m160821_160938_newpost does not support migration down.\n";
-		return false;
-	}
+        $this->insert('newpost', array(
+            'key' => 'e0dff7feff1125738eed6cae40890fc9',
+        ));
+    }
 
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
+    public function down()
+    {
+        $this->dropTable('newpost');
+    }
 }
