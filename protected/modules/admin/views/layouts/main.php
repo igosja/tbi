@@ -22,8 +22,36 @@
             </button>
             <?= CHtml::link('ТБИ', array('index/index'), array('class' => 'navbar-brand')); ?>
         </div>
-
         <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                    <span class="badge"><?= ($this->notification ? $this->notification : ''); ?></span>
+                    <i class="fa fa-envelope fa-fw"></i>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <?= CHtml::link(
+                            '<span class="badge">' . ($this->call ? $this->call : '') . '</span> Обратные звонки',
+                            array('call/index')
+                        ); ?>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <?= CHtml::link(
+                            '<span class="badge">' . ($this->message ? $this->message : '') . '</span> Сообщения',
+                            array('message/index')
+                        ); ?>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <?= CHtml::link(
+                            '<span class="badge">' . ($this->resume ? $this->resume : '') . '</span> Резюме',
+                            array('resume/index')
+                        ); ?>
+                    </li>
+                </ul>
+            </li>
             <li class="dropdown">
                 <?= CHtml::link('<i class="fa fa-sign-out fa-fw"></i>', array('/site/logout')); ?>
             </li>

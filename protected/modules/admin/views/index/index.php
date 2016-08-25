@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <?php if ($cart) { ?>
+    <?php if ($this->cart) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
@@ -13,7 +13,7 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $cart; ?></div>
+                            <div class="huge"><?= $this->cart; ?></div>
                             <div>Новые заказы</div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
     <?php } ?>
-    <?php if ($call) { ?>
+    <?php if ($this->call) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-red">
                 <div class="panel-heading">
@@ -38,7 +38,7 @@
                             <i class="fa fa-phone fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $call; ?></div>
+                            <div class="huge"><?= $this->call; ?></div>
                             <div>Обратный звонок</div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             </div>
         </div>
     <?php } ?>
-    <?php if ($message) { ?>
+    <?php if ($this->message) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
@@ -63,7 +63,7 @@
                             <i class="fa fa-envelope fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $message; ?></div>
+                            <div class="huge"><?= $this->message; ?></div>
                             <div>Сообщения</div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
             </div>
         </div>
     <?php } ?>
-    <?php if ($vacancy) { ?>
+    <?php if ($this->resume) { ?>
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -88,8 +88,8 @@
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?= $vacancy; ?></div>
-                            <div>Сообщения</div>
+                            <div class="huge"><?= $this->resume; ?></div>
+                            <div>Резюме</div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>',
-                    array('vacancy/index')
+                    array('resume/index')
                 ); ?>
             </div>
         </div>

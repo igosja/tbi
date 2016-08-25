@@ -2,6 +2,8 @@
 
 class Resume extends CActiveRecord
 {
+    public $answer;
+
     public function tableName()
     {
         return 'resume';
@@ -19,6 +21,8 @@ class Resume extends CActiveRecord
     public function attributeLabels()
     {
         return array(
+            'answer' => 'Ответ',
+            'date' => 'Время обращения',
             'email' => 'Email',
             'file' => '.pdf .doc .docx',
             'name' => 'Ф.И.О.',
@@ -26,6 +30,18 @@ class Resume extends CActiveRecord
             'position' => 'Должность',
             'text' => 'Сопроводительное письмо',
         );
+    }
+
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('name', $this->name, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     protected function beforeSave()

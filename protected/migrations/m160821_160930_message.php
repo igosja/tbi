@@ -19,7 +19,7 @@ class m160821_160930_message extends CDbMigration
         $this->insert('message', array(
             'date' => '1471096229',
             'email' => 'igosja@ukr.net',
-            'name' => 'igosja@ukr.net',
+            'name' => 'Игорь',
             'phone' => '(050) 137-15-67',
             'status' => '0',
             'text' => 'Тестовое сообщение',

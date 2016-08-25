@@ -19,10 +19,24 @@ class Call extends CActiveRecord
     public function attributeLabels()
     {
         return array(
+            'date' => 'Время обращения',
             'email' => 'Email',
             'name' => 'Имя',
             'phone' => 'Телефон',
         );
+    }
+
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('phone', $this->phone, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     protected function beforeSave()

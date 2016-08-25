@@ -2,9 +2,11 @@
 
 class Message extends CActiveRecord
 {
+    public $answer;
+
     public function tableName()
     {
-        return 'call';
+        return 'message';
     }
 
     public function rules()
@@ -19,11 +21,26 @@ class Message extends CActiveRecord
     public function attributeLabels()
     {
         return array(
+            'answer' => 'Ответ',
+            'date' => 'Время обращения',
             'email' => 'Email',
             'name' => 'Имя',
             'phone' => 'Телефон',
             'text' => 'Сообщение',
         );
+    }
+
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('email', $this->email, true);
+        $criteria->compare('name', $this->name, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     protected function beforeSave()

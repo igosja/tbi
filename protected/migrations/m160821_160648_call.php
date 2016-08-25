@@ -18,7 +18,7 @@ class m160821_160648_call extends CDbMigration
         $this->insert('call', array(
             'date' => '1471092956',
             'email' => 'igosja@ukr.net',
-            'name' => 'igosja@ukr.net',
+            'name' => 'Игорь',
             'phone' => '(050) 137-15-67',
             'status' => '0',
         ));
