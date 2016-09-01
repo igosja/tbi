@@ -153,4 +153,19 @@ class ProductController extends AController
         $model = new $this->model_name($search);
         return $model;
     }
+
+    public function actionOption($id)
+    {
+        print '<div class="form-inline">'
+            . CHtml::textField('option[' . $id . '][name][]', '', array('class' => 'form-control')) . ' '
+            . CHtml::dropDownList(
+                'option[0][plus][]',
+                '',
+                array('1' => '+', '0' => '-', '2' => '='),
+                array('class' => 'form-control')
+            ) . ' '
+            . CHtml::textField('option[0][price][]', '', array('class' => 'form-control'))
+            . ' грн.</div>';
+        exit;
+    }
 }

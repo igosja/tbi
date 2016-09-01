@@ -22,6 +22,7 @@
         )); ?>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#main" data-toggle="tab">Общая информация</a></li>
+            <li><a href="#option" data-toggle="tab">Варианты товара</a></li>
             <li><a href="#seo" data-toggle="tab">SEO</a></li>
         </ul>
         <div class="tab-content">
@@ -49,22 +50,34 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'price'); ?></td>
+                        <td>
+                            <?= $form->textField($model, 'price', array('class' => 'form-control')); ?>
+                            <?= $form->error($model, 'price'); ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'category_id'); ?></td>
                         <td>
                             <?= $form->dropDownList(
                                 $model,
                                 'category_id',
-                                CHtml::listData(Category::model()->findAll(), 'id', 'name'),
+                                CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name'),
                                 array('empty' => 'Выберите категорию', 'class' => 'form-control')
                             ); ?>
                             <?= $form->error($model, 'category_id'); ?>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-lg-3"><?= $form->labelEx($model, 'price'); ?></td>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'brand_id'); ?></td>
                         <td>
-                            <?= $form->textField($model, 'price', array('class' => 'form-control')); ?>
-                            <?= $form->error($model, 'price'); ?>
+                            <?= $form->dropDownList(
+                                $model,
+                                'brand_id',
+                                CHtml::listData(Brand::model()->findAll(array('order' => 'name')), 'id', 'name'),
+                                array('empty' => 'Выберите бренд', 'class' => 'form-control')
+                            ); ?>
+                            <?= $form->error($model, 'brand_id'); ?>
                         </td>
                     </tr>
                     <tr>
@@ -88,6 +101,30 @@
                         <td>
                             <?= $form->textArea($model, 'text', array('class' => 'form-control', 'rows' => 10)); ?>
                             <?= $form->error($model, 'text'); ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="option">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <td class="col-lg-3">
+                            Варинаты товара
+                            <a href="javascript:;" id="product-option-add" data-id="1">
+                                <i class="fa fa-plus fa-fw"></i>
+                            </a>
+                        </td>
+                        <td id="product-option-list">
+                            <div class="form-inline">
+                                <?= CHtml::textField('option[0][name][]', '', array('class' => 'form-control')); ?>
+                                <?= CHtml::dropDownList(
+                                    'option[0][plus][]',
+                                    '',
+                                    array('1' => '+', '0' => '-', '2' => '='),
+                                    array('class' => 'form-control')
+                                ); ?>
+                                <?= CHtml::textField('option[0][price][]', '', array('class' => 'form-control')); ?> грн.
+                            </div>
                         </td>
                     </tr>
                 </table>

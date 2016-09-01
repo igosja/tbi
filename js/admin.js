@@ -28,6 +28,18 @@ $(document).ready(function ($) {
     });
 
     CGridViewAfterAjax();
+
+    $('#product-option-add').on('click', function(){
+        var element_id = $(this).data('id');
+        $.ajax({
+            url: '/admin/product/option/' + element_id,
+            success: function (data) {
+                $('#product-option-list').append(data);
+            }
+        });
+        element_id++;
+        $(this).data('id', element_id);
+    })
 });
 
 function status_change() {

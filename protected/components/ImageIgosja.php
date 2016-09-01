@@ -19,7 +19,6 @@ class ImageIgosja
         $cut = (int)$cut;
 
         $o_resize = Resize::model()->findByAttributes(array('image_id' => $image_id, 'height' => $sizeh, 'width' => $sizew, 'cut' => $cut));
-
         if (isset($o_resize->url)) {
             return $o_resize->url;
         } else {
@@ -57,6 +56,8 @@ class ImageIgosja
                     $src = imagecreatefromgif($image_url);
                 } elseif ($image_info[2] == IMAGETYPE_PNG) {
                     $src = imagecreatefrompng($image_url);
+                } else {
+                    return false;
                 }
 
                 $im = imagecreatetruecolor($sizew, $sizeh);

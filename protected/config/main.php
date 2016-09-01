@@ -5,12 +5,10 @@ return array(
     'language' => 'ru',
     'sourceLanguage' => 'ru',
     'timeZone' => 'UTC',
-
     'import' => array(
         'application.models.*',
         'application.components.*',
     ),
-
     'components' => array(
         'urlManager' => array(
             'urlFormat' => 'path',
@@ -28,7 +26,6 @@ return array(
                 '<controller>' => '<controller>/index',
             ),
         ),
-
         'db' => array(
             'connectionString' => 'mysql:host=localhost;dbname=igosja_tbi',
             'emulatePrepare' => true,
@@ -37,7 +34,6 @@ return array(
             'charset' => 'utf8',
         ),
     ),
-
     'modules' => array(
         'admin',
         'gii' => array(

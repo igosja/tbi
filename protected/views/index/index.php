@@ -43,7 +43,6 @@
         </div>
     </div>
 </section>
-
 <section class="main3buttons">
     <div class="wrap clearfix">
         <?= CHtml::link(
@@ -69,7 +68,6 @@
         ); ?>
     </div>
 </section>
-
 <section class="maincatblocks">
     <div class="wrap clearfix">
         <?php if (isset($a_category[0])) { ?>
@@ -112,7 +110,6 @@
         </div>
     </div>
 </section>
-
 <section class="brandssliderwrap bxunstyled">
     <div class="wrap clearfix">
         <h4 class="section-heading section-heading_brands">БРЕНДЫ</h4>
@@ -139,9 +136,7 @@
         ); ?>
     </div>
 </section>
-
 <?= $this->renderPartial('/include/popular'); ?>
-
 <section class="mainnews">
     <div class="wrap">
         <h4 class="section-heading">Новости</h4>

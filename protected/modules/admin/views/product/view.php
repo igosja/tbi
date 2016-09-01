@@ -51,6 +51,14 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('brand_id'); ?>
+                </td>
+                <td>
+                    <?= $model->brand->name; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= $model->getAttributeLabel('text'); ?>
                 </td>
                 <td>
