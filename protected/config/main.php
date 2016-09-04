@@ -21,6 +21,8 @@ return array(
                 'admin/<controller>/<action>' => 'admin/<controller>/<action>',
                 'admin/<controller>' => 'admin/<controller>',
                 'admin' => 'admin/index',
+                'product/<id>' => 'product/view',
+                'category/<id>' => 'category/view',
                 '<controller>/<action>/<id>' => '<controller>/<action>',
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>' => '<controller>/index',

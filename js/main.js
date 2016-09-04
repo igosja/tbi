@@ -238,22 +238,20 @@
     });
 
     $('.qty-input input').numeric();
+
     $('html').on('keyup', '.qty-input a', function () {
         if ($(this).val() <= '0' || $(this).val() < '0' || $(this).val() == '') {
             $(this).val('1');
-
         }
     });
+
     $('html').on('blur', '.qty-input a', function () {
         if ($(this).val() == '' || $(this).val() <= '0') {
             $(this).val('1');
-
         }
     });
 
-
     $('html').on('click', '.qty-input a', function () {
-        // var qtyInput = $('.qty-input input');
         var qtyInput = $(this).parent().find('input');
         if ($(this).hasClass('qty-less')) {
             if (qtyInput.val() > 1) {
@@ -684,8 +682,16 @@
         $('#password_change_link').hide();
     });
 
-    $('.sku_id').on('change', function () {
-        $('.pc-price').find('strong').text($(this).attr('data-price'));
+    $('.product-option').on('change', function () {
+        var cart = $('.qty-tocart');
+        var name = $(this).data('name');
+        var option = $(this).data('option');
+        var price = $(this).data('price');
+        var id = $(this).data('option');
+        $('.pc-price strong').text(price + ' грн.');
+        cart.data('price', price);
+        cart.data('name', name + ', ' + option);
+        cart.data('option', id);
     });
 
     if ($('input').is('#checkout-new-post-address')) {
@@ -926,9 +932,17 @@
 
     $('.add-to-cart').on('click', function () {
         var product = $(this).data('product');
+        var name = $(this).data('name');
+        var price = $(this).data('price');
+        var option = $(this).data('option');
+        var quantity = 1;
+        if ($(this).hasClass('qty-tocart')) {
+            quantity = $('.pc-qty .qty-input input').val();
+        }
         $.ajax({
             url: '/cart/add/' + product,
             dataType: 'json',
+            data: 'name=' + name + '&price=' + price + '&quantity=' + quantity + '&option=' + option,
             success: function(data) {
                 if (1 == data.status) {
                     var cart = $('.navcart');

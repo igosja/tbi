@@ -81,8 +81,8 @@ class Cart extends CActiveRecord
         foreach ($a_product as $item) {
             $product[] = array(
                 'id' => $item->id,
-                'name' => $item->product->name,
-                'price' => $item->product->price * $item->quantity,
+                'name' => $item->product_name,
+                'price' => $item->price * $item->quantity,
                 'quantity' => $item->quantity,
                 'url' => CHtml::normalizeUrl(array('product/view', 'id' => $item->product->url)),
             );
@@ -125,7 +125,7 @@ class Cart extends CActiveRecord
         }
         $a_product = CartProduct::model()->findAllByAttributes(array('cart_id' => $o_cart->id));
         foreach ($a_product as $item) {
-            $total = $total + $item->product->price * $item->quantity;
+            $total = $total + $item->price * $item->quantity;
         }
         return $total;
     }

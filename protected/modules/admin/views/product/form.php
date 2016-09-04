@@ -69,6 +69,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'view_id'); ?></td>
+                        <td>
+                            <?= $form->dropDownList(
+                                $model,
+                                'view_id',
+                                CHtml::listData(View::model()->findAll(array('order' => 'name')), 'id', 'name'),
+                                array('empty' => 'Выберите шаблон', 'class' => 'form-control')
+                            ); ?>
+                            <?= $form->error($model, 'view_id'); ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'brand_id'); ?></td>
                         <td>
                             <?= $form->dropDownList(
@@ -109,21 +121,21 @@
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <td class="col-lg-3">
-                            Варинаты товара
+                            Варианты товара
                             <a href="javascript:;" id="product-option-add" data-id="1">
                                 <i class="fa fa-plus fa-fw"></i>
                             </a>
                         </td>
                         <td id="product-option-list">
                             <div class="form-inline">
-                                <?= CHtml::textField('option[0][name][]', '', array('class' => 'form-control')); ?>
+                                <?= CHtml::textField('option[0][name]', '', array('class' => 'form-control')); ?>
                                 <?= CHtml::dropDownList(
-                                    'option[0][plus][]',
+                                    'option[0][plus]',
                                     '',
                                     array('1' => '+', '0' => '-', '2' => '='),
                                     array('class' => 'form-control')
                                 ); ?>
-                                <?= CHtml::textField('option[0][price][]', '', array('class' => 'form-control')); ?> грн.
+                                <?= CHtml::textField('option[0][price]', '', array('class' => 'form-control')); ?> грн.
                             </div>
                         </td>
                     </tr>

@@ -24,7 +24,15 @@
                         </span>
                     </div>
                     <div class="clearfix">
-                        <a href="javascript:;" data-product="<?= $item->id; ?>" class="add-to-cart pi-cart" title="В корзину">
+                        <a
+                            href="javascript:;"
+                            data-product="<?= $item->id; ?>"
+                            data-name="<?= HelperIgosja::productName($item); ?>"
+                            data-price="<?= HelperIgosja::productPrice($item); ?>"
+                            data-option="<?= HelperIgosja::productOption($item); ?>"
+                            class="add-to-cart pi-cart"
+                            title="В корзину"
+                        >
                             В корзину
                         </a>
                         <a href="javascript:;" class="pi-compare" title="Сравнить">

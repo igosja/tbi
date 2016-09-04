@@ -45,6 +45,7 @@ class ProductController extends AController
                     $model->save();
                 }
                 $this->uploadImage($model->id);
+                $this->addOptions($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -148,23 +149,37 @@ class ProductController extends AController
         }
     }
 
+    public function addOptions($id)
+    {
+        if ($data = Yii::app()->request->getPost('option')) {
+            foreach ($data as $item) {
+                $model = new ProductOption();
+                $model->name = $item['name'];
+                $model->price = $item['price'];
+                $model->plus = $item['plus'];
+                $model->product_id = $id;
+                $model->save();
+            }
+        }
+    }
+
     public function getModel($search = '')
     {
         $model = new $this->model_name($search);
         return $model;
     }
 
-    public function actionOption($id)
+    public function actionOptions($id)
     {
         print '<div class="form-inline">'
-            . CHtml::textField('option[' . $id . '][name][]', '', array('class' => 'form-control')) . ' '
+            . CHtml::textField('option[' . $id . '][name]', '', array('class' => 'form-control')) . ' '
             . CHtml::dropDownList(
-                'option[0][plus][]',
+                'option[' . $id . '][plus]',
                 '',
                 array('1' => '+', '0' => '-', '2' => '='),
                 array('class' => 'form-control')
             ) . ' '
-            . CHtml::textField('option[0][price][]', '', array('class' => 'form-control'))
+            . CHtml::textField('option[' . $id . '][price]', '', array('class' => 'form-control'))
             . ' грн.</div>';
         exit;
     }

@@ -11,6 +11,10 @@ class CartController extends Controller
     public function actionAdd($id)
     {
         $product_id = (int)$id;
+        $product_name = Yii::app()->request->getQuery('name');
+        $quantity = Yii::app()->request->getQuery('quantity');
+        $price = Yii::app()->request->getQuery('price');
+        $option = Yii::app()->request->getQuery('option');
         $o_product = Product::model()->findByPk($product_id);
         if (null === $o_product) {
             print json_encode(array('status' => 0));
@@ -34,19 +38,22 @@ class CartController extends Controller
             }
         }
         $o_cart_product = CartProduct::model()->findByAttributes(
-            array('cart_id' => $o_cart->id, 'product_id' => $product_id)
+            array('cart_id' => $o_cart->id, 'product_id' => $product_id, 'option_id' => $option)
         );
         if (null === $o_cart_product) {
             $o_cart_product = new CartProduct();
             $o_cart_product->cart_id = $o_cart->id;
+            $o_cart_product->option_id = $option;
             $o_cart_product->product_id = $product_id;
-            $o_cart_product->quantity = 1;
+            $o_cart_product->product_name = $product_name;
+            $o_cart_product->quantity = $quantity;
+            $o_cart_product->price = $price;
             if (!$o_cart_product->save()) {
                 print json_encode(array('status' => 0));
                 exit;
             }
         } else {
-            $o_cart_product->quantity++;
+            $o_cart_product->quantity = $o_cart_product->quantity + $quantity;
             if (!$o_cart_product->save()) {
                 print json_encode(array('status' => 0));
                 exit;

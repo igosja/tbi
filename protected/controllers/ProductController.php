@@ -1,25 +1,21 @@
 <?php
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     public function actionView($id)
     {
-        $o_category = Category::model()->findByAttributes(array('url' => $id));
-        if (null === $o_category) {
+        $o_product = Product::model()->findByAttributes(array('url' => $id));
+        if (null === $o_product) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
-        $this->setSEO($o_category);
-        $a_product = Product::model()->findAllByAttributes(
-            array('category_id' => $o_category->id, 'status' => 1),
-            array('order' => '`order`', 'limit' => 12)
-        );
+        $this->setSEO($o_product);
         $this->breadcrumbs = array(
             'Наши товары' => array('shop/index'),
-            CHtml::decode($o_category->name)
+            $o_product->category->name => array('category/view', 'id' => $o_product->category->url),
+            CHtml::decode($o_product->name)
         );
-        $this->render('view', array(
-            'o_category' => $o_category,
-            'a_product' => $a_product,
+        $this->render('view_' . $o_product->view->view, array(
+            'o_product' => $o_product,
         ));
     }
 }

@@ -10,12 +10,12 @@ class Product extends CActiveRecord
     public function rules()
     {
         return array(
-            array('brand_id, category_id, name, price, sku, text', 'required'),
-            array('brand_id, category_id, order, status', 'numerical', 'integerOnly' => true),
+            array('brand_id, category_id, name, price, sku, text, view_id', 'required'),
+            array('brand_id, category_id, catalog, order, status, technical_sheet, view_id', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
             array('price', 'match', 'pattern' => '/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
-            array('seo_description, seo_keywords', 'safe'),
+            array('infliction, equipment, technical_characteristics, youtube, seo_description, seo_keywords', 'safe'),
             array('id, name, sku', 'safe', 'on' => 'search'),
         );
     }
@@ -26,6 +26,8 @@ class Product extends CActiveRecord
             'brand' => array(self::HAS_ONE, 'Brand', array('id' => 'brand_id')),
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
+            'option' => array(self::HAS_MANY, 'ProductOption', array('product_id' => 'id')),
+            'view' => array(self::HAS_ONE, 'View', array('id' => 'view_id')),
         );
     }
 
@@ -35,13 +37,19 @@ class Product extends CActiveRecord
             'id' => 'ID',
             'brand_id' => 'Бренд',
             'category_id' => 'Категория',
+            'infliction' => 'Наненсение',
+            'equipment' => 'Комплектация',
             'image_id' => 'Изображения',
             'name' => 'Название',
             'price' => 'Цена, грн',
             'sku' => 'Артикул',
             'status' => 'Статус',
+            'technical_characteristics' => 'Тех. характеристики',
+            'technical_sheet' => 'Тех. лист',
             'text' => 'Описание',
             'url' => 'ЧП Url',
+            'view_id' => 'Шаблон страницы',
+            'youtube' => 'Коды видео с youtube (через ;)',
             'seo_description' => 'SEO description',
             'seo_keywords' => 'SEO keywords',
             'seo_title' => 'SEO title',
@@ -70,6 +78,7 @@ class Product extends CActiveRecord
                 }
                 $item->delete();
             }
+            ProductOption::model()->deleteAllByAttributes(array('product_id' => $this->id));
         }
         return true;
     }

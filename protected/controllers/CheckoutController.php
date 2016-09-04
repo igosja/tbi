@@ -99,9 +99,9 @@ class CheckoutController extends Controller
         foreach ($a_product as $item) {
             $o_orderproduct = new OrderProduct();
             $o_orderproduct->order_id = $o_order->id;
-            $o_orderproduct->price = $item->product->price;
-            $o_orderproduct->product_id = $item->product->id;
-            $o_orderproduct->product_name = $item->product->name;
+            $o_orderproduct->price = $item->price;
+            $o_orderproduct->product_id = $item->product_id;
+            $o_orderproduct->product_name = $item->product_name;
             $o_orderproduct->quantity = $item->quantity;
             $o_orderproduct->save();
         }

@@ -25,7 +25,7 @@
         <table>
             <tr>
                 <td>Артикул:</td>
-                <td>36347</td>
+                <td><?= $item->sku; ?></td>
             </tr>
             <tr>
                 <td>Тип товара:</td>

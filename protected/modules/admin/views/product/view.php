@@ -51,6 +51,14 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('view_id'); ?>
+                </td>
+                <td>
+                    <?= $model->view->name; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= $model->getAttributeLabel('brand_id'); ?>
                 </td>
                 <td>
@@ -86,6 +94,21 @@
                                 </a>
                             </div>
                         <?php } ?>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Варианты товара
+                </td>
+                <td>
+                    <?php foreach($model->option as $item) { ?>
+                        <?php
+                        if (0 == $item->plus) { $price = $model->price - $item->price; }
+                        elseif (1 == $item->plus) { $price = $model->price + $item->price; }
+                        else { $price = $item->price; }
+                        ?>
+                        <?= $model->name; ?>, <?= $item->name; ?>, <?= $price; ?> грн.<br/>
                     <?php } ?>
                 </td>
             </tr>

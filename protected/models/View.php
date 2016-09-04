@@ -1,18 +1,17 @@
 <?php
 
-class Pickup extends CActiveRecord
+class View extends CActiveRecord
 {
     public function tableName()
     {
-        return 'pickup';
+        return 'view';
     }
 
     public function rules()
     {
         return array(
-            array('address, name, phone', 'required'),
-            array('order, status', 'numerical', 'integerOnly' => true),
-            array('address, name, phone', 'length', 'max' => 255),
+            array('name', 'required'),
+            array('name', 'length', 'max' => 255),
             array('id, name', 'safe', 'on' => 'search'),
         );
     }
@@ -21,10 +20,7 @@ class Pickup extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'address' => 'Адресс',
             'name' => 'Название',
-            'phone' => 'Телефон',
-            'status' => 'Статус',
         );
     }
 
