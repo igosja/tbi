@@ -115,6 +115,58 @@
                             <?= $form->error($model, 'text'); ?>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'infliction'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'infliction', array('class' => 'form-control', 'rows' => 5)); ?>
+                            <?= $form->error($model, 'infliction'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'equipment'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'equipment', array('class' => 'form-control', 'rows' => 5)); ?>
+                            <?= $form->error($model, 'equipment'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'technical_characteristics'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'technical_characteristics', array('class' => 'form-control', 'rows' => 5)); ?>
+                            <?= $form->error($model, 'technical_characteristics'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'youtube'); ?></td>
+                        <td>
+                            <?= $form->textField($model, 'youtube', array('class' => 'form-control')); ?>
+                            <?= $form->error($model, 'youtube'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'sheet_id'); ?></td>
+                        <td>
+                            <?php if (isset($model->sheet->url)) { ?>
+                                <a href="<?= $model->sheet->url; ?>">
+                                    Скачать
+                                </a>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('sheet', 'id' => $model->sheet_id)); ?>
+                            <?php } ?>
+                            <input type="file" name="sheet" class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'catalog_id'); ?></td>
+                        <td>
+                            <?php if (isset($model->catalog->url)) { ?>
+                                <a href="<?= $model->catalog->url; ?>">
+                                    Скачать
+                                </a>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('catalog', 'id' => $model->catalog_id)); ?>
+                            <?php } ?>
+                            <input type="file" name="catalog" class="form-control"/>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="tab-pane fade" id="option">

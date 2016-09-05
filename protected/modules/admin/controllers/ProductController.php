@@ -45,6 +45,8 @@ class ProductController extends AController
                     $model->save();
                 }
                 $this->uploadImage($model->id);
+                $this->uploadCatalog($model->id);
+                $this->uploadSheet($model->id);
                 $this->addOptions($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
@@ -125,6 +127,26 @@ class ProductController extends AController
         $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
+    public function actionSheet($id)
+    {
+        $o_image = Image::model()->findByPk($id);
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        }
+        $o_image->delete();
+        $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function actionCatalog($id)
+    {
+        $o_image = Image::model()->findByPk($id);
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        }
+        $o_image->delete();
+        $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+
     public function uploadImage($id)
     {
         if (isset($_FILES['image']['name'][0]) && !empty($_FILES['image']['name'][0])) {
@@ -145,6 +167,48 @@ class ProductController extends AController
                     $o_product_image->product_id = $id;
                     $o_product_image->save();
                 }
+            }
+        }
+    }
+
+    public function uploadCatalog($id)
+    {
+        if (isset($_FILES['catalog']['name']) && !empty($_FILES['catalog']['name'])) {
+            $catalog = $_FILES['catalog'];
+            $ext = $catalog['name'];
+            $ext = explode('.', $ext);
+            $ext = end($ext);
+            if (in_array($ext, array('pdf'))) {
+                $file = $catalog['tmp_name'];
+                $catalog_url = ImageIgosja::put_file($file, $ext);
+                $o_catalog = new Image();
+                $o_catalog->url = $catalog_url;
+                $o_catalog->save();
+                $catalog_id = $o_catalog->id;
+                $o_product = Product::model()->findByPk($id);
+                $o_product->catalog_id = $catalog_id;
+                $o_product->save();
+            }
+        }
+    }
+
+    public function uploadSheet($id)
+    {
+        if (isset($_FILES['sheet']['name']) && !empty($_FILES['sheet']['name'])) {
+            $catalog = $_FILES['sheet'];
+            $ext = $catalog['name'];
+            $ext = explode('.', $ext);
+            $ext = end($ext);
+            if (in_array($ext, array('pdf'))) {
+                $file = $catalog['tmp_name'];
+                $sheet_url = ImageIgosja::put_file($file, $ext);
+                $o_sheet = new Image();
+                $o_sheet->url = $sheet_url;
+                $o_sheet->save();
+                $sheet_id = $o_sheet->id;
+                $o_product = Product::model()->findByPk($id);
+                $o_product->sheet_id = $sheet_id;
+                $o_product->save();
             }
         }
     }

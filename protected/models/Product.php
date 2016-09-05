@@ -11,7 +11,7 @@ class Product extends CActiveRecord
     {
         return array(
             array('brand_id, category_id, name, price, sku, text, view_id', 'required'),
-            array('brand_id, category_id, catalog, order, status, technical_sheet, view_id', 'numerical', 'integerOnly' => true),
+            array('brand_id, catalog_id, category_id, catalog, order, status, sheet_id, view_id', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
             array('price', 'match', 'pattern' => '/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
@@ -24,9 +24,11 @@ class Product extends CActiveRecord
     {
         return array(
             'brand' => array(self::HAS_ONE, 'Brand', array('id' => 'brand_id')),
+            'catalog' => array(self::HAS_ONE, 'Image', array('id' => 'catalog_id')),
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
             'option' => array(self::HAS_MANY, 'ProductOption', array('product_id' => 'id')),
+            'sheet' => array(self::HAS_ONE, 'Image', array('id' => 'sheet_id')),
             'view' => array(self::HAS_ONE, 'View', array('id' => 'view_id')),
         );
     }
@@ -36,16 +38,17 @@ class Product extends CActiveRecord
         return array(
             'id' => 'ID',
             'brand_id' => 'Бренд',
+            'catalog_id' => 'Каталог, pdf',
             'category_id' => 'Категория',
             'infliction' => 'Наненсение',
             'equipment' => 'Комплектация',
             'image_id' => 'Изображения',
             'name' => 'Название',
             'price' => 'Цена, грн',
+            'sheet_id' => 'Тех. лист, pdf',
             'sku' => 'Артикул',
             'status' => 'Статус',
             'technical_characteristics' => 'Тех. характеристики',
-            'technical_sheet' => 'Тех. лист',
             'text' => 'Описание',
             'url' => 'ЧП Url',
             'view_id' => 'Шаблон страницы',

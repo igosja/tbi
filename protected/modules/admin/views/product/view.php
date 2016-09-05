@@ -78,7 +78,69 @@
                     <?= $model->getAttributeLabel('url'); ?>
                 </td>
                 <td>
-                    <?= CHtml::link($model->url, array('/category/view', 'id' => $model->url), array('target' => '_blank')); ?>
+                    <?= CHtml::link($model->url, array('/product/view', 'id' => $model->url), array('target' => '_blank')); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('infliction'); ?>
+                </td>
+                <td>
+                    <?= $model->infliction; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('equipment'); ?>
+                </td>
+                <td>
+                    <?= $model->equipment; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('technical_characteristics'); ?>
+                </td>
+                <td>
+                    <?= $model->technical_characteristics; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('youtube'); ?>
+                </td>
+                <td>
+                    <?php $youtube = explode(';', $model->youtube); ?>
+                    <?php foreach ($youtube as $item) { ?>
+                        <a href="http://youtube.com/watch?v=<?= $item; ?>" target="_blank">
+                            Видео
+                        </a>
+                        <br/>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('sheet_id'); ?>
+                </td>
+                <td>
+                    <?php if (isset($model->sheet->url)) { ?>
+                        <a href="<?= $model->sheet->url; ?>">
+                            Скачать
+                        </a>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('catalog_id'); ?>
+                </td>
+                <td>
+                    <?php if (isset($model->catalog->url)) { ?>
+                        <a href="<?= $model->catalog->url; ?>">
+                            Скачать
+                        </a>
+                    <?php } ?>
                 </td>
             </tr>
             <tr>
