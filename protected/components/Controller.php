@@ -3,6 +3,7 @@
 class Controller extends CController
 {
     public $layout = 'main';
+    public $a_category;
     public $a_popular;
     public $a_social;
     public $breadcrumbs = array();
@@ -22,6 +23,7 @@ class Controller extends CController
 
     public function init()
     {
+        $this->a_category = Category::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->a_popular = Product::model()->findAllByAttributes(
             array('status' => 1),
             array('limit' => 5, 'order' => 'RAND()')

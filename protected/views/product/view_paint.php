@@ -248,26 +248,32 @@
                         <li class='tab'>
                             <a href="#colors" title="Цветовая гамма"><span>Цветовая гамма</span></a>
                         </li>
-                        <li class='tab'>
-                            <a href="#infliction" title="Нанесение"><span>Нанесение</span></a>
-                        </li>
-                        <li class='tab'>
-                            <a
-                                href="#technical-pdf"
-                                onclick="javascript:window.open('http://www.tbi.ua/wa-data/public/site/PDF/pdf%20decor/12_GRAESAN%20Istinto%20WEB%20mid.pdf','_blank')"
-                                title="Каталог"
-                            >
-                                <span>
-                                    Каталог
-                                    <img src="/img/pdf.png" alt="" style="margin-left:0px; vertical-align:middle;"/>
-                                </span>
-                            </a>
-                        </li>
-                        <li class='tab youtube-tab'>
-                            <a href="#youtube-s">
-                                <span><img src="/img/youtube-tab.png" alt=""/></span>
-                            </a>
-                        </li>
+                        <?php if (!empty($o_product->infliction)) { ?>
+                            <li class='tab'>
+                                <a href="#infliction" title="Нанесение"><span>Нанесение</span></a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset($o_product->sheet->url)) { ?>
+                            <li class='tab'>
+                                <a
+                                    href="#technical-pdf"
+                                    onclick="javascript:window.open('<?= $o_product->sheet->url; ?>','_blank')"
+                                    title="Каталог"
+                                >
+                                    <span>
+                                        Каталог
+                                        <img src="/img/pdf.png" alt="" style="margin-left:0px; vertical-align:middle;"/>
+                                    </span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (!empty($o_product->youtube)) { ?>
+                            <li class='tab youtube-tab'>
+                                <a href="#youtube-s">
+                                    <span><img src="/img/youtube-tab.png" alt=""/></span>
+                                </a>
+                            </li>
+                        <?php } ?>
                         <li class='tab'>
                             <a href="#comments"><span>Отзывы</span></a>
                         </li>
@@ -327,14 +333,20 @@
                         </div>
                     </div>
                     <div id="infliction">
-                        <p>test</p>
+                        <?= $o_product->infliction; ?>
                     </div>
                     <div id="technical-pdf"></div>
                     <div id="youtube-s">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/R8jUS8zbgRI" frameborder="0"
-                                allowfullscreen></iframe>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/7nzMMtORHZI" frameborder="0"
-                                allowfullscreen></iframe>
+                        <?php $youtube = explode(';', $o_product->youtube); ?>
+                        <?php foreach ($youtube as $item) { ?>
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/<?= trim($item); ?>"
+                            frameborder="0"
+                            allowfullscreen
+                        ></iframe>
+                        <?php } ?>
                     </div>
                     <div id="comments">
                         <div class="comments-posts"></div>
@@ -370,116 +382,7 @@
                 </div>
             </div>
             <div class="page-sidebar">
-                <div class="filtersblock sidebar-categories">
-                    <section>
-                        <span class="cr-subheading">Каталог продукции</span>
-                    </section>
-                    <article>
-                        <ul>
-                            <li class="haschildren">
-                                <a href="javascript:;" title="Декоративные материалы">Декоративные материалы</a>
-                                <ul>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/grunty/"
-                                           title="Грунты">Грунты</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/fonovye-kraski/"
-                                           title="Фоновые краски">Фоновые краски</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/dekorativnye-kraski/"
-                                           title="Декоративные краски">Декоративные краски</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/dekorativnye-shtukaturki/"
-                                           title="Декоративные штукатурки">Декоративные штукатурки</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/zashchitnye-materialy/"
-                                           title="Защитные материалы">Защитные материалы</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/instrumenty/"
-                                           title="Инструменты">Инструменты</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/drugoe/"
-                                           title="Другое">Другое</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/dekorativnye-materialy/dekory-sten/"
-                                           title="Декоры стен">Декоры стен</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="haschildren">
-                                <a href="javascript:;" title="Карнизы и солнцезащитные системы">Карнизы и солнцезащитные
-                                    системы</a>
-                                <ul>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/vertikalnye-zhalyuzi/"
-                                           title="Вертикальные жалюзи">Вертикальные жалюзи</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/tekhnicheskie-karnizy/"
-                                           title="Технические карнизы">Технические карнизы</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/dekorativnye-karnizy/"
-                                           title="Декоративные карнизы">Декоративные карнизы</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/rulonnye-shtory/"
-                                           title="Рулонные шторы">Рулонные шторы</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/derevyannye-zhalyuzi/"
-                                           title="Деревянные жалюзи">Деревянные жалюзи</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/lambrekennaya-planka/"
-                                           title="Ламбрекенная планка">Ламбрекенная планка</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/karnizy-i-solntsezashchitnye-sistemy/aksessuary-dlya-shtor/"
-                                           title="Аксессуары для штор">Аксессуары для штор</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="haschildren">
-                                <a href="javascript:;" title="Ткани">Ткани</a>
-                                <ul>
-                                    <li>
-                                        <a href="/shop/category/tkani/dekorativnye-tkani/" title="Декоративные ткани">Декоративные
-                                            ткани</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/tkani/tekhnicheskie-tkani/" title="Технические ткани">Технические
-                                            ткани</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/tkani/tkani-atelier-mottura/"
-                                           title="Ткани Atelier Mottura">Ткани Atelier Mottura</a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/category/tkani/tkani-blekaut-blackout/"
-                                           title="Ткани Блекаут (Blackout)">Ткани Блекаут (Blackout)</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/shop/category/oboi" title="Обои">Обои</a>
-                            </li>
-                            <li>
-                                <a href="/shop/category/drugoe" title="Другое">Другое</a>
-                            </li>
-                            <li>
-                                <a href="/shop/category/sertificate" title="Сертификаты">Сертификаты</a>
-                            </li>
-                        </ul>
-                    </article>
-                </div>
+                <?= $this->renderPartial('/include/product-left-category'); ?>
                 <div class="pc-options pc-options_r">
                     <div class="pco-heading">Рассчитать количество:</div>
                     <section>
@@ -512,34 +415,7 @@
                         <a href="javascript:;" class="consumption_calc_submit" title="Рассчитать">Рассчитать</a>
                     </div>
                 </div>
-                <div class="filtersblock links3">
-                    <section>
-                        <a href="/shop/category/dekorativnye-materialy/effekty/">
-                            <span>Купить</span>
-                            <div>готовый декор стен</div>
-                        </a>
-                    </section>
-                </div>
-                <div class="filtersblock links3">
-                    <section>
-                        <a href="/dostavka" title="Доставка по всей Украине">
-                            <span>Доставка</span>
-                            <div>по всей Украине</div>
-                        </a>
-                    </section>
-                    <section>
-                        <a href="/razlichnye-sposoby-oplaty" title="Различные способы оплаты">
-                            <span>Различные</span>
-                            <div>способы оплаты</div>
-                        </a>
-                    </section>
-                    <section>
-                        <a href="/cooperation" title="Партнерские программы">
-                            <span>Партнерские</span>
-                            <div>программы</div>
-                        </a>
-                    </section>
-                </div>
+                <?= $this->renderPartial('/include/product-left-link'); ?>
             </div>
         </div>
     </div>

@@ -471,7 +471,7 @@
             type: "POST",
             url: "http://api.novaposhta.ua/v2.0/json/",
             dataType: 'jsonp',
-            crossDomain: true, // enable this
+            crossDomain: true,
             data: {
                 "apiKey": key,
                 "modelName": "Address",
@@ -687,7 +687,7 @@
         var name = $(this).data('name');
         var option = $(this).data('option');
         var price = $(this).data('price');
-        var id = $(this).data('option');
+        var id = $(this).data('optionapi');
         $('.pc-price strong').text(price + ' грн.');
         cart.data('price', price);
         cart.data('name', name + ', ' + option);
