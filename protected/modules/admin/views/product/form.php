@@ -109,6 +109,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'rules'); ?></td>
+                        <td>
+                            <?= $form->textArea($model, 'rules', array('class' => 'form-control', 'rows' => 10)); ?>
+                            <?= $form->error($model, 'rules'); ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col-lg-3"><?= $form->labelEx($model, 'text'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'text', array('class' => 'form-control', 'rows' => 10)); ?>

@@ -15,7 +15,7 @@ class Product extends CActiveRecord
             array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
             array('price', 'match', 'pattern' => '/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
-            array('infliction, equipment, technical_characteristics, youtube, seo_description, seo_keywords', 'safe'),
+            array('infliction, equipment, rules, technical_characteristics, youtube, seo_description, seo_keywords', 'safe'),
             array('id, name, sku', 'safe', 'on' => 'search'),
         );
     }
@@ -28,6 +28,7 @@ class Product extends CActiveRecord
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
             'option' => array(self::HAS_MANY, 'ProductOption', array('product_id' => 'id')),
+            'review' => array(self::HAS_MANY, 'Review', array('product_id' => 'id')),
             'sheet' => array(self::HAS_ONE, 'Image', array('id' => 'sheet_id')),
             'view' => array(self::HAS_ONE, 'View', array('id' => 'view_id')),
         );
@@ -45,6 +46,7 @@ class Product extends CActiveRecord
             'image_id' => 'Изображения',
             'name' => 'Название',
             'price' => 'Цена, грн',
+            'rules' => 'Правила использования',
             'sheet_id' => 'Тех. лист, pdf',
             'sku' => 'Артикул',
             'status' => 'Статус',

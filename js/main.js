@@ -825,15 +825,15 @@
     //Написать отзыв
     {
         var self = $(this);
+        var product_id = $('#comment-product').val();
         $.ajax({
             type: 'POST',
-            url: "reviews/add/",
+            url: '/product/review/' + product_id,
             data: self.serialize(),
-            success: function (res) {
-                location.reload();
+            success: function (data) {
+                $('.comments-posts').html(data);
             }
         });
-
         return false;
     });
 

@@ -158,7 +158,7 @@
                     <strong>ПОКУПАТЕЛЮ</strong>
                     <ul>
                         <li><?= CHtml::link('ЧаВо', array('faq/index'), array('title' => 'ЧаВо')); ?></li>
-                        <li><a href="javascript:;" title="Подрарочные сертификаты">Подрарочные сертификаты</a></li>
+                        <li><?= CHtml::link('Подрарочные сертификаты', array('certificate/index'), array('title' => 'Подрарочные сертификаты')); ?></li>
                         <li><?= CHtml::link('Наши услуги', array('service/index'), array('title' => 'Наши услуги')); ?></li>
                         <li><?= CHtml::link('Оплата', array('payment/index'), array('title' => 'Оплата')); ?></li>
                         <li><?= CHtml::link('Доставка', array('delivery/index'), array('title' => 'Доставка')); ?></li>

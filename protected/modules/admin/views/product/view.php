@@ -67,6 +67,14 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('rules'); ?>
+                </td>
+                <td>
+                    <?= $model->rules; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= $model->getAttributeLabel('text'); ?>
                 </td>
                 <td>

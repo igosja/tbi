@@ -67,45 +67,6 @@
                             В КОРЗИНУ
                         </a>
                     </div>
-                    <div class="pc-options">
-                        <div class="pco-heading">Выбор варианта:</div>
-                        <div class="pc-rashod">
-                            <strong>Расход: </strong>1,4 -2 кг/кв.м в 1-2 слоя
-                        </div>
-                        <?php if (count($o_product->option)) { ?>
-                            <section>
-                                <div class="sidebar-checkboxes">
-                                    <?php $checked = 'checked'; ?>
-                                    <?php foreach ($o_product->option as $item) { ?>
-                                        <?php
-                                        if (0 == $item->plus) {
-                                            $price = $o_product->price - $item->price;
-                                        } elseif (1 == $item->plus) {
-                                            $price = $o_product->price + $item->price;
-                                        } else {
-                                            $price = $item->price;
-                                        }
-                                        ?>
-                                        <input
-                                            class="decor-weight product-option"
-                                            data-name="<?= $o_product->name; ?>"
-                                            data-option="<?= $item->name; ?>"
-                                            data-price="<?= $price; ?>"
-                                            data-id="<?= $item->id; ?>"
-                                            id="<?= $item->id; ?>"
-                                            name="product-option"
-                                            type="radio"
-                                            <?= $checked; ?>
-                                        >
-                                        <label for="<?= $item->id; ?>">
-                                            <?= $o_product->name; ?>, <?= $item->name; ?>
-                                        </label>
-                                        <?php $checked = ''; ?>
-                                    <?php } ?>
-                                </div>
-                            </section>
-                        <?php } ?>
-                    </div>
                     <div class="pc-specifications pc-colors clearfix bxunstyled">
                         <span class="ps-heading">Возможные цвета</span>
                         <a href="javascript:;" class="pc-all-colors overlayElementTrigger" data-selector="form-Color">
@@ -264,20 +225,6 @@
                                 <a href="#infliction" title="Нанесение"><span>Нанесение</span></a>
                             </li>
                         <?php } ?>
-                        <?php if (isset($o_product->sheet->url)) { ?>
-                            <li class='tab'>
-                                <a
-                                    href="#technical-pdf"
-                                    onclick="javascript:window.open('<?= $o_product->sheet->url; ?>','_blank')"
-                                    title="Каталог"
-                                >
-                                    <span>
-                                        Каталог
-                                        <img src="/img/pdf.png" alt="" style="margin-left:0px; vertical-align:middle;"/>
-                                    </span>
-                                </a>
-                            </li>
-                        <?php } ?>
                         <?php if (!empty($o_product->youtube)) { ?>
                             <li class='tab youtube-tab'>
                                 <a href="#youtube-s">
@@ -350,9 +297,6 @@
                             <?= $o_product->infliction; ?>
                         </div>
                     <?php } ?>
-                    <?php if (isset($o_product->sheet->url)) { ?>
-                        <div id="technical-pdf"></div>
-                    <?php } ?>
                     <?php if (!empty($o_product->youtube)) { ?>
                         <div id="youtube-s">
                             <?php $youtube = explode(';', $o_product->youtube); ?>
@@ -372,38 +316,6 @@
             </div>
             <div class="page-sidebar">
                 <?= $this->renderPartial('/include/product-left-category'); ?>
-                <div class="pc-options pc-options_r">
-                    <div class="pco-heading">Рассчитать количество:</div>
-                    <section>
-                        <label for="" class="label-block">Материал:</label>
-                        <div class="pco-select">
-                            <select name="material_type" id="material_type">
-                                <option value="2">Грунты</option>
-                                <option value="3" disabled>Гладкие краски</option>
-                                <option value="4">Тонкослойные материалы</option>
-                                <option value="5">Декоративные штукатурки</option>
-                                <option value="6">Защитные материалы</option>
-                            </select>
-                        </div>
-                        <div class="pco-select">
-                            <select name="material_products" id="material_products">
-                                <option value="">Грунт Primus Naturale</option>
-                                <option value="">Грунт Primus Sabbia</option>
-                                <option value="">Грунт Acrilak</option>
-                                <option value="">Грунт Novaprimer</option>
-                                <option value="">Грунт Decofix</option>
-                                <option value="">Новый товар</option>
-                            </select>
-                        </div>
-                        <div class="pco-label-and-input clearfix">
-                            <label for="" class="label-inline">Площадь м<sup>2</sup>:</label>
-                            <input type="text" class="square" value="10">
-                        </div>
-                    </section>
-                    <div class="pco-submit">
-                        <a href="javascript:;" class="consumption_calc_submit" title="Рассчитать">Рассчитать</a>
-                    </div>
-                </div>
                 <?= $this->renderPartial('/include/product-left-link'); ?>
             </div>
         </div>

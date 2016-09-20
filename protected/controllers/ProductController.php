@@ -18,4 +18,16 @@ class ProductController extends Controller
             'o_product' => $o_product,
         ));
     }
+
+    public function actionReview($id)
+    {
+        if ($data = Yii::app()->request->getPost('data')) {
+            $o_review = new Review();
+            $o_review->product_id = $id;
+            $o_review->attributes = $data;
+            $o_review->save();
+        }
+        $o_product = Product::model()->findByPk($id);
+        $this->renderPartial('/include/review_list', array('o_product' => $o_product));
+    }
 }

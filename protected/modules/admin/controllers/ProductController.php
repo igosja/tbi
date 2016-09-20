@@ -161,7 +161,7 @@ class ProductController extends AController
                     $o_image = new Image();
                     $o_image->url = $image_url;
                     $o_image->save();
-                    $image_id = $o_image->id;
+                        $image_id = $o_image->id;
                     $o_product_image = new ProductImage();
                     $o_product_image->image_id = $image_id;
                     $o_product_image->product_id = $id;
@@ -233,7 +233,7 @@ class ProductController extends AController
         return $model;
     }
 
-    public function actionOptions($id)
+    public function actionOption($id)
     {
         print '<div class="form-inline">'
             . CHtml::textField('option[' . $id . '][name]', '', array('class' => 'form-control')) . ' '

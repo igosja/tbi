@@ -165,6 +165,9 @@
                                 <?= CHtml::link('Оплата', array('paymentpage/index')); ?>
                             </li>
                             <li>
+                                <?= CHtml::link('Сертификаты', array('certificatepage/index')); ?>
+                            </li>
+                            <li>
                                 <a href="javascript:;">ЧаВо<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
