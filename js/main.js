@@ -79,10 +79,6 @@
     });
 
     /*Начало добавления скриптиков*/
-    $('.sertificate-slider').bxSlider({
-        pagerCustom: '.sertificate-slider-pager'
-    });
-
     $(".acrdn-item-body").hide();
     $(".acrdn-item-head").click(function (e) {
         e.preventDefault();
@@ -266,9 +262,11 @@
             var quantity = $(this).parent().find('input').val();
             $.ajax({
                 async: false,
-                beforeSend: function() {$('.cart-data').addClass('loading');},
+                beforeSend: function () {
+                    $('.cart-data').addClass('loading');
+                },
                 url: '/cart/quantity/' + cart_id + '/?quantity=' + quantity,
-                success: function() {
+                success: function () {
                     get_cart();
                     count_cart();
                     $('.cart-data').removeClass('loading');
@@ -815,14 +813,14 @@
     });
 
     $('#arrive-data-email').on('change', function ()
-    //Форма сообщить когда появится, поле email
+        //Форма сообщить когда появится, поле email
     {
         var email_value = $(this).val();
         $('#arrive-email').val(email_value);
     });
 
     $('#product-review-form').submit(function ()
-    //Написать отзыв
+        //Написать отзыв
     {
         var self = $(this);
         var product_id = $('#comment-product').val();
@@ -838,7 +836,7 @@
     });
 
     $('.comment-more').on('click', function ()
-    //Комментарии - загрузить еще
+        //Комментарии - загрузить еще
     {
         var current_id = $(this).data('current');
         var all_id = $(this).data('all');
@@ -859,14 +857,14 @@
     });
 
     $('.comment-all').on('click', function ()
-    //Комментарии - загрузить все
+        //Комментарии - загрузить все
     {
         $('.comment').show();
         $('.catalog-btns').hide();
     });
 
     $('.color-footer').on('change', function ()
-    //Синхронная смена цвета
+        //Синхронная смена цвета
     {
         var color_value = $(this).data('color');
         var color_name = $(this).data('name');
@@ -875,7 +873,7 @@
     });
 
     $('.decor-color').on('change', function ()
-    //Синхронная смена цвета
+        //Синхронная смена цвета
     {
         var color_value = $(this).data('color');
         $('#color-footer-' + color_value).trigger('click');
@@ -919,7 +917,7 @@
         $.ajax({
             url: '/account/region/' + country_id,
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 select_html = '';
                 $.each(data, function (key, value) {
                     select_html = select_html + '<option value="' + key + '">' + value + '</option>';
@@ -943,7 +941,7 @@
             url: '/cart/add/' + product,
             dataType: 'json',
             data: 'name=' + name + '&price=' + price + '&quantity=' + quantity + '&option=' + option,
-            success: function(data) {
+            success: function (data) {
                 if (1 == data.status) {
                     var cart = $('.navcart');
                     cart.find('span').text(data.count);
@@ -986,31 +984,49 @@
     if ('undefined' !== typeof(checkout_success) && checkout_success) {
         $('#form-checkout-link').click();
     }
+
+    $('#sertificate_select').on('change', function () {
+        var product_id = $(this).val();
+        $.ajax({
+            url: '/certificate/ajax/' + product_id,
+            dataType: 'json',
+            success: function (data) {
+                $('.sub_sertificate_select').html(data.select);
+                $('span.sub_sertificate_select').remove();
+                $('.sub_sertificate_select').removeClass('hasCustomSelect');
+                $('.sub_sertificate_select').attr('style', '');
+                $('.sub_sertificate_select').customSelect({customClass: 'pco-select-styled'});
+                $('#rules').html(data.rules);
+                $('#description').html(data.description);
+            }
+        });
+    })
 });
 
-function get_cart()
-{
+function get_cart() {
     $.ajax({
         async: false,
-        beforeSend: function() {$('.navcart').addClass('loading');},
+        beforeSend: function () {
+            $('.navcart').addClass('loading');
+        },
         url: '/cart/',
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             table_body = '';
-            for (var i=0; i<data.product.length; i++) {
+            for (var i = 0; i < data.product.length; i++) {
                 table_body = table_body
-                + '<tr>'
-                + '<td><a href="' + data.product[i].url + '">' + data.product[i].name + '</a></td>'
-                + '<td>'
-                + '<div class="qty-input cart-qty-input clearfix">'
-                + '<a href="javascript:;" class="qty-less"></a>'
-                + '<input type="text" value="' + data.product[i].quantity + '" data-id="' + data.product[i].id + '">'
-                + '<a href="javascript:;" class="qty-more"></a>'
-                + '</div>'
-                + '</td>'
-                + '<td>' + data.product[i].price + ' UAH</td>'
-                + '<td><a href="javascript:;" data-id="' + data.product[i].id + '" class="cart-remove"></a></td>'
-                + '</tr>';
+                    + '<tr>'
+                    + '<td><a href="' + data.product[i].url + '">' + data.product[i].name + '</a></td>'
+                    + '<td>'
+                    + '<div class="qty-input cart-qty-input clearfix">'
+                    + '<a href="javascript:;" class="qty-less"></a>'
+                    + '<input type="text" value="' + data.product[i].quantity + '" data-id="' + data.product[i].id + '">'
+                    + '<a href="javascript:;" class="qty-more"></a>'
+                    + '</div>'
+                    + '</td>'
+                    + '<td>' + data.product[i].price + ' UAH</td>'
+                    + '<td><a href="javascript:;" data-id="' + data.product[i].id + '" class="cart-remove"></a></td>'
+                    + '</tr>';
             }
             $('#cart-table tbody').html(table_body);
             $('#cart-total-price').html(data.total);
@@ -1022,9 +1038,8 @@ function get_cart()
     });
 }
 
-function change_cart_change()
-{
-    $('.cart-qty-input input').on('change', function() {
+function change_cart_change() {
+    $('.cart-qty-input input').on('change', function () {
         var cart_id = $(this).data('id');
         var quantity = $(this).val();
         if (quantity < 1) {
@@ -1032,9 +1047,11 @@ function change_cart_change()
         }
         $.ajax({
             async: false,
-            beforeSend: function() {$('.cart-data').addClass('loading');},
+            beforeSend: function () {
+                $('.cart-data').addClass('loading');
+            },
             url: '/cart/quantity/' + cart_id + '/?quantity=' + quantity,
-            success: function() {
+            success: function () {
                 get_cart();
                 count_cart();
                 $('.cart-data').removeClass('loading');
@@ -1043,15 +1060,16 @@ function change_cart_change()
     });
 }
 
-function remove_cart()
-{
-    $('.cart-remove').on('click', function() {
+function remove_cart() {
+    $('.cart-remove').on('click', function () {
         var cart_id = $(this).data('id');
         $.ajax({
             async: false,
-            beforeSend: function() {$('.cart-data').addClass('loading');},
+            beforeSend: function () {
+                $('.cart-data').addClass('loading');
+            },
             url: '/cart/remove/' + cart_id + '/',
-            success: function() {
+            success: function () {
                 get_cart();
                 count_cart();
                 $('.cart-data').removeClass('loading');
@@ -1060,13 +1078,14 @@ function remove_cart()
     });
 }
 
-function count_cart()
-{
+function count_cart() {
     $.ajax({
-        beforeSend: function() {$('.navcart').addClass('loading');},
+        beforeSend: function () {
+            $('.navcart').addClass('loading');
+        },
         dataType: 'json',
         url: '/cart/',
-        success: function(data) {
+        success: function (data) {
             var cart = $('.navcart');
             cart.find('span').text(data.count);
             if (0 == data.count) {
@@ -1090,7 +1109,7 @@ function initializeMap() {
         center: new google.maps.LatLng(50.449936, 30.523078),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    
+
     var locations = [
         [$('#contactsmap').data('officelat'), $('#contactsmap').data('officelng'), 'Офис'],
         [$('#contactsmap').data('salonlat'), $('#contactsmap').data('salonlng'), 'Салон']

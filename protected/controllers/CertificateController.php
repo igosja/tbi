@@ -17,4 +17,19 @@ class CertificateController extends Controller
             'a_product' => $a_product,
         ));
     }
+
+    public function actionAjax($id)
+    {
+        $o_product = Product::model()->findByPk($id);
+        if ($o_product) {
+            $select = '';
+            foreach ($o_product->option as $item) {
+                $select = $select . '<option value="' . $item->id . '">' . $item->name . '</option>';
+            }
+            $description = $o_product->text;
+            $rules = $o_product->rules;
+            print json_encode(array('select' => $select, 'description' => $description, 'rules' => $rules));
+            exit;
+        }
+    }
 }

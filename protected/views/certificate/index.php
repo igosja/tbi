@@ -13,7 +13,7 @@
                         <span class="cr-subheading cr-subheading_margin">ТИП:</span>
                     </section>
                     <div class="pco-select sertificate__pco-select">
-                        <select name="" id="sertificate_select">
+                        <select id="sertificate_select">
                             <?php foreach ($a_product as $item) { ?>
                                 <option value="<?= $item->id; ?>"><?= $item->name; ?></option>
                             <?php } ?>
@@ -45,14 +45,16 @@
             <div class="description__title ">
                 Описание
             </div>
-            <?= $a_product[0]->text; ?>
+            <span id="description">
+                <?= $a_product[0]->text; ?>
+            </span>
         </div>
-        <div class="acrdn" id="rule-106">
+        <div class="acrdn">
             <div class="acrdn-item ">
                 <a href="javascript:;" class="acrdn-item-head" title="Правила использования ваучера">
                     Правила использования ваучера
                 </a>
-                <div class="acrdn-item-body">
+                <div class="acrdn-item-body" id="rules">
                     <?= $a_product[0]->rules; ?>
                 </div>
             </div>
