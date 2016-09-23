@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-lg-12">
         <?php $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'brand-form',
+            'id' => 'product-form',
             'enableAjaxValidation' => false,
             'enableClientValidation' => true,
             'htmlOptions' => array('enctype' => 'multipart/form-data'),
@@ -28,35 +28,35 @@
         <div class="tab-content">
             <div class="tab-pane fade in active" id="main">
                 <table class="table table-striped table-bordered table-hover">
-                    <tr>
+                    <tr id="tr-sku">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'sku'); ?></td>
                         <td>
                             <?= $form->textField($model, 'sku', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'sku'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-name">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'name'); ?></td>
                         <td>
                             <?= $form->textField($model, 'name', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'name'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-url">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'url'); ?></td>
                         <td>
                             <?= $form->textField($model, 'url', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'url'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-price">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'price'); ?></td>
                         <td>
                             <?= $form->textField($model, 'price', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'price'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-category_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'category_id'); ?></td>
                         <td>
                             <?= $form->dropDownList(
@@ -68,7 +68,7 @@
                             <?= $form->error($model, 'category_id'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-view_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'view_id'); ?></td>
                         <td>
                             <?= $form->dropDownList(
@@ -80,7 +80,7 @@
                             <?= $form->error($model, 'view_id'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-brand_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'brand_id'); ?></td>
                         <td>
                             <?= $form->dropDownList(
@@ -92,7 +92,7 @@
                             <?= $form->error($model, 'brand_id'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-image_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'image_id'); ?></td>
                         <td>
                             <?php foreach ($model->image as $item) { ?>
@@ -108,49 +108,49 @@
                             <input type="file" name="image[]" class="form-control" multiple="multiple"/>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-rules">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'rules'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'rules', array('class' => 'form-control', 'rows' => 10)); ?>
                             <?= $form->error($model, 'rules'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-text">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'text'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'text', array('class' => 'form-control', 'rows' => 10)); ?>
                             <?= $form->error($model, 'text'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-infliction">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'infliction'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'infliction', array('class' => 'form-control', 'rows' => 5)); ?>
                             <?= $form->error($model, 'infliction'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-equipment">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'equipment'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'equipment', array('class' => 'form-control', 'rows' => 5)); ?>
                             <?= $form->error($model, 'equipment'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-technical_characteristics">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'technical_characteristics'); ?></td>
                         <td>
                             <?= $form->textArea($model, 'technical_characteristics', array('class' => 'form-control', 'rows' => 5)); ?>
                             <?= $form->error($model, 'technical_characteristics'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-youtube">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'youtube'); ?></td>
                         <td>
                             <?= $form->textField($model, 'youtube', array('class' => 'form-control')); ?>
                             <?= $form->error($model, 'youtube'); ?>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-sheet_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'sheet_id'); ?></td>
                         <td>
                             <?php if (isset($model->sheet->url)) { ?>
@@ -162,7 +162,7 @@
                             <input type="file" name="sheet" class="form-control"/>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-catalog_id">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'catalog_id'); ?></td>
                         <td>
                             <?php if (isset($model->catalog->url)) { ?>

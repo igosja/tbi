@@ -264,11 +264,11 @@
                                 <a href="#infliction" title="Нанесение"><span>Нанесение</span></a>
                             </li>
                         <?php } ?>
-                        <?php if (isset($o_product->sheet->url)) { ?>
+                        <?php if (isset($o_product->catalog->url)) { ?>
                             <li class='tab'>
                                 <a
                                     href="#technical-pdf"
-                                    onclick="javascript:window.open('<?= $o_product->sheet->url; ?>','_blank')"
+                                    onclick="javascript:window.open('<?= $o_product->catalog->url; ?>','_blank')"
                                     title="Каталог"
                                 >
                                     <span>
@@ -350,7 +350,7 @@
                             <?= $o_product->infliction; ?>
                         </div>
                     <?php } ?>
-                    <?php if (isset($o_product->sheet->url)) { ?>
+                    <?php if (isset($o_product->catalog->url)) { ?>
                         <div id="technical-pdf"></div>
                     <?php } ?>
                     <?php if (!empty($o_product->youtube)) { ?>

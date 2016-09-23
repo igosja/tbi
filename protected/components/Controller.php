@@ -23,6 +23,9 @@ class Controller extends CController
 
     public function init()
     {
+        if(!isset(Yii::app()->session['product-view'])) {
+            Yii::app()->session['product-view'] = 'grid';
+        }
         $this->a_category = Category::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->a_popular = Product::model()->findAllByAttributes(
             array('status' => 1),

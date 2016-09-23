@@ -890,7 +890,7 @@
                 $('.catalog-pagination').remove();
             }
         });
-    })
+    });
 
     $('#blog-more').on('click', function () {
         var id = $(this).data('id');
@@ -908,6 +908,43 @@
                     $('.catalog-pagination').remove();
                 }
                 $('#blog-info').remove();
+            }
+        });
+    });
+
+    $('#category-all').on('click', function () {
+        var id = $(this).data('id');
+        var order = $(this).data('order');
+        var asc = $(this).data('asc');
+        $.ajax({
+            url: '/category/ajaxall/' + id + '?order=' + order + '&asc=' + asc,
+            success: function (data) {
+                $('.list-product-div').html(data);
+                $('#category-more').remove();
+                $('#category-all').remove();
+                $('.catalog-pagination').remove();
+            }
+        });
+    });
+
+    $('#category-more').on('click', function () {
+        var id = $(this).data('id');
+        var page = $(this).data('page');
+        var order = $(this).data('order');
+        var asc = $(this).data('asc');
+        $.ajax({
+            url: '/category/ajaxmore/' + id + '?page=' + page + '&order=' + order + '&asc=' + asc,
+            success: function (data) {
+                $('.list-product-div').append(data);
+                page++;
+                $('.page-' + page).addClass('current');
+                $('#category-more').data('page', page);
+                var count_page = $('#category-info').data('count');
+                if (count_page <= page) {
+                    $('#category-more').remove();
+                    $('.catalog-pagination').remove();
+                }
+                $('#category-info').remove();
             }
         });
     });

@@ -19,7 +19,9 @@ class BlogController extends Controller
                 array('status' => 1, 'blogcategory_id' => $o_blogcategory->id),
                 array('order' => 'id DESC', 'limit' => $on_page, 'offset' => $offset)
             );
-            $count_blog = Blog::model()->countByAttributes(array('status' => 1, 'blogcategory_id' => $o_blogcategory->id));
+            $count_blog = Blog::model()->countByAttributes(
+                array('status' => 1, 'blogcategory_id' => $o_blogcategory->id)
+            );
             $title = $o_blogcategory->name;
             $this->breadcrumbs = array(
                 'Блог' => array('blog/index'),
@@ -75,7 +77,10 @@ class BlogController extends Controller
             if (null === $o_blogcategory) {
                 throw new CHttpException(404, 'Страница не найдена.');
             }
-            $a_blog = Blog::model()->findAllByAttributes(array('status' => 1, 'blogcategory_id' => $o_blogcategory->id), array('order' => 'id DESC'));
+            $a_blog = Blog::model()->findAllByAttributes(
+                array('status' => 1, 'blogcategory_id' => $o_blogcategory->id),
+                array('order' => 'id DESC')
+            );
         } else {
             $a_blog = Blog::model()->findAllByAttributes(array('status' => 1), array('order' => 'id DESC'));
         }
@@ -101,7 +106,9 @@ class BlogController extends Controller
                 array('status' => 1, 'blogcategory_id' => $o_blogcategory->id),
                 array('order' => 'id DESC', 'limit' => $on_page, 'offset' => $offset)
             );
-            $count_blog = Blog::model()->countByAttributes(array('status' => 1, 'blogcategory_id' => $o_blogcategory->id));
+            $count_blog = Blog::model()->countByAttributes(
+                array('status' => 1, 'blogcategory_id' => $o_blogcategory->id)
+            );
         } else {
             $a_blog = Blog::model()->findAllByAttributes(
                 array('status' => 1),

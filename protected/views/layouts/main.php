@@ -264,5 +264,6 @@
 <script src="/js/flexslider.js" type="text/javascript"></script>
 <script src="/js/main.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=FALSE"></script>
+<?= Yii::app()->user->getFlash('product-view', NULL, false); ?>
 </body>
 </html>

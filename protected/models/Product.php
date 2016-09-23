@@ -11,7 +11,7 @@ class Product extends CActiveRecord
     {
         return array(
             array('brand_id, category_id, name, price, sku, text, view_id', 'required'),
-            array('brand_id, catalog_id, category_id, catalog, order, status, sheet_id, view_id', 'numerical', 'integerOnly' => true),
+            array('brand_id, catalog_id, category_id, date, order, status, sheet_id, view_id', 'numerical', 'integerOnly' => true),
             array('price', 'numerical', 'integerOnly' => false, 'min' => 0),
             array('price', 'match', 'pattern' => '/^[0-9]{1,9}(\.[0-9]{0,2})?$/'),
             array('name, url, seo_title', 'length', 'max' => 255),
@@ -71,6 +71,16 @@ class Product extends CActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function beforeSave()
+    {
+        if (parent::beforeSave()) {
+            if (!$this->date) {
+                $this->date = time();
+            }
+        }
+        return true;
     }
 
     public function beforeDelete()

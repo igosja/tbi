@@ -208,12 +208,12 @@
                                 </a>
                             </li>
                         <?php } ?>
-                        <?php if (isset($o_product->sheet->url)) { ?>
+                        <?php if (isset($o_product->catalog->url)) { ?>
                             <li class='tab'>
                                 <a
                                     href="#technical-pdf"
                                     onclick="javascript:window.open('<?= $o_product->sheet->url; ?>','_blank')"
-                                    title="Каталог"
+                                    title="Технический лист"
                                 >
                                     <span>
                                         Каталог

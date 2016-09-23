@@ -8,40 +8,94 @@
         <div class="catalog-wrap clearfix">
             <div class="catalog-topfilters">
                 <span>СОРТИРОВАТЬ:</span>
-                <a href="javascript:;" class="current" title="Новые и популярные">
-                    Все товары
-                </a>
-                <a href="javascript:;" title="В наличии">В наличии</a>
-                <a href="javascript:;" title="Хиты продаж">Хиты продаж</a>
-                <a href="javascript:;" title="Цена">Цена</a>
-                <a href="javascript:;" title="Название">Название</a>
-                <a href="javascript:;" title="Дата добавления">Дата добавления</a>
+                <?php foreach ($a_sort_link as $item) { ?>
+                    <?= CHtml::link(
+                        $item['text'],
+                        array('category/view', 'id' => $o_category->url, 'order' => $item['order'], 'asc' => $item['asc']),
+                        array('class' => $item['class'], 'title' => $item['text'])
+                    ) ?>
+                <?php } ?>
                 <div class="view-chose">
-                    <a href="javascript:;" class="view-chose__list active"></a>
-                    <a href="javascript:;" class="view-chose__line "></a>
+                    <?= CHtml::link(
+                        '',
+                        array('category/viewchange', 'id' => $o_category->url, 'view' => 'grid'),
+                        array(
+                            'class' => 'view-chose__list '
+                                . ('grid' == Yii::app()->session['product-view'] ? 'active' : '')
+                        )
+                    ) ?>
+                    <?= CHtml::link(
+                        '',
+                        array('category/viewchange', 'id' => $o_category->url, 'view' => 'line'),
+                        array(
+                            'class' => 'view-chose__line '
+                                . ('line' == Yii::app()->session['product-view'] ? 'active' : '')
+                        )
+                    ) ?>
                 </div>
             </div>
             <div class="page-left">
-                <div class="catalog-grid clearfix">
+                <div class="catalog-<?= Yii::app()->session['product-view']; ?> clearfix list-product-div">
                     <?php foreach ($a_product as $item) { ?>
-                        <?= $this->renderPartial('/include/product-item', array('item' => $item)); ?>
+                        <?= $this->renderPartial(
+                            '/include/product-item-' . Yii::app()->session['product-view'],
+                            array('item' => $item)
+                        ); ?>
                     <?php } ?>
                 </div>
                 <div class="catalog-btns">
-                    <a href="javascript:;" class="catalog-more" title="Загрузить еще">Загрузить еще</a>
-                    <a href="javascript:;" class="catalog-all">Показать все</a>
+                    <?php if ($page < $count_pages) { ?>
+                        <a
+                            href="javascript:;"
+                            class="catalog-more"
+                            title="Загрузить еще"
+                            id="category-more"
+                            data-id="<?= $id; ?>"
+                            data-page="<?= $page; ?>"
+                            data-order="<?= $order; ?>"
+                            data-asc="<?= $asc; ?>"
+                        >Загрузить еще</a>
+                    <?php } ?>
+                    <?php if (count($a_product) < $count_product) { ?>
+                        <a
+                            href="javascript:;"
+                            class="catalog-all"
+                            id="category-all"
+                            data-id="<?= $id; ?>"
+                            data-order="<?= $order; ?>"
+                            data-asc="<?= $asc; ?>"
+                        >Показать все</a>
+                    <?php } ?>
                 </div>
-                <div class="catalog-pagination lazyloading-paging clearfix">
-                    <a class="pagination-item current" href="/shop/category/dekorativnye-materialy/"><span>1</span></a>
-                    <a class="pagination-item " href="/shop/category/dekorativnye-materialy/?page=2"><span>2</span></a>
-                    <span>...</span>
-                    <a class="pagination-item " href="/shop/category/dekorativnye-materialy/?page=8"><span>8</span></a>
-                    <a class="pagination-right" href="/shop/category/dekorativnye-materialy/?page=2"></a>
+                <div class="catalog-pagination clearfix">
+                    <?php if (count($a_product) < $count_product) { ?>
+                        <?php if ($page > 1) { ?>
+                            <?= CHtml::link(
+                                '',
+                                array('category/view', 'id' => $id, 'page' => $page - 1, 'order' => $order, 'asc' => $asc),
+                                array('class' => 'pagination-left')
+                            ) ?>
+                        <?php } ?>
+                        <?php for ($i = 1; $i <= $count_pages; $i++) { ?>
+                            <?= CHtml::link(
+                                '<span>' . $i . '</span>',
+                                array('category/view', 'id' => $id, 'page' => $i, 'order' => $order, 'asc' => $asc),
+                                array('class' => 'pagination-item page-'. $i . ($page == $i ? ' current' : ''))
+                            ) ?>
+                        <?php } ?>
+                        <?php if ($page < $count_pages) { ?>
+                            <?= CHtml::link(
+                                '',
+                                array('category/view', 'id' => $id, 'page' => $page + 1, 'order' => $order, 'asc' => $asc),
+                                array('class' => 'pagination-right')
+                            ) ?>
+                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="page-sidebar">
                 <div class="filters">
-                    <form method="get" action="/shop/category/dekorativnye-materialy/" class="form-onchange">
+                    <form method="get" class="form-onchange">
                         <input type="hidden" name="view_type" value="table">
                         <div class="filtersblock">
                             <section>
@@ -57,12 +111,13 @@
                             <section class="onchange-input">
                                 <span class="cr-subheading">Тип материала</span>
                                 <div class="sidebar-checkboxes">
-                                    <input id="filter_78_tip_materiala" type="checkbox" name="tip_materiala[]" value="78">
+                                    <input id="filter_78_tip_materiala" type="checkbox" name="tip_materiala[]"
+                                           value="78">
                                     <label for="filter_78_tip_materiala">Грунты</label>
                                 </div>
                             </section>
                             <section class="filter-colors onchange-input">
-                            <span class="cr-subheading">Цвет</span>
+                                <span class="cr-subheading">Цвет</span>
                                 <div class="clearfix">
                                     <div class="color-check">
                                         <input type="checkbox" id="color-16777215" name="tsvet[]" value="10">
