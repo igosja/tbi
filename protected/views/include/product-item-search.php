@@ -1,16 +1,20 @@
-<div class="autocomplete-suggestion" data-index="0">
+<div class="search-item clearfix">
     <?= CHtml::link(
-        '<span><img src="' . ImageIgosja::resize(
-            (isset($item->image[0]->image_id) ? $item->image[0]->image_id : 0), 48, 48
-        ) . '"></span>',
+        '<img src="' . ImageIgosja::resize(
+            (isset($item->image[0]->image_id) ? $item->image[0]->image_id : 0), 280, 280
+        ) . '">',
         array('product/view', 'id' => $item->url),
-        array('class' => 'autocomplete-img')
+        array('class' => 'search-item-img search-item-img__tov')
     ) ?>
-    <span class="autocomplete-info">
-        <?= CHtml::link(
-            $item->name,
-            array('product/view', 'id' => $item->url),
-            array('class' => 'name')
-        ) ?>
-    </span>
+    <div class="search-item-text">
+        <h4 class="search-item-heading">
+            <?= CHtml::link(
+                $item->name,
+                array('product/view', 'id' => $item->url),
+                array('title' => $item->name)
+            ) ?>
+        </h4>
+        <span class="pi-price"><span>от </span><?= $item->price; ?> грн.</span>
+        <a href="javascript:;" class="pi-cart" title="В корзину">В корзину</a>
+    </div>
 </div>

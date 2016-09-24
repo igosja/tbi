@@ -40,6 +40,8 @@ return array(
                 'blog/category/<id>' => 'blog/index',
                 'blog' => 'blog/index',
                 'blog/<id>' => 'blog/view',
+                'product/search' => 'product/search',
+                'product/ajaxsearch' => 'product/ajaxsearch',
                 'product/<id>' => 'product/view',
                 'category/<id>' => 'category/view',
                 '<controller>/<action>/<id>' => '<controller>/<action>',

@@ -1037,7 +1037,24 @@
                 $('#description').html(data.description);
             }
         });
-    })
+    });
+
+    $('#search-input').on('keyup', function(){
+        var search_value = $(this).val();
+        $.ajax({
+            url:'/product/ajaxsearch',
+            method: 'POST',
+            data: {name: search_value},
+            success: function (data) {
+                if (data) {
+                    $('.autocomplete-suggestions').html(data);
+                    $('.autocomplete-suggestions').show();
+                } else {
+                    $('.autocomplete-suggestions').hide();
+                }
+            }
+        });
+    });
 });
 
 function get_cart() {

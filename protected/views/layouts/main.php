@@ -27,7 +27,9 @@
 </head>
 <body>
 <script src="https://apis.google.com/js/platform.js" async defer>
-    {lang: 'ru'}
+    {
+        lang: 'ru'
+    }
 </script>
 <div id="fb-root"></div>
 <script src="/js/facebook.js" type="text/javascript"></script>
@@ -50,7 +52,7 @@
                 <a
                     href="javascript:;"
                     data-selector="form-sendEmail"
-                    class="callrequest overlayElementTrigger" 
+                    class="callrequest overlayElementTrigger"
                     title="Заказать звонок"
                 >Заказать звонок</a>
             </div>
@@ -59,7 +61,8 @@
                 <div class="user-functions">
                     <?php if (Yii::app()->user->isGuest) { ?>
                         <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signIn" title="Вход">Вход</a>
-                        <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp" title="Регистрация">Регистрация</a>
+                        <a href="javascript:;" class="overlayElementTrigger" data-selector="form-signUp"
+                           title="Регистрация">Регистрация</a>
                     <?php } else { ?>
                         <?= CHtml::link(
                             'Личный кабинет',
@@ -74,10 +77,15 @@
                     <?php } ?>
                 </div>
                 <div class="hsearch">
-                    <form>
-                        <input name="query" type="search" placeholder="Поиск..." id="search">
+                    <form action="<?= $this->createUrl('product/search'); ?>">
+                        <input name="name" type="search" placeholder="Поиск..." id="search-input">
                         <input type="submit">
                     </form>
+                    <div
+                        class="autocomplete-suggestions"
+                        style="display:none; position: absolute; max-height: 700px; width: 250px; z-index: 9999; top: 30; left: 0;"
+                    >
+                    </div>
                 </div>
                 <div class="hcurrency">
                     <select id="currency">
@@ -114,7 +122,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="secon-m__right">
-                                                        <img src="<?= ImageIgosja::resize($item->image_id, 380, 380); ?>" alt="" />
+                                                        <img
+                                                            src="<?= ImageIgosja::resize($item->image_id, 380, 380); ?>"
+                                                            alt=""/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +148,8 @@
                     <span><?= $this->count_cart; ?></span>
                 </a>
             </div>
-            <a href="javascript:;" class="compare-block" id="compare-leash" <?php if (1) { ?>style="display:none;"<?php } ?> title="Сравнить товары">Сравнить товары</a>
+            <a href="javascript:;" class="compare-block" id="compare-leash"
+               <?php if (1) { ?>style="display:none;"<?php } ?> title="Сравнить товары">Сравнить товары</a>
         </div>
     </nav>
     <?= $content; ?>
@@ -220,26 +231,26 @@
                         'enableAjaxValidation' => false,
                         'enableClientValidation' => false,
                     )); ?>
-                        <?= $form->emailField(
-                            $this->model_subscribe,
-                            'email',
-                            array('placeholder' => $this->model_subscribe->getAttributeLabel('email'))
-                        ); ?>
-                        <?= CHtml::ajaxSubmitButton(
-                            '',
-                            '/site/subscribe',
-                            array(
-                                'type' => 'POST',
-                                'dataType' => 'json',
-                                'success' => 'function(data) {  
+                    <?= $form->emailField(
+                        $this->model_subscribe,
+                        'email',
+                        array('placeholder' => $this->model_subscribe->getAttributeLabel('email'))
+                    ); ?>
+                    <?= CHtml::ajaxSubmitButton(
+                        '',
+                        '/site/subscribe',
+                        array(
+                            'type' => 'POST',
+                            'dataType' => 'json',
+                            'success' => 'function(data) {  
                                     if (1 == data.success) {
                                         $("#form-subscribe-link").click();
                                     } else {
                                         $("#form-subscribe-error").click();
                                     }
                                 }'
-                            )
-                        ); ?>
+                        )
+                    ); ?>
                     <?php $this->endWidget(); ?>
                 </div>
             </div>
