@@ -11,8 +11,8 @@ class m160904_065739_cart extends CDbMigration
 
     public function down()
     {
-        $this->dropColumn('cartproduct', 'option_id');
-
         $this->dropIndex('option_id', 'cartproduct');
+
+        $this->dropColumn('cartproduct', 'option_id');
     }
 }

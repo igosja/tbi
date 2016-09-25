@@ -4,11 +4,13 @@ class Controller extends CController
 {
     public $layout = 'main';
     public $a_category;
+    public $a_currency;
     public $a_popular;
     public $a_social;
     public $breadcrumbs = array();
     public $contacts;
     public $count_cart;
+    public $currency;
     public $menu = array();
     public $model_call;
     public $model_login;
@@ -26,6 +28,10 @@ class Controller extends CController
         if(!isset(Yii::app()->session['product-view'])) {
             Yii::app()->session['product-view'] = 'grid';
         }
+        if(!isset(Yii::app()->session['currency'])) {
+            Yii::app()->session['currency'] = 1;
+        }
+        $this->a_currency = Currency::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->a_category = Category::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->a_popular = Product::model()->findAllByAttributes(
             array('status' => 1),
@@ -34,6 +40,7 @@ class Controller extends CController
         $this->a_social = Social::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->contacts = Contacts::model()->findByPk(1);
         $this->count_cart = Cart::model()->countItems();
+        $this->currency = Yii::app()->session['currency'];
         $this->menu = Category::model()->findAllByAttributes(
             array('status' => 1),
             array('limit' => 5, 'order' => '`order`')

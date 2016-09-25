@@ -58,7 +58,13 @@ class Cart extends CActiveRecord
         if (null === $o_cart) {
             return true;
         }
-        self::model()->updateByPk($o_cart->id, array('user_id' => $user_id, 'session_id' => 0));
+        $o_check = self::model()->findByAttributes(array('user_id' => $user_id, 'session_id' => 0));
+        if (null === $o_check) {
+            self::model()->updateByPk($o_cart->id, array('user_id' => $user_id, 'session_id' => 0));
+        } else {
+            CartProduct::model()->updateAll(array('cart_id' => $o_check->id), 'cart_id=' . $o_cart->id);
+            self::model()->deleteByPk($o_cart->id);
+        }
         return true;
     }
 
@@ -75,20 +81,27 @@ class Cart extends CActiveRecord
         $total = 0;
         $o_cart = Cart::model()->findByAttributes(array('user_id' => $user_id, 'session_id' => $session_id));
         if (null === $o_cart) {
-            return json_encode(array('product' => $product, 'total' => $total . ' UAH'));
+            return json_encode(array(
+                'product' => $product,
+                'total' => HelperIgosja::formatPrice($total, Yii::app()->session['currency'])
+            ));
         }
         $a_product = CartProduct::model()->findAllByAttributes(array('cart_id' => $o_cart->id));
         foreach ($a_product as $item) {
             $product[] = array(
                 'id' => $item->id,
                 'name' => $item->product_name,
-                'price' => $item->price * $item->quantity,
+                'price' => HelperIgosja::formatPrice($item->price * $item->quantity, Yii::app()->session['currency']),
                 'quantity' => $item->quantity,
                 'url' => CHtml::normalizeUrl(array('product/view', 'id' => $item->product->url)),
             );
             $total = $total + $item->product->price * $item->quantity;
         }
-        return json_encode(array('product' => $product, 'total' => $total . ' UAH'));
+        return json_encode(array(
+            'count' => $this->countItems(),
+            'product' => $product,
+            'total' => HelperIgosja::formatPrice($total, Yii::app()->session['currency'])
+        ));
     }
 
     public function getCartProductList()

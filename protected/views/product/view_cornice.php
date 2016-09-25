@@ -89,7 +89,9 @@
                 <div class="product-card clearfix">
                     <div class="pc-price">
                         <span>Цена: </span>
-                        <strong><?= HelperIgosja::productPrice($o_product); ?> грн.</strong>
+                        <strong>
+                            <?= HelperIgosja::formatPrice(HelperIgosja::productPrice($o_product), $this->currency); ?>
+                        </strong>
                         <div class="pc-availability">В наличии</div>
                     </div>
                     <div class="pc-qty">
@@ -105,7 +107,6 @@
                             data-name="<?= HelperIgosja::productName($o_product); ?>"
                             data-price="<?= HelperIgosja::productPrice($o_product); ?>"
                             data-product="<?= $o_product->id; ?>"
-                            data-option="<?= HelperIgosja::productOption($o_product); ?>"
                             href="javascript:;"
                             title="В КОРЗИНУ"
                         >

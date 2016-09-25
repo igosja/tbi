@@ -396,22 +396,15 @@
 
         return false;
     });
-    $("#currency").change(function () {
 
-
-        //console.info('test');
-        var url = location.href;
-        if (url.indexOf('?') == -1) {
-            url += '?';
-        } else {
-            url += '&';
-        }
-
-        //$.get('/shop/', {'currency': $(this).val()}, function (response) {
-        //    console.info(response);
-        //    //location.href = '';
-        //});
-        location.href = '/shop/?currency=' + $(this).val();
+    $("#currency").on('change', function () {
+        var currency = $(this).val();
+        $.ajax({
+            url: '/shop/currency/' + currency,
+            success: function () {
+                location.reload();
+            }
+        });
     });
 
     $('html').on('click', '.cart-remove', function () {
@@ -969,7 +962,6 @@
         var product = $(this).data('product');
         var name = $(this).data('name');
         var price = $(this).data('price');
-        var option = $(this).data('option');
         var quantity = 1;
         if ($(this).hasClass('qty-tocart')) {
             quantity = $('.pc-qty .qty-input input').val();
@@ -977,7 +969,7 @@
         $.ajax({
             url: '/cart/add/' + product,
             dataType: 'json',
-            data: 'name=' + name + '&price=' + price + '&quantity=' + quantity + '&option=' + option,
+            data: 'name=' + name + '&price=' + price + '&quantity=' + quantity,
             success: function (data) {
                 if (1 == data.status) {
                     var cart = $('.navcart');
@@ -1029,20 +1021,35 @@
             dataType: 'json',
             success: function (data) {
                 $('.sub_sertificate_select').html(data.select);
+                $('.sub_sertificate_select').data('name', data.name);
                 $('span.sub_sertificate_select').remove();
                 $('.sub_sertificate_select').removeClass('hasCustomSelect');
                 $('.sub_sertificate_select').attr('style', '');
                 $('.sub_sertificate_select').customSelect({customClass: 'pco-select-styled'});
                 $('#rules').html(data.rules);
                 $('#description').html(data.description);
+                $('.sertificate__link').data('product', product_id);
+                $('.sertificate__link').data(
+                    'name',
+                    $('.sub_sertificate_select').data('name') + ', ' + $('.sub_sertificate_select option:selected').html()
+                );
+                $('.sertificate__link').data('price', $('.sub_sertificate_select').val());
             }
         });
     });
 
-    $('#search-input').on('keyup', function(){
+    $('.sub_sertificate_select').on('change', function () {
+        $('.sertificate__link').data(
+            'name',
+            $(this).data('name') + ', ' + $('.sub_sertificate_select option:selected').html()
+        );
+        $('.sertificate__link').data('price', $(this).val());
+    });
+
+    $('#search-input').on('keyup', function () {
         var search_value = $(this).val();
         $.ajax({
-            url:'/product/ajaxsearch',
+            url: '/search/ajax',
             method: 'POST',
             data: {name: search_value},
             success: function (data) {
@@ -1078,7 +1085,7 @@ function get_cart() {
                     + '<a href="javascript:;" class="qty-more"></a>'
                     + '</div>'
                     + '</td>'
-                    + '<td>' + data.product[i].price + ' UAH</td>'
+                    + '<td>' + data.product[i].price + '</td>'
                     + '<td><a href="javascript:;" data-id="' + data.product[i].id + '" class="cart-remove"></a></td>'
                     + '</tr>';
             }
@@ -1142,6 +1149,7 @@ function count_cart() {
         success: function (data) {
             var cart = $('.navcart');
             cart.find('span').text(data.count);
+            cart.attr('title', data.count);
             if (0 == data.count) {
                 cart.addClass('empty');
             } else {

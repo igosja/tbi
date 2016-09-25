@@ -15,7 +15,8 @@
                         >Развернуть описание</a>
                         <div class="productinfo-content brand-content">
                             <p>
-                                <img src="<?= ImageIgosja::resize($o_brand->image_id, 216, 162); ?>" alt="" class="brand_image">
+                                <img src="<?= ImageIgosja::resize($o_brand->image_id, 216, 162); ?>" alt=""
+                                     class="brand_image">
                             </p>
                             <p class="MsoNormal">
                                 <?= $o_brand->text; ?>
@@ -47,14 +48,16 @@
                     <div class="catalog-grid clearfix">
                         <h4 class="section-heading section-heading-rm">Товары бренда</h4>
                         <?php foreach ($a_product as $item) { ?>
-                            <?= $this->renderPartial('/include/product-item', array('item' => $item)); ?>
+                            <?= $this->renderPartial('/include/product-item-grid', array('item' => $item)); ?>
                         <?php } ?>
-                        <div class="catalog-pagination clearfix">
-                            <a class="pagination-item current" href="javascript:;"><span>1</span></a>
-                            <a class="pagination-item " href="javascript:;"><span>2</span></a>
-                            <a class="pagination-item " href="javascript:;"><span>3</span></a>
-                            <a class="pagination-right" href="javascript:;"></a>
-                        </div>
+                        <?php if (0) { ?>
+                            <div class="catalog-pagination clearfix">
+                                <a class="pagination-item current" href="javascript:;"><span>1</span></a>
+                                <a class="pagination-item " href="javascript:;"><span>2</span></a>
+                                <a class="pagination-item " href="javascript:;"><span>3</span></a>
+                                <a class="pagination-right" href="javascript:;"></a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="page-sidebar">

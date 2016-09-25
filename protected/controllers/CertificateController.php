@@ -24,11 +24,19 @@ class CertificateController extends Controller
         if ($o_product) {
             $select = '';
             foreach ($o_product->option as $item) {
-                $select = $select . '<option value="' . $item->id . '">' . $item->name . '</option>';
+                $select = $select
+                    . '<option value="' . HelperIgosja::optionPrice($o_product, $item) . '">'
+                    . $item->name
+                    . '</option>';
             }
             $description = $o_product->text;
             $rules = $o_product->rules;
-            print json_encode(array('select' => $select, 'description' => $description, 'rules' => $rules));
+            print json_encode(array(
+                'select' => $select,
+                'name' => $o_product->name,
+                'description' => $description,
+                'rules' => $rules
+            ));
             exit;
         }
     }

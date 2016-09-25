@@ -11,16 +11,6 @@ class HelperIgosja
         return $name;
     }
 
-    public static function productOption($o_product)
-    {
-        if (isset($o_product->option[0])) {
-            $option = $o_product->option[0]->id;
-        } else {
-            $option = 0;
-        }
-        return $option;
-    }
-
     public static function productPrice($o_product)
     {
         if (isset($o_product->option[0])) {
@@ -35,5 +25,28 @@ class HelperIgosja
             $price = $o_product->price;
         }
         return $price;
+    }
+
+    public static function optionPrice($o_product, $o_option)
+    {
+        $price = 0;
+        foreach ($o_product->option as $item) {
+            if ($item->id == $o_option->id) {
+                if (0 == $item->plus) {
+                    $price = $o_product->price - $item->price;
+                } elseif (1 == $item->plus) {
+                    $price = $o_product->price + $item->price;
+                } else {
+                    $price = $item->price;
+                }
+            }
+        }
+        return $price;
+    }
+
+    public static function formatPrice($price, $currency)
+    {
+        $o_currency = Currency::model()->findByPk($currency);
+        return number_format($price / $o_currency->rate, 2, ',', ' ') . ' ' . $o_currency->name;
     }
 }

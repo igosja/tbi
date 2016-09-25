@@ -139,7 +139,7 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.show();
     } else if (5 == view_id) {
-        tr_brand.hide();
+        tr_brand.show();
         tr_image.hide();
         tr_rules.show();
         tr_text.show();

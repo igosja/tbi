@@ -16,4 +16,9 @@ class ShopController extends Controller
             'a_category' => $a_category,
         ));
     }
+
+    public function actionCurrency($id)
+    {
+        Yii::app()->session['currency'] = $id;
+    }
 }

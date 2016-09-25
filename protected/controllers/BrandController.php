@@ -11,9 +11,28 @@ class BrandController extends Controller
             CHtml::decode($title)
         );
         $a_brand = Brand::model()->findAllByAttributes(array('status' => 1), array('order' => 'name'));
+        $count_brand = count($a_brand);
+        $count_col = ceil($count_brand / 4);
+        $first_start = 0;
+        $first_end = $count_col - 1;
+        $second_start = $count_col;
+        $second_end = $count_col * 2 - 1;
+        $third_start = $count_col * 2;
+        $third_end = $count_col * 3 - 1;
+        $fourth_start = $count_col * 3;
+        $fourth_end = $count_brand - 1;
         $this->render('index', array(
             'title' => $title,
             'a_brand' => $a_brand,
+            'count_brand' => $count_brand,
+            'first_start' => $first_start,
+            'first_end' => $first_end,
+            'second_start' => $second_start,
+            'second_end' => $second_end,
+            'third_start' => $third_start,
+            'third_end' => $third_end,
+            'fourth_start' => $fourth_start,
+            'fourth_end' => $fourth_end,
         ));
     }
 

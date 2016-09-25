@@ -88,6 +88,9 @@
                                 </ul>
                             </li>
                             <li>
+                                <?= CHtml::link('Валюты', array('currency/index')); ?>
+                            </li>
+                            <li>
                                 <?= CHtml::link('SEO-теги', array('shoppage/index')); ?>
                             </li>
                         </ul>
@@ -163,6 +166,9 @@
                             </li>
                             <li>
                                 <?= CHtml::link('Оплата', array('paymentpage/index')); ?>
+                            </li>
+                            <li>
+                                <?= CHtml::link('Поиск', array('searchpage/index')); ?>
                             </li>
                             <li>
                                 <?= CHtml::link('Сертификаты', array('certificatepage/index')); ?>

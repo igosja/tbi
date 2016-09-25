@@ -14,11 +14,20 @@
             array('class' => 'pi-name', 'title' => $item->name)
         ) ?>
         <span class="pi-price">
-            <span>от </span><?= $item->price; ?> грн.
+            <span>от </span><?= HelperIgosja::formatPrice($item->price, $this->currency); ?>
         </span>
     </div>
     <div class="clearfix">
-        <a href="javascript:;" class="pi-cart" title="В корзину">В корзину</a>
+        <a
+            href="javascript:;"
+            class="pi-cart add-to-cart"
+            data-product="<?= $item->id; ?>"
+            data-name="<?= HelperIgosja::productName($item); ?>"
+            data-price="<?= HelperIgosja::productPrice($item); ?>"
+            title="В корзину"
+        >
+            В корзину
+        </a>
         <a href="javascript:;" class="pi-compare" title="Сравнить">Сравнить</a>
     </div>
     <div class="pi-details">

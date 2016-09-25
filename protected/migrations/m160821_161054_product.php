@@ -9,7 +9,7 @@ class m160821_161054_product extends CDbMigration
             'category_id' => 'int(11) DEFAULT 0',
             'name' => 'varchar(255) NOT NULL',
             'order' => 'int(11) DEFAULT 0',
-            'price' => 'decimal(10.2) DEFAULT 0',
+            'price' => 'decimal(10,2) DEFAULT 0',
             'sku' => 'varchar(255) NOT NULL',
             'status' => 'tinyint(1) DEFAULT 1',
             'text' => 'text NOT NULL',

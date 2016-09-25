@@ -77,7 +77,7 @@
                     <?php } ?>
                 </div>
                 <div class="hsearch">
-                    <form action="<?= $this->createUrl('product/search'); ?>">
+                    <form action="<?= $this->createUrl('search/index'); ?>">
                         <input name="name" type="search" placeholder="Поиск..." id="search-input">
                         <input type="submit">
                     </form>
@@ -89,9 +89,16 @@
                 </div>
                 <div class="hcurrency">
                     <select id="currency">
-                        <option value="UAH" selected>UAH</option>
-                        <option value="EUR">EUR</option>
-                        <option value="USD">USD</option>
+                        <?php foreach ($this->a_currency as $item) { ?>
+                            <option
+                                value="<?= $item->id; ?>"
+                                <?php if ($this->currency == $item->id) { ?>
+                                    selected
+                                <?php } ?>
+                            >
+                                <?= $item->name; ?>
+                            </option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>

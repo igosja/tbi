@@ -59,11 +59,11 @@
                                             <span>
                                                 <strong><?= $item->quantity; ?></strong>
                                                 <i>х</i>
-                                                <?= $item->price; ?> UAH
+                                                <?= HelperIgosja::formatPrice($item->price, $this->currency); ?>
                                             </span>
                                         </td>
                                         <td>
-                                            <span><?= $item->quantity * $item->price; ?> UAH</span>
+                                            <span><?= HelperIgosja::formatPrice($item->quantity * $item->price, $this->currency); ?></span>
                                         </td>
                                     </tr>
                                     <?php $total = $total + $item->quantity * $item->price; ?>
@@ -83,7 +83,7 @@
 
                                 <tr>
                                     <td>Итого</td>
-                                    <td><?= $total; ?> UAH</td>
+                                    <td><?= HelperIgosja::formatPrice($total, $this->currency); ?></td>
                                 </tr>
                             </table>
                         </div>
