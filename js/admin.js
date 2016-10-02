@@ -93,6 +93,7 @@ function hide_show_product_form() {
     var tr_youtube = $('#tr-youtube');
     var tr_sheet = $('#tr-sheet_id');
     var tr_catalog = $('#tr-catalog_id');
+    var tr_color = $('#tr-color');
 
     if (1 == view_id) {
         tr_brand.show();
@@ -105,6 +106,7 @@ function hide_show_product_form() {
         tr_youtube.show();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (2 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -116,6 +118,7 @@ function hide_show_product_form() {
         tr_youtube.show();
         tr_sheet.show();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (3 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -127,6 +130,7 @@ function hide_show_product_form() {
         tr_youtube.hide();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (4 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -138,6 +142,7 @@ function hide_show_product_form() {
         tr_youtube.show();
         tr_sheet.hide();
         tr_catalog.show();
+        tr_color.show();
     } else if (5 == view_id) {
         tr_brand.show();
         tr_image.hide();
@@ -149,6 +154,7 @@ function hide_show_product_form() {
         tr_youtube.hide();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (6 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -160,6 +166,7 @@ function hide_show_product_form() {
         tr_youtube.hide();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (7 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -171,6 +178,7 @@ function hide_show_product_form() {
         tr_youtube.show();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else if (8 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -182,6 +190,7 @@ function hide_show_product_form() {
         tr_youtube.show();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     } else {
         tr_brand.hide();
         tr_image.hide();
@@ -193,5 +202,6 @@ function hide_show_product_form() {
         tr_youtube.hide();
         tr_sheet.hide();
         tr_catalog.hide();
+        tr_color.hide();
     }
 }

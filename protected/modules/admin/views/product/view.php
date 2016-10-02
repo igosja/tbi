@@ -184,6 +184,21 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('color'); ?>
+                </td>
+                <td>
+                    <?php foreach($model->color as $item) { ?>
+                        <div class="col-lg-2 text-center">
+                            <?= $item->color->name; ?>
+                            <a href="javascript:;" class="thumbnail">
+                                <img src="<?= $item->color->image->url; ?>"/>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= $model->getAttributeLabel('seo_title'); ?>
                 </td>
                 <td>

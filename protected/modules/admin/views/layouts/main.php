@@ -71,7 +71,24 @@
                         <a href="javascript:;">Магазин<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <?= CHtml::link('Товары', array('product/index')); ?>
+                                <a href="javascript:;">Товары<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <?= CHtml::link('Товары', array('product/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Возможные цвета', array('color/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Применение карниза', array('application/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Варианты открывания', array('openoption/index')); ?>
+                                    </li>
+                                    <li>
+                                        <?= CHtml::link('Разрез профиля', array('incision/index')); ?>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <?= CHtml::link('Категории', array('category/index')); ?>

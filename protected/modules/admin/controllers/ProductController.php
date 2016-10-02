@@ -48,6 +48,7 @@ class ProductController extends AController
                 $this->uploadCatalog($model->id);
                 $this->uploadSheet($model->id);
                 $this->addOptions($model->id);
+                $this->addColor($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -58,7 +59,11 @@ class ProductController extends AController
             $this->breadcrumbs[$model->name] = array('view', 'id' => $model->id);
         }
         $this->breadcrumbs[] = $this->h1;
-        $this->render('form', array('model' => $model));
+        $a_color = array();
+        foreach ($model->color as $item) {
+            $a_color[] = $item->color_id;
+        }
+        $this->render('form', array('model' => $model, 'a_color' => $a_color));
     }
 
     public function actionView($id)
@@ -221,6 +226,19 @@ class ProductController extends AController
                 $model->name = $item['name'];
                 $model->price = $item['price'];
                 $model->plus = $item['plus'];
+                $model->product_id = $id;
+                $model->save();
+            }
+        }
+    }
+
+    public function addColor($id)
+    {
+        if ($data = Yii::app()->request->getPost('color')) {
+            ProductColor::model()->deleteAllByAttributes(array('product_id' => $id));
+            foreach ($data as $item) {
+                $model = new ProductColor();
+                $model->color_id = $item;
                 $model->product_id = $id;
                 $model->save();
             }

@@ -174,6 +174,17 @@
                             <input type="file" name="catalog" class="form-control"/>
                         </td>
                     </tr>
+                    <tr id="tr-color">
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'color'); ?></td>
+                        <td>
+                            <?= CHtml::dropDownList(
+                                'color[]',
+                                $a_color,
+                                CHtml::listData(Color::model()->findAll(array('order' => 'name')), 'id', 'name'),
+                                array('class' => 'form-control', 'multiple' => 'multiple')
+                            ); ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="tab-pane fade" id="option">

@@ -107,96 +107,42 @@
                             </section>
                         <?php } ?>
                     </div>
-                    <div class="pc-specifications pc-colors clearfix bxunstyled">
-                        <span class="ps-heading">Возможные цвета</span>
-                        <a href="javascript:;" class="pc-all-colors overlayElementTrigger" data-selector="form-Color">
-                            Все цвета
-                        </a>
-                        <form>
+                    <?php if (count($o_product->color)) { ?>
+                        <div class="pc-specifications pc-colors clearfix bxunstyled">
+                            <span class="ps-heading">Возможные цвета</span>
+                            <a href="javascript:;" class="pc-all-colors overlayElementTrigger"
+                               data-selector="form-Color">
+                                Все цвета
+                            </a>
                             <div id="color-slider" class="owl-carousel">
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2557" name="color" class="decor-color"
-                                               data-color="2557" value="2557" checked>
-                                        <label for="color-2557">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.76.jpg"
-                                                        alt=""/>
+                                <?php $checked = 'checked'; foreach ($o_product->color as $item) { ?>
+                                    <div class="item">
+                                        <div class="color-radio">
+                                            <input
+                                                type="radio"
+                                                id="color-<?= $item->color_id; ?>"
+                                                name="color"
+                                                class="decor-color"
+                                                data-color="<?= $item->color->name; ?>"
+                                                <?= $checked; ?>
+                                            >
+                                            <label for="color-<?= $item->color_id; ?>">
+                                                <div class="color-radio__i">
+                                                    <div>
+                                                        <img
+                                                            src="<?= ImageIgosja::resize($item->color->image_id, 76, 76); ?>"
+                                                            alt=""
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="color-radio__r">I1AA</div>
-                                        </label>
+                                                <div class="color-radio__r"><?= $item->color->name; ?></div>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2558" name="color" class="decor-color"
-                                               data-color="2558" value="2558">
-                                        <label for="color-2558">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I2AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2559" name="color" class="decor-color"
-                                               data-color="2559" value="2559">
-                                        <label for="color-2559">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I3AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2560" name="color" class="decor-color"
-                                               data-color="2560" value="2560">
-                                        <label for="color-2560">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I4AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2561" name="color" class="decor-color"
-                                               data-color="2561" value="2561">
-                                        <label for="color-2561">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I1AL</div>
-                                        </label>
-                                    </div>
-                                </div>
+                                <?php $checked = ''; } ?>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    <?php } ?>
                     <div class="pc-specifications">
                         <span class="ps-heading">Характеристики:</span>
                         <table>
