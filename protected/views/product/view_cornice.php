@@ -18,71 +18,35 @@
                     <div class="pco-profile-img pco-profile-img__left">
                         <div class="pco-heading">Применение</div>
                         <div class="product_use">
-                            <span>
-                                <img src="/img/use_icons/use1.jpg" alt=""/>
-                                <small>Оконные</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use2.jpg" alt=""/>
-                                <small>Разделитель</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use3.jpg" alt=""
-                                     class="active"/>
-                                <small>Офис</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use4.jpg" alt=""
-                                     class="active"/>
-                                <small>Конференц-зал</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use5.jpg" alt=""/>
-                                <small>Солнцезащитные</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use6.jpg" alt=""
-                                     class="active"/>
-                                <small>Для дома</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use7.jpg" alt=""/>
-                                <small>Отель</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use8.jpg" alt=""/>
-                                <small>Крепление картин</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use9.jpg" alt=""/>
-                                <small>Ванные</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use10.jpg" alt=""/>
-                                <small>Корабли</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use11.jpg" alt=""/>
-                                <small>Автобус, фургон</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use12.jpg" alt=""/>
-                                <small>Угол 90 градусов</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use13.jpg" alt=""/>
-                                <small>Большой угол изгиба</small>
-                            </span>
-                            <span>
-                                <img src="/img/use_icons/use14.jpg" alt=""/>
-                                <small>Арка</small>
-                            </span>
+                            <?php foreach ($a_application as $item) { ?>
+                                <span>
+                                    <img
+                                        alt="<?= $item->name; ?>"
+                                        <?php foreach ($o_product->application as $check) { ?>
+                                            <?php if ($check->application_id == $item->id) { ?>
+                                                class="active"
+                                            <?php } ?>
+                                        <?php } ?>
+                                        src="/img/use_icons/use<?= $item->id; ?>.jpg"
+                                    />
+                                    <small><?= $item->name; ?></small>
+                                </span>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="pco-profile-img pco-profile-img__left">
                         <div class="pco-heading">Варианты открывания</div>
                         <div class="img-height">
-                            <img src="http://www.tbi.ua/wa-data/public/photos/32/38/3832/3832.750.jpg" alt=""/>
+                            <?php foreach ($o_product->openoption as $item) { ?>
+                                <img
+                                    src="<?= ImageIgosja::resize(
+                                        (isset($item->openoption->image_id) ? $item->openoption->image_id : 0),
+                                        370,
+                                        264,
+                                        0
+                                    ); ?>"
+                                />
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

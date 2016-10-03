@@ -8,6 +8,7 @@ class ProductController extends Controller
         if (null === $o_product) {
             throw new CHttpException(404, 'Страница не найдена.');
         }
+        $a_application = Application::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->setSEO($o_product);
         $this->breadcrumbs = array(
             'Наши товары' => array('shop/index'),
@@ -16,6 +17,7 @@ class ProductController extends Controller
         );
         $this->render('view_' . $o_product->view->view, array(
             'o_product' => $o_product,
+            'a_application' => $a_application,
         ));
     }
 

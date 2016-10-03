@@ -23,11 +23,13 @@ class Product extends CActiveRecord
     public function relations()
     {
         return array(
+            'application' => array(self::HAS_MANY, 'ProductApplication', array('product_id' => 'id')),
             'brand' => array(self::HAS_ONE, 'Brand', array('id' => 'brand_id')),
             'catalog' => array(self::HAS_ONE, 'Image', array('id' => 'catalog_id')),
             'category' => array(self::HAS_ONE, 'Category', array('id' => 'category_id')),
             'color' => array(self::HAS_MANY, 'ProductColor', array('product_id' => 'id')),
             'image' => array(self::HAS_MANY, 'ProductImage', array('product_id' => 'id')),
+            'openoption' => array(self::HAS_MANY, 'ProductOpenOption', array('product_id' => 'id')),
             'option' => array(self::HAS_MANY, 'ProductOption', array('product_id' => 'id')),
             'review' => array(self::HAS_MANY, 'Review', array('product_id' => 'id')),
             'sheet' => array(self::HAS_ONE, 'Image', array('id' => 'sheet_id')),
@@ -39,6 +41,7 @@ class Product extends CActiveRecord
     {
         return array(
             'id' => 'ID',
+            'application' => 'Применение',
             'brand_id' => 'Бренд',
             'catalog_id' => 'Каталог, pdf',
             'category_id' => 'Категория',
@@ -48,6 +51,7 @@ class Product extends CActiveRecord
             'image_id' => 'Изображения',
             'name' => 'Название',
             'price' => 'Цена, грн',
+            'openoption' => 'Варианты открывания',
             'rules' => 'Правила использования',
             'sheet_id' => 'Тех. лист, pdf',
             'sku' => 'Артикул',

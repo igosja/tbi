@@ -156,7 +156,7 @@
                     <?= $model->getAttributeLabel('image_id'); ?>
                 </td>
                 <td>
-                    <?php foreach($model->image as $item) { ?>
+                    <?php foreach ($model->image as $item) { ?>
                         <?php if (isset($item->image->url)) { ?>
                             <div class="col-lg-6">
                                 <a href="javascript:;" class="thumbnail">
@@ -172,11 +172,15 @@
                     Варианты товара
                 </td>
                 <td>
-                    <?php foreach($model->option as $item) { ?>
+                    <?php foreach ($model->option as $item) { ?>
                         <?php
-                        if (0 == $item->plus) { $price = $model->price - $item->price; }
-                        elseif (1 == $item->plus) { $price = $model->price + $item->price; }
-                        else { $price = $item->price; }
+                        if (0 == $item->plus) {
+                            $price = $model->price - $item->price;
+                        } elseif (1 == $item->plus) {
+                            $price = $model->price + $item->price;
+                        } else {
+                            $price = $item->price;
+                        }
                         ?>
                         <?= $model->name; ?>, <?= $item->name; ?>, <?= $price; ?> грн.<br/>
                     <?php } ?>
@@ -187,11 +191,39 @@
                     <?= $model->getAttributeLabel('color'); ?>
                 </td>
                 <td>
-                    <?php foreach($model->color as $item) { ?>
+                    <?php foreach ($model->color as $item) { ?>
                         <div class="col-lg-2 text-center">
                             <?= $item->color->name; ?>
                             <a href="javascript:;" class="thumbnail">
                                 <img src="<?= $item->color->image->url; ?>"/>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('application'); ?>
+                </td>
+                <td>
+                    <?php foreach ($model->application as $item) { ?>
+                        <div class="row">
+                            <img src="/img/use_icons/use<?= $item->application_id; ?>.jpg"/>
+                            <?= $item->application->name; ?>
+                        </div>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?= $model->getAttributeLabel('openoption'); ?>
+                </td>
+                <td>
+                    <?php foreach ($model->openoption as $item) { ?>
+                        <div class="col-lg-2 text-center">
+                            <?= $item->openoption->name; ?>
+                            <a href="javascript:;" class="thumbnail">
+                                <img src="<?= $item->openoption->image->url; ?>"/>
                             </a>
                         </div>
                     <?php } ?>

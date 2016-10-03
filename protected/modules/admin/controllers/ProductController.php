@@ -49,6 +49,8 @@ class ProductController extends AController
                 $this->uploadSheet($model->id);
                 $this->addOptions($model->id);
                 $this->addColor($model->id);
+                $this->addApplication($model->id);
+                $this->addOpenOption($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -59,11 +61,24 @@ class ProductController extends AController
             $this->breadcrumbs[$model->name] = array('view', 'id' => $model->id);
         }
         $this->breadcrumbs[] = $this->h1;
+        $a_application = array();
+        foreach ($model->application as $item) {
+            $a_application[] = $item->application_id;
+        }
         $a_color = array();
         foreach ($model->color as $item) {
             $a_color[] = $item->color_id;
         }
-        $this->render('form', array('model' => $model, 'a_color' => $a_color));
+        $a_openoption = array();
+        foreach ($model->openoption as $item) {
+            $a_openoption[] = $item->openoption_id;
+        }
+        $this->render('form', array(
+            'model' => $model,
+            'a_application' => $a_application,
+            'a_color' => $a_color,
+            'a_openoption' => $a_openoption,
+        ));
     }
 
     public function actionView($id)
@@ -239,6 +254,32 @@ class ProductController extends AController
             foreach ($data as $item) {
                 $model = new ProductColor();
                 $model->color_id = $item;
+                $model->product_id = $id;
+                $model->save();
+            }
+        }
+    }
+
+    public function addApplication($id)
+    {
+        if ($data = Yii::app()->request->getPost('application')) {
+            ProductApplication::model()->deleteAllByAttributes(array('product_id' => $id));
+            foreach ($data as $item) {
+                $model = new ProductApplication();
+                $model->application_id = $item;
+                $model->product_id = $id;
+                $model->save();
+            }
+        }
+    }
+
+    public function addOpenOption($id)
+    {
+        if ($data = Yii::app()->request->getPost('openoption')) {
+            ProductOpenOption::model()->deleteAllByAttributes(array('product_id' => $id));
+            foreach ($data as $item) {
+                $model = new ProductOpenOption();
+                $model->openoption_id = $item;
                 $model->product_id = $id;
                 $model->save();
             }

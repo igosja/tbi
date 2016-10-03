@@ -4,12 +4,9 @@ $(document).ready(function ($) {
         onDrop: function (tbody, row, new_index, old_index) {
             var item_id = $(row).data('id');
             var controller_name = $(row).data('controller');
-            $.ajax
-            (
-                {
-                    url: '/' + controller_name + '/order/' + item_id + '/?order_new=' + new_index + '&order_old=' + old_index,
-                }
-            );
+            $.ajax({
+                url: '/' + controller_name + '/order/' + item_id + '/?order_new=' + new_index + '&order_old=' + old_index,
+            });
         }
     });
 
@@ -18,12 +15,9 @@ $(document).ready(function ($) {
         onDrop: function (tbody, row, new_index, old_index) {
             var item_id = $(row).data('id');
             var controller_name = $(row).data('controller');
-            $.ajax
-            (
-                {
-                    url: '/' + controller_name + '/order/' + item_id + '/?order_new=' + new_index + '&order_old=' + old_index,
-                }
-            );
+            $.ajax({
+                url: '/' + controller_name + '/order/' + item_id + '/?order_new=' + new_index + '&order_old=' + old_index,
+            });
         }
     });
 
@@ -54,18 +48,15 @@ function status_change() {
     $('.status').on('change', function () {
         var item_id = $(this).data('id');
         var controller_name = $(this).closest('.grid-view').data('controller');
-        $.ajax
-        (
-            {
-                url: '/' + controller_name + '/status/' + item_id,
-            }
-        );
+        $.ajax({
+            url: '/' + controller_name + '/status/' + item_id,
+        });
     });
 }
 
 function toogle_on() {
     $(function () {
-        $('input:checkbox').bootstrapToggle();
+        $('input:checkbox[data-toggle="toggle"]').bootstrapToggle();
     });
 }
 
@@ -94,6 +85,8 @@ function hide_show_product_form() {
     var tr_sheet = $('#tr-sheet_id');
     var tr_catalog = $('#tr-catalog_id');
     var tr_color = $('#tr-color');
+    var tr_application = $('#tr-application');
+    var tr_openoption = $('#tr-openoption');
 
     if (1 == view_id) {
         tr_brand.show();
@@ -107,6 +100,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (2 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -119,6 +114,8 @@ function hide_show_product_form() {
         tr_sheet.show();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.show();
+        tr_openoption.show();
     } else if (3 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -131,6 +128,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (4 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -143,6 +142,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.show();
         tr_color.show();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (5 == view_id) {
         tr_brand.show();
         tr_image.hide();
@@ -155,6 +156,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (6 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -167,6 +170,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (7 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -179,6 +184,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else if (8 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -191,6 +198,8 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     } else {
         tr_brand.hide();
         tr_image.hide();
@@ -203,5 +212,7 @@ function hide_show_product_form() {
         tr_sheet.hide();
         tr_catalog.hide();
         tr_color.hide();
+        tr_application.hide();
+        tr_openoption.hide();
     }
 }
