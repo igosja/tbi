@@ -185,6 +185,17 @@
                             ); ?>
                         </td>
                     </tr>
+                    <tr id="tr-application">
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'application'); ?></td>
+                        <td>
+                            <?= CHtml::dropDownList(
+                                'color[]',
+                                $a_color,
+                                CHtml::listData(Application::model()->findAll(array('order' => 'name')), 'id', 'name'),
+                                array('class' => 'form-control', 'multiple' => 'multiple')
+                            ); ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="tab-pane fade" id="option">
