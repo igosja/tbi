@@ -47,6 +47,7 @@ class ProductController extends AController
                 $this->uploadImage($model->id);
                 $this->uploadCatalog($model->id);
                 $this->uploadSheet($model->id);
+                $this->uploadIncision($model->id);
                 $this->addOptions($model->id);
                 $this->addColor($model->id);
                 $this->addApplication($model->id);
@@ -147,6 +148,16 @@ class ProductController extends AController
         $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
+    public function actionIncision($id)
+    {
+        $o_image = Image::model()->findByPk($id);
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        }
+        $o_image->delete();
+        $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+
     public function actionSheet($id)
     {
         $o_image = Image::model()->findByPk($id);
@@ -187,6 +198,27 @@ class ProductController extends AController
                     $o_product_image->product_id = $id;
                     $o_product_image->save();
                 }
+            }
+        }
+    }
+
+    public function uploadIncision($id)
+    {
+        if (isset($_FILES['incision']['name']) && !empty($_FILES['incision']['name'])) {
+            $catalog = $_FILES['incision'];
+            $ext = $catalog['name'];
+            $ext = explode('.', $ext);
+            $ext = end($ext);
+            if (in_array($ext, array('jpg', 'jpeg', 'gif', 'png'))) {
+                $file = $catalog['tmp_name'];
+                $catalog_url = ImageIgosja::put_file($file, $ext);
+                $o_catalog = new Image();
+                $o_catalog->url = $catalog_url;
+                $o_catalog->save();
+                $catalog_id = $o_catalog->id;
+                $o_product = Product::model()->findByPk($id);
+                $o_product->incision_id = $catalog_id;
+                $o_product->save();
             }
         }
     }

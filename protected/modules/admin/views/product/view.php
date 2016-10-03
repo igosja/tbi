@@ -169,6 +169,20 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('incision_id'); ?>
+                </td>
+                <td>
+                    <?php if (isset($model->incision->url)) { ?>
+                        <div class="col-lg-6">
+                            <a href="javascript:;" class="thumbnail">
+                                <img src="<?= $model->incision->url; ?>"/>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Варианты товара
                 </td>
                 <td>

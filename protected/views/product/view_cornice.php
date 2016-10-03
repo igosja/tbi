@@ -116,12 +116,16 @@
                     <div class="pco-submit__only">
                         <a href="javascript:;" id="cornice_count" title="Рассчитать">Рассчитать</a>
                     </div>
-                    <div class="pco-profile-img">
-                        <div class="pco-heading">Разрез профиля:</div>
-                        <div class="img-height__right">
-                            <img src="http://www.tbi.ua/wa-data/public/photos/19/38/3819/3819.750.jpg" alt=""/>
+                    <?php if ($o_product->incision->url) { ?>
+                        <div class="pco-profile-img">
+                            <div class="pco-heading">Разрез профиля:</div>
+                            <div class="img-height__right">
+                                <img
+                                    src="<?= ImageIgosja::resize($o_product->incision_id, 440, 215, 0); ?>"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="product-description clearfix">
                     <div class="product-slider-wrap bxunstyled">

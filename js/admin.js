@@ -87,6 +87,7 @@ function hide_show_product_form() {
     var tr_color = $('#tr-color');
     var tr_application = $('#tr-application');
     var tr_openoption = $('#tr-openoption');
+    var tr_incision = $('#tr-incision_id');
 
     if (1 == view_id) {
         tr_brand.show();
@@ -102,6 +103,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (2 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -116,6 +118,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.show();
         tr_openoption.show();
+        tr_incision.show();
     } else if (3 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -130,6 +133,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (4 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -144,6 +148,7 @@ function hide_show_product_form() {
         tr_color.show();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (5 == view_id) {
         tr_brand.show();
         tr_image.hide();
@@ -158,6 +163,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (6 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -172,6 +178,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (7 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -186,6 +193,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else if (8 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -200,6 +208,7 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     } else {
         tr_brand.hide();
         tr_image.hide();
@@ -214,5 +223,6 @@ function hide_show_product_form() {
         tr_color.hide();
         tr_application.hide();
         tr_openoption.hide();
+        tr_incision.hide();
     }
 }

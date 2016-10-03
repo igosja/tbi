@@ -174,6 +174,20 @@
                             <input type="file" name="catalog" class="form-control"/>
                         </td>
                     </tr>
+                    <tr id="tr-incision_id">
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'incision_id'); ?></td>
+                        <td>
+                            <?php if (isset($model->incision->url)) { ?>
+                                <div class="col-lg-6">
+                                    <a href="javascript:;" class="thumbnail">
+                                        <img src="<?= $model->incision->url; ?>"/>
+                                    </a>
+                                </div>
+                                <?= CHtml::link('<i class="fa fa-times"></i>', array('incision', 'id' => $model->incision_id)); ?>
+                            <?php } ?>
+                            <input type="file" name="incision" class="form-control"/>
+                        </td>
+                    </tr>
                     <tr id="tr-color">
                         <td class="col-lg-3"><?= $form->labelEx($model, 'color'); ?></td>
                         <td>
