@@ -245,6 +245,16 @@
             </tr>
             <tr>
                 <td>
+                    <?= $model->getAttributeLabel('set'); ?>
+                </td>
+                <td>
+                    <?php foreach ($model->set as $item) { ?>
+                        <?= CHtml::link($item->product->name, array('view', 'id' => $item->child_id)); ?><br/>
+                    <?php } ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <?= $model->getAttributeLabel('seo_title'); ?>
                 </td>
                 <td>

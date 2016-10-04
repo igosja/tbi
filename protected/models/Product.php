@@ -33,6 +33,7 @@ class Product extends CActiveRecord
             'openoption' => array(self::HAS_MANY, 'ProductOpenOption', array('product_id' => 'id')),
             'option' => array(self::HAS_MANY, 'ProductOption', array('product_id' => 'id')),
             'review' => array(self::HAS_MANY, 'Review', array('product_id' => 'id')),
+            'set' => array(self::HAS_MANY, 'ProductSet', array('parent_id' => 'id')),
             'sheet' => array(self::HAS_ONE, 'Image', array('id' => 'sheet_id')),
             'view' => array(self::HAS_ONE, 'View', array('id' => 'view_id')),
         );
@@ -56,6 +57,7 @@ class Product extends CActiveRecord
             'price' => 'Цена, грн',
             'openoption' => 'Варианты открывания',
             'rules' => 'Правила использования',
+            'set' => 'Комплект',
             'sheet_id' => 'Тех. лист, pdf',
             'sku' => 'Артикул',
             'status' => 'Статус',

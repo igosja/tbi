@@ -220,6 +220,17 @@
                             ); ?>
                         </td>
                     </tr>
+                    <tr id="tr-set">
+                        <td class="col-lg-3"><?= $form->labelEx($model, 'set'); ?></td>
+                        <td>
+                            <?= CHtml::dropDownList(
+                                'set[]',
+                                $a_set,
+                                CHtml::listData(Product::model()->findAll(array('order' => 'name')), 'id', 'name'),
+                                array('class' => 'form-control', 'multiple' => 'multiple')
+                            ); ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="tab-pane fade" id="option">

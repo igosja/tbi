@@ -253,46 +253,42 @@
                             </a>
                         </div>
                     </div>
-                    <div id="colors">
-                        <div class="more-effects clearfix">
-                            <h3 class="effect-title">Возможные цвета</h3>
-                            <div class="more-effects__item">
-                                <a href="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.500.jpg"
-                                   data-lightbox="2" data-title="I1AA">
-                                    <img src="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.156.jpg" alt=""/>
-                                    <span>I1AA</span>
-                                </a>
-                            </div>
-                            <div class="more-effects__item">
-                                <a href="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.500.jpg"
-                                   data-lightbox="2" data-title="I2AA">
-                                    <img src="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.156.jpg" alt=""/>
-                                    <span>I2AA</span>
-                                </a>
-                            </div>
-                            <div class="more-effects__item">
-                                <a href="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.500.jpg"
-                                   data-lightbox="2" data-title="I3AA">
-                                    <img src="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.156.jpg" alt=""/>
-                                    <span>I3AA</span>
-                                </a>
-                            </div>
-                            <div class="more-effects__item">
-                                <a href="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.500.jpg"
-                                   data-lightbox="2" data-title="I4AA">
-                                    <img src="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.156.jpg" alt=""/>
-                                    <span>I4AA</span>
-                                </a>
-                            </div>
-                            <div class="more-effects__item">
-                                <a href="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.500.jpg"
-                                   data-lightbox="2" data-title="I1AL">
-                                    <img src="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.156.jpg" alt=""/>
-                                    <span>I1AL</span>
-                                </a>
+                    <?php if (count($o_product->color)) { ?>
+                        <div class="pc-specifications pc-colors clearfix bxunstyled">
+                            <span class="ps-heading">Возможные цвета</span>
+                            <a href="javascript:;" class="pc-all-colors overlayElementTrigger"
+                               data-selector="form-Color">
+                                Все цвета
+                            </a>
+                            <div id="color-slider" class="owl-carousel">
+                                <?php $checked = 'checked'; foreach ($o_product->color as $item) { ?>
+                                    <div class="item">
+                                        <div class="color-radio">
+                                            <input
+                                                type="radio"
+                                                id="color-<?= $item->color_id; ?>"
+                                                name="color"
+                                                class="decor-color"
+                                                data-color="<?= $item->color->name; ?>"
+                                                <?= $checked; ?>
+                                            >
+                                            <label for="color-<?= $item->color_id; ?>">
+                                                <div class="color-radio__i">
+                                                    <div>
+                                                        <img
+                                                            src="<?= ImageIgosja::resize($item->color->image_id, 76, 76); ?>"
+                                                            alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="color-radio__r"><?= $item->color->name; ?></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <?php $checked = ''; } ?>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                     <?php if (!empty($o_product->infliction)) { ?>
                         <div id="infliction">
                             <?= $o_product->infliction; ?>

@@ -68,96 +68,93 @@
                             В КОРЗИНУ
                         </a>
                     </div>
-                    <div class="pc-specifications pc-colors clearfix bxunstyled">
-                        <span class="ps-heading">Возможные цвета</span>
-                        <a href="javascript:;" class="pc-all-colors overlayElementTrigger" data-selector="form-Color">
-                            Все цвета
-                        </a>
-                        <form>
-                            <div id="color-slider" class="owl-carousel">
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2557" name="color" class="decor-color"
-                                               data-color="2557" value="2557" checked>
-                                        <label for="color-2557">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I1AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2558" name="color" class="decor-color"
-                                               data-color="2558" value="2558">
-                                        <label for="color-2558">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I2AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2559" name="color" class="decor-color"
-                                               data-color="2559" value="2559">
-                                        <label for="color-2559">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I3AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2560" name="color" class="decor-color"
-                                               data-color="2560" value="2560">
-                                        <label for="color-2560">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I4AA</div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="color-radio">
-                                        <input type="radio" id="color-2561" name="color" class="decor-color"
-                                               data-color="2561" value="2561">
-                                        <label for="color-2561">
-                                            <div class="color-radio__i">
-                                                <div>
-                                                    <img
-                                                        src="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.76.jpg"
-                                                        alt=""/>
-                                                </div>
-                                            </div>
-                                            <div class="color-radio__r">I1AL</div>
-                                        </label>
-                                    </div>
-                                </div>
+                    <div>
+                        <div class="itemsets-split-set">
+                            <div class="pc-options">
+                                <div class="pco-heading">Комплект:</div>
+                                <table class="itemsets" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Название</th>
+                                        <th>Цена</th>
+                                        <th>Кол-во</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($o_product->set as $item) { ?>
+                                        <tr>
+                                            <td class="align-center">
+                                                <?= CHtml::link(
+                                                    '<img src="' . ImageIgosja::resize(
+                                                        (isset($item->product->image[0]->image_id) ? $item->product->image[0]->image_id : 0),
+                                                        31,
+                                                        31
+                                                    ) . '">',
+                                                    array('product/view', 'id' => $item->product->url),
+                                                    array('title' => $item->product->name, 'target' => '_blank')
+                                                ) ?>
+                                            </td>
+                                            <td>
+                                                <?= CHtml::link(
+                                                    $item->product->name,
+                                                    array('product/view', 'id' => $item->product->url),
+                                                    array('title' => $item->product->name, 'target' => '_blank')
+                                                ) ?>
+                                            </td>
+                                            <td>
+                                                <?= HelperIgosja::formatPrice($item->product->price, $this->currency); ?>
+                                            </td>
+                                            <td class="align-center">1</td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
+                        </div>
+                        <div style="clear: both;"></div>
                     </div>
+                    <?php if (count($o_product->color)) { ?>
+                        <div class="pc-specifications pc-colors clearfix bxunstyled">
+                            <span class="ps-heading">Возможные цвета</span>
+                            <a
+                                href="javascript:;"
+                                class="pc-all-colors overlayElementTrigger"
+                                data-selector="form-Color"
+                            >
+                                Все цвета
+                            </a>
+                            <div id="color-slider" class="owl-carousel">
+                                <?php $checked = 'checked'; ?>
+                                <?php foreach ($o_product->color as $item) { ?>
+                                    <div class="item">
+                                        <div class="color-radio">
+                                            <input
+                                                type="radio"
+                                                id="color-<?= $item->color_id; ?>"
+                                                name="color"
+                                                class="decor-color"
+                                                data-color="<?= $item->color->name; ?>"
+                                                <?= $checked; ?>
+                                            >
+                                            <label for="color-<?= $item->color_id; ?>">
+                                                <div class="color-radio__i">
+                                                    <div>
+                                                        <img
+                                                            src="<?= ImageIgosja::resize($item->color->image_id, 76, 76); ?>"
+                                                            alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="color-radio__r"><?= $item->color->name; ?></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <?php $checked = ''; ?>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <div class="pc-specifications">
                         <span class="ps-heading">Характеристики:</span>
                         <table>
@@ -241,8 +238,7 @@
                         <div class="samples-grid clearfix">
                             <a href="/shop/effekt-travertina-s-serebristym-otlivom/"
                                title="Эффект травертина с серебристым отливом">
-                                <div
-                                    style="background-image:url(http://tbi.ua/wa-data/public/shop/products/20/07/720/images/1525/1525.280x280.jpg)"></div>
+                                <div style="background-image:url(http://tbi.ua/wa-data/public/shop/products/20/07/720/images/1525/1525.280x280.jpg)"></div>
                                 <span>Эффект травертина с серебристым отливом</span>
                             </a>
                             <a href="/shop/effekt-travertina-v-stile-granzh/"
@@ -253,41 +249,46 @@
                             </a>
                         </div>
                     </div>
-                    <?php if (count($o_product->color)) { ?>
-                        <div class="pc-specifications pc-colors clearfix bxunstyled">
-                            <span class="ps-heading">Возможные цвета</span>
-                            <a href="javascript:;" class="pc-all-colors overlayElementTrigger" data-selector="form-Color">
-                                Все цвета
-                            </a>
-                            <div id="color-slider" class="owl-carousel">
-                                <?php $checked = 'checked'; foreach ($o_product->color as $item) { ?>
-                                    <div class="item">
-                                        <div class="color-radio">
-                                            <input
-                                                type="radio"
-                                                id="color-<?= $item->color_id; ?>"
-                                                name="color"
-                                                class="decor-color"
-                                                data-color="<?= $item->color->name; ?>"
-                                                <?= $checked; ?>
-                                            >
-                                            <label for="color-<?= $item->color_id; ?>">
-                                                <div class="color-radio__i">
-                                                    <div>
-                                                        <img
-                                                            src="<?= ImageIgosja::resize($item->color->image_id, 76, 76); ?>"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div class="color-radio__r"><?= $item->color->name; ?></div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <?php $checked = ''; } ?>
+                    <div id="colors">
+                        <div class="more-effects clearfix">
+                            <h3 class="effect-title">Возможные цвета</h3>
+                            <div class="more-effects__item">
+                                <a href="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.500.jpg"
+                                   data-lightbox="2" data-title="I1AA">
+                                    <img src="http://www.tbi.ua/wa-data/public/photos/69/20/2069/2069.156.jpg" alt=""/>
+                                    <span>I1AA</span>
+                                </a>
+                            </div>
+                            <div class="more-effects__item">
+                                <a href="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.500.jpg"
+                                   data-lightbox="2" data-title="I2AA">
+                                    <img src="http://www.tbi.ua/wa-data/public/photos/70/20/2070/2070.156.jpg" alt=""/>
+                                    <span>I2AA</span>
+                                </a>
+                            </div>
+                            <div class="more-effects__item">
+                                <a href="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.500.jpg"
+                                   data-lightbox="2" data-title="I3AA">
+                                    <img src="http://www.tbi.ua/wa-data/public/photos/71/20/2071/2071.156.jpg" alt=""/>
+                                    <span>I3AA</span>
+                                </a>
+                            </div>
+                            <div class="more-effects__item">
+                                <a href="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.500.jpg"
+                                   data-lightbox="2" data-title="I4AA">
+                                    <img src="http://www.tbi.ua/wa-data/public/photos/72/20/2072/2072.156.jpg" alt=""/>
+                                    <span>I4AA</span>
+                                </a>
+                            </div>
+                            <div class="more-effects__item">
+                                <a href="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.500.jpg"
+                                   data-lightbox="2" data-title="I1AL">
+                                    <img src="http://www.tbi.ua/wa-data/public/photos/78/20/2078/2078.156.jpg" alt=""/>
+                                    <span>I1AL</span>
+                                </a>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
                     <?php if (!empty($o_product->infliction)) { ?>
                         <div id="infliction">
                             <?= $o_product->infliction; ?>

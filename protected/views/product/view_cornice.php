@@ -116,7 +116,7 @@
                     <div class="pco-submit__only">
                         <a href="javascript:;" id="cornice_count" title="Рассчитать">Рассчитать</a>
                     </div>
-                    <?php if ($o_product->incision->url) { ?>
+                    <?php if (isset($o_product->incision->url)) { ?>
                         <div class="pco-profile-img">
                             <div class="pco-heading">Разрез профиля:</div>
                             <div class="img-height__right">

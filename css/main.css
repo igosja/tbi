@@ -8070,6 +8070,54 @@ nav .wrap {
     margin-right: 10px;
 }
 
+.itemsets {
+    width: 96%;
+    margin: 0 2%;
+    font-size: 13px;
+    line-height: 17px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.itemsets th {
+    text-align: left;
+    padding-right: 5px;
+    padding-bottom: 10px;
+}
+
+.itemsets th:first-of-type {
+    padding-right: 0;
+}
+
+.itemsets td {
+    text-align: left;
+    padding: 0 5px 5px 0;
+    vertical-align: top;
+}
+
+.itemsets td:first-of-type {
+    width: 8%;
+    text-align: center;
+}
+
+.itemsets td:nth-of-type(2) {
+    width: 60%;
+    text-align: left;
+
+}
+
+.itemsets td:nth-of-type(4) {
+    text-align: center;
+}
+
+.itemsets td img {
+    max-width: 100%;
+}
+
+.itemsets td a {
+    color: #222;
+}
+
 .autocomplete-suggestions {
     border: 1px solid #999;
     background-color: #FFFFFF;

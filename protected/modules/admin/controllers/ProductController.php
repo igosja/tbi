@@ -52,6 +52,7 @@ class ProductController extends AController
                 $this->addColor($model->id);
                 $this->addApplication($model->id);
                 $this->addOpenOption($model->id);
+                $this->addSet($model->id);
                 $this->redirect(array('view', 'id' => $model->id));
             }
         }
@@ -74,11 +75,16 @@ class ProductController extends AController
         foreach ($model->openoption as $item) {
             $a_openoption[] = $item->openoption_id;
         }
+        $a_set = array();
+        foreach ($model->set as $item) {
+            $a_set[] = $item->child_id;
+        }
         $this->render('form', array(
             'model' => $model,
             'a_application' => $a_application,
             'a_color' => $a_color,
             'a_openoption' => $a_openoption,
+            'a_set' => $a_set,
         ));
     }
 
@@ -313,6 +319,19 @@ class ProductController extends AController
                 $model = new ProductOpenOption();
                 $model->openoption_id = $item;
                 $model->product_id = $id;
+                $model->save();
+            }
+        }
+    }
+
+    public function addSet($id)
+    {
+        if ($data = Yii::app()->request->getPost('set')) {
+            ProductSet::model()->deleteAllByAttributes(array('parent_id' => $id));
+            foreach ($data as $item) {
+                $model = new ProductSet();
+                $model->child_id = $item;
+                $model->parent_id = $id;
                 $model->save();
             }
         }

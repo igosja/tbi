@@ -88,6 +88,7 @@ function hide_show_product_form() {
     var tr_application = $('#tr-application');
     var tr_openoption = $('#tr-openoption');
     var tr_incision = $('#tr-incision_id');
+    var tr_set = $('#tr-set');
 
     if (1 == view_id) {
         tr_brand.show();
@@ -104,6 +105,7 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else if (2 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -119,6 +121,7 @@ function hide_show_product_form() {
         tr_application.show();
         tr_openoption.show();
         tr_incision.show();
+        tr_set.hide();
     } else if (3 == view_id) {
         tr_brand.hide();
         tr_image.hide();
@@ -130,10 +133,11 @@ function hide_show_product_form() {
         tr_youtube.hide();
         tr_sheet.hide();
         tr_catalog.hide();
-        tr_color.hide();
+        tr_color.show();
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.show();
     } else if (4 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -149,6 +153,7 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else if (5 == view_id) {
         tr_brand.show();
         tr_image.hide();
@@ -164,11 +169,12 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else if (6 == view_id) {
         tr_brand.hide();
-        tr_image.hide();
+        tr_image.show();
         tr_rules.hide();
-        tr_text.hide();
+        tr_text.show();
         tr_infliction.hide();
         tr_equipment.hide();
         tr_characteristics.hide();
@@ -179,6 +185,7 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else if (7 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -194,6 +201,7 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else if (8 == view_id) {
         tr_brand.show();
         tr_image.show();
@@ -209,6 +217,7 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     } else {
         tr_brand.hide();
         tr_image.hide();
@@ -224,5 +233,6 @@ function hide_show_product_form() {
         tr_application.hide();
         tr_openoption.hide();
         tr_incision.hide();
+        tr_set.hide();
     }
 }
