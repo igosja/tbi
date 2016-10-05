@@ -63,6 +63,9 @@
                         <a href="javascript:;">Главная страница<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
+                                <?= CHtml::link('Слайды', array('slide/index')); ?>
+                            </li>
+                            <li>
                                 <?= CHtml::link('Текст и SEO-теги', array('mainpage/index')); ?>
                             </li>
                         </ul>

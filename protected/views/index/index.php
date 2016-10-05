@@ -1,44 +1,27 @@
 <section class="mainsliderwrap bxunstyled">
     <div class="mainslider">
-        <div class="slide"
-             style="background-image:url(http://www.tbi.ua/wa-data/public/photos/76/01/176/176.1600x450.jpg);"
-             data-slidenumber="0"></div>
-        <div class="slide"
-             style="background-image:url(http://www.tbi.ua/wa-data/public/photos/77/01/177/177.1600x450.jpg);"
-             data-slidenumber="1"></div>
-        <div class="slide"
-             style="background-image:url(http://www.tbi.ua/wa-data/public/photos/78/01/178/178.1600x450.jpg);"
-             data-slidenumber="2"></div>
-        <div class="slide"
-             style="background-image:url(http://www.tbi.ua/wa-data/public/photos/79/01/179/179.1600x450.jpg);"
-             data-slidenumber="3"></div>
-        <div class="slide"
-             style="background-image:url(http://www.tbi.ua/wa-data/public/photos/80/01/180/180.1600x450.jpg);"
-             data-slidenumber="4"></div>
+        <?php for ($i = 0; $i < count($a_slide); $i++) { ?>
+            <div
+                class="slide"
+                style="background-image:url(<?= ImageIgosja::resize($a_slide[$i]->image_id, 1600, 450); ?>);"
+                data-slidenumber="<?= $i; ?>"></div>
+        <?php } ?>
     </div>
     <div class="slideproduct-contents">
         <div class="slideproduct-wrap">
             <div class="slideproduct">
-                <div class="slideproduct-content ms-0">
-                    <div class="sp-name"><span>Моторизированный карниз для штор Power 571/2</span></div>
-                    <a href="javascript:;" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
-                </div>
-                <div class="slideproduct-content ms-1">
-                    <div class="sp-name"><span>Вертикальные жалюзи Mono 371/2</span></div>
-                    <a href="javascript:;" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
-                </div>
-                <div class="slideproduct-content ms-2">
-                    <div class="sp-name"><span>Боксовая тканевая ролета на пружине Rollbox 167</span></div>
-                    <a href="javascript:;" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
-                </div>
-                <div class="slideproduct-content ms-3">
-                    <div class="sp-name"><span>Карниз для тюля и шторы Modulo 205</span></div>
-                    <a href="javascript:;" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
-                </div>
-                <div class="slideproduct-content ms-4">
-                    <div class="sp-name"><span>Декоративная штукатурка Segui Il Tuo Istinto</span></div>
-                    <a href="javascript:;" class="sp-btn">ПОДРОБНЕЕ О ТОВАРЕ</a>
-                </div>
+                <?php for ($i = 0; $i < count($a_slide); $i++) { ?>
+                    <?php if (isset($a_slide[$i]->product->name)) { ?>
+                        <div class="slideproduct-content ms-<?= $i; ?>">
+                            <div class="sp-name"><span><?= $a_slide[$i]->product->name; ?></span></div>
+                            <?= CHtml::link(
+                                'ПОДРОБНЕЕ О ТОВАРЕ',
+                                array('product/view', 'id' => $a_slide[$i]->product->url),
+                                array('class' => 'sp-btn')
+                            ) ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -147,7 +130,7 @@
                     <span class="mn-heading">' . $item->name . '</span>
                     <span class="mn-date">' . date('H:i d.m.Y', $item->date) . '</span>',
                     array('blog/view', 'id' => $item->url),
-                    array('class' =>  'mn-item', 'title' => $item->name)
+                    array('class' => 'mn-item', 'title' => $item->name)
                 ); ?>
             <?php } ?>
         </div>
