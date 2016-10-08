@@ -337,12 +337,6 @@ class ProductController extends AController
         }
     }
 
-    public function getModel($search = '')
-    {
-        $model = new $this->model_name($search);
-        return $model;
-    }
-
     public function actionOption($id)
     {
         print '<div class="form-inline">'
@@ -356,5 +350,11 @@ class ProductController extends AController
             . CHtml::textField('option[' . $id . '][price]', '', array('class' => 'form-control'))
             . ' грн.</div>';
         exit;
+    }
+
+    public function getModel($search = '')
+    {
+        $model = new $this->model_name($search);
+        return $model;
     }
 }

@@ -33,8 +33,7 @@ class Controller extends CController
         }
         $this->a_currency = Currency::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
         $this->a_category = Category::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));
-        $this->a_popular = Product::model()->findAllByAttributes(
-            array('status' => 1),
+        $this->a_popular = ProductPopular::model()->findAll(
             array('limit' => 5, 'order' => 'RAND()')
         );
         $this->a_social = Social::model()->findAllByAttributes(array('status' => 1), array('order' => '`order`'));

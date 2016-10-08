@@ -7,28 +7,34 @@
                     <div class="pi-top" style="height: 334px;">
                         <?= CHtml::link(
                             '',
-                            array('product/view', 'id' => $item->url),
+                            array('product/view', 'id' => $item->product->url),
                             array(
                                 'class' => 'pi-img',
-                                'title' => $item->name,
-                                'style' => 'background-image: url(' . ImageIgosja::resize((isset($item->image[0]->image_id) ? $item->image[0]->image_id : 0), 280, 280) . ')',
+                                'title' => $item->product->name,
+                                'style' => 'background-image: url('
+                                    . ImageIgosja::resize(
+                                        (isset($item->product->image[0]->image_id)
+                                            ? $item->product->image[0]->image_id : 0),
+                                        280,
+                                        280
+                                    ) . ')',
                             )
                         ); ?>
                         <?= CHtml::link(
-                            $item->name,
-                            array('product/view', 'id' => $item->url),
-                            array('class' => 'pi-name', 'title' => $item->name)
+                            $item->product->name,
+                            array('product/view', 'id' => $item->product->url),
+                            array('class' => 'pi-name', 'title' => $item->product->name)
                         ); ?>
                         <span class="pi-price">
-                            <span>от </span> <?= HelperIgosja::formatPrice($item->price, $this->currency); ?>
+                            <span>от </span> <?= HelperIgosja::formatPrice($item->product->price, $this->currency); ?>
                         </span>
                     </div>
                     <div class="clearfix">
                         <a
                             href="javascript:;"
-                            data-product="<?= $item->id; ?>"
-                            data-name="<?= HelperIgosja::productName($item); ?>"
-                            data-price="<?= HelperIgosja::productPrice($item); ?>"
+                            data-product="<?= $item->product->id; ?>"
+                            data-name="<?= HelperIgosja::productName($item->product); ?>"
+                            data-price="<?= HelperIgosja::productPrice($item->product); ?>"
                             class="add-to-cart pi-cart"
                             title="В корзину"
                         >
@@ -42,7 +48,7 @@
                         <table>
                             <tr>
                                 <td>Артикул:</td>
-                                <td><?= $item->sku; ?></td>
+                                <td><?= $item->product->sku; ?></td>
                             </tr>
                             <tr>
                                 <td>Тип товара:</td>

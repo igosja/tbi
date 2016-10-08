@@ -80,6 +80,9 @@
                                         <?= CHtml::link('Товары', array('product/index')); ?>
                                     </li>
                                     <li>
+                                        <?= CHtml::link('Популярные товары', array('popular/index')); ?>
+                                    </li>
+                                    <li>
                                         <?= CHtml::link('Возможные цвета', array('color/index')); ?>
                                     </li>
                                     <li>
