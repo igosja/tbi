@@ -147,8 +147,10 @@ class ProductController extends AController
     public function actionImage($id)
     {
         $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        if (isset($o_image->url)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            }
         }
         $o_image->delete();
         $this->redirect($_SERVER['HTTP_REFERER']);
@@ -157,8 +159,10 @@ class ProductController extends AController
     public function actionIncision($id)
     {
         $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        if (isset($o_image->url)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            }
         }
         $o_image->delete();
         $this->redirect($_SERVER['HTTP_REFERER']);
@@ -167,8 +171,10 @@ class ProductController extends AController
     public function actionSheet($id)
     {
         $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        if (isset($o_image->url)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            }
         }
         $o_image->delete();
         $this->redirect($_SERVER['HTTP_REFERER']);
@@ -177,8 +183,10 @@ class ProductController extends AController
     public function actionCatalog($id)
     {
         $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        if (isset($o_image->url)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            }
         }
         $o_image->delete();
         $this->redirect($_SERVER['HTTP_REFERER']);
@@ -198,7 +206,7 @@ class ProductController extends AController
                     $o_image = new Image();
                     $o_image->url = $image_url;
                     $o_image->save();
-                        $image_id = $o_image->id;
+                    $image_id = $o_image->id;
                     $o_product_image = new ProductImage();
                     $o_product_image->image_id = $image_id;
                     $o_product_image->product_id = $id;

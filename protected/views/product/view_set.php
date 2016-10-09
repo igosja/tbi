@@ -83,30 +83,32 @@
                                     </thead>
                                     <tbody>
                                     <?php foreach ($o_product->set as $item) { ?>
-                                        <tr>
-                                            <td class="align-center">
-                                                <?= CHtml::link(
-                                                    '<img src="' . ImageIgosja::resize(
-                                                        (isset($item->product->image[0]->image_id) ? $item->product->image[0]->image_id : 0),
-                                                        31,
-                                                        31
-                                                    ) . '">',
-                                                    array('product/view', 'id' => $item->product->url),
-                                                    array('title' => $item->product->name, 'target' => '_blank')
-                                                ) ?>
-                                            </td>
-                                            <td>
-                                                <?= CHtml::link(
-                                                    $item->product->name,
-                                                    array('product/view', 'id' => $item->product->url),
-                                                    array('title' => $item->product->name, 'target' => '_blank')
-                                                ) ?>
-                                            </td>
-                                            <td>
-                                                <?= HelperIgosja::formatPrice($item->product->price, $this->currency); ?>
-                                            </td>
-                                            <td class="align-center">1</td>
-                                        </tr>
+                                        <?php if (isset($item->product->url)) { ?>
+                                            <tr>
+                                                <td class="align-center">
+                                                    <?= CHtml::link(
+                                                        '<img src="' . ImageIgosja::resize(
+                                                            (isset($item->product->image[0]->image_id) ? $item->product->image[0]->image_id : 0),
+                                                            31,
+                                                            31
+                                                        ) . '">',
+                                                        array('product/view', 'id' => $item->product->url),
+                                                        array('title' => $item->product->name, 'target' => '_blank')
+                                                    ) ?>
+                                                </td>
+                                                <td>
+                                                    <?= CHtml::link(
+                                                        $item->product->name,
+                                                        array('product/view', 'id' => $item->product->url),
+                                                        array('title' => $item->product->name, 'target' => '_blank')
+                                                    ) ?>
+                                                </td>
+                                                <td>
+                                                    <?= HelperIgosja::formatPrice($item->product->price, $this->currency); ?>
+                                                </td>
+                                                <td class="align-center">1</td>
+                                            </tr>
+                                        <?php } ?>
                                     <?php } ?>
                                     </tbody>
                                 </table>
@@ -238,7 +240,8 @@
                         <div class="samples-grid clearfix">
                             <a href="/shop/effekt-travertina-s-serebristym-otlivom/"
                                title="Эффект травертина с серебристым отливом">
-                                <div style="background-image:url(http://tbi.ua/wa-data/public/shop/products/20/07/720/images/1525/1525.280x280.jpg)"></div>
+                                <div
+                                    style="background-image:url(http://tbi.ua/wa-data/public/shop/products/20/07/720/images/1525/1525.280x280.jpg)"></div>
                                 <span>Эффект травертина с серебристым отливом</span>
                             </a>
                             <a href="/shop/effekt-travertina-v-stile-granzh/"

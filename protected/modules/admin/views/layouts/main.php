@@ -122,6 +122,9 @@
                         <a href="javascript:;">Заказы<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
+                                <?= CHtml::link('Заказы', array('order/index')); ?>
+                            </li>
+                            <li>
                                 <?= CHtml::link('SEO-теги', array('checkoutpage/index')); ?>
                             </li>
                             <li>
@@ -272,6 +275,7 @@
         <?= $content; ?>
     </div>
 </div>
+<script src="/js/highcharts.js"></script>
 <script src="/js/bootstrap-toggle.min.js"></script>
 <script src="/js/rowsorter.js"></script>
 <script src="/js/admin.min.js"></script>

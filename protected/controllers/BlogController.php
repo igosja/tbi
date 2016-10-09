@@ -62,7 +62,13 @@ class BlogController extends Controller
         $this->setSEO($o_blog);
         $this->breadcrumbs = array(
             'Блог' => array('blog/index'),
-            $o_blog->blogcategory->name => array('blog/index', 'id' => $o_blog->blogcategory->url),
+        );
+        if (isset($o_blog->blogcategory->url)) {
+            $this->breadcrumbs = array(
+                $o_blog->blogcategory->name => array('blog/index', 'id' => $o_blog->blogcategory->url),
+            );
+        }
+        $this->breadcrumbs = array(
             CHtml::decode($o_blog->name)
         );
         $this->render('view', array(

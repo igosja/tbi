@@ -177,7 +177,7 @@
                                 </a>
                             </li>
                         <?php } ?>
-                        <?php if (isset($o_product->catalog->url)) { ?>
+                        <?php if (isset($o_product->sheet->url)) { ?>
                             <li class='tab'>
                                 <a
                                     href="#technical-pdf"

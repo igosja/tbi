@@ -2,6 +2,9 @@
 
 class Order extends CActiveRecord
 {
+    public $day;
+    public $month;
+
     public function tableName()
     {
         return 'order';
@@ -18,6 +21,26 @@ class Order extends CActiveRecord
         );
     }
 
+    public function attributeLabels()
+    {
+        return array(
+            'id' => 'ID',
+            'address' => 'Адрес доставки',
+            'date' => 'Время заказа',
+            'email' => 'Email',
+            'message' => 'Комментарий клиента',
+            'name' => 'Имя',
+            'payment' => 'Способ оплаты',
+            'phone' => 'Телефон',
+            'product' => 'Товары',
+            'price' => 'Стоимость, грн',
+            'shipping' => 'Способ доставки',
+            'status_id' => 'Статус',
+            'surname' => 'Фамилия',
+            'user_id' => 'Профиль клиента',
+        );
+    }
+
     public function relations()
     {
         return array(
@@ -25,6 +48,17 @@ class Order extends CActiveRecord
             'status' => array(self::HAS_ONE, 'Status', array('id' => 'status_id')),
             'user' => array(self::HAS_ONE, 'User', array('id' => 'user_id')),
         );
+    }
+
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('status_id', $this->status_id);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
     protected function beforeSave()

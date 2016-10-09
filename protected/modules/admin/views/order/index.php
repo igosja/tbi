@@ -2,19 +2,22 @@
     <div class="col-lg-12">
         <h1 class="text-center"><?= $this->h1; ?></h1>
         <ul class="list-inline preview-links text-center">
-            <li>
-                <?= CHtml::link('Создать', array('update'), array('class' => 'btn btn-default')); ?>
-            </li>
+            <?php foreach ($a_status as $item) { ?>
+                <li>
+                    <?= CHtml::link(
+                        $item->name,
+                        array('index', 'id' => $item->id),
+                        array('class' => 'btn ' . ($status_id == $item->id ? 'btn-primary' : 'btn-default'))
+                    ); ?>
+                </li>
+            <?php } ?>
         </ul>
     </div>
 </div>
-<?= $this->renderPartial('/include/grid-view-text'); ?>
 <div class="col-lg-12">
     <?php $this->widget('zii.widgets.grid.CGridView', array(
-        'afterAjaxUpdate' => 'function(id, data){CGridViewAfterAjax()}',
         'dataProvider' => $model->search(),
-        'filter' => $model,
-        'itemsCssClass' => 'table table-striped table-bordered sort-table',
+        'itemsCssClass' => 'table table-striped table-bordered',
         'htmlOptions' => array('data-controller' => $this->uniqueid),
         'pager' => array(
             'header' => '',
@@ -32,37 +35,34 @@
             'htmlOptions' => array('class' => 'pagination'),
         ),
         'pagerCssClass' => 'pager-css-class',
-        'rowCssClass' => array('sorter'),
-        'rowHtmlOptionsExpression' => 'array("data-id" => $data->id, "data-controller" => "' . $this->uniqueid . '")',
         'summaryCssClass' => 'text-left',
         'summaryText' => 'Показаны записи <strong>{start}</strong>-<strong>{end}</strong> из <strong>{count}</strong>.',
         'columns' => array(
             array(
-                'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
                 'name' => 'id',
+                'headerHtmlOptions' => array('class' => 'col-lg-1, col-md-1, col-sm-1, col-xs-1'),
             ),
             array(
-                'name' => 'name',
-            ),
-            array(
-                'filter' => false,
-                'name' => 'image_id',
+                'name' => 'date',
                 'type' => 'raw',
                 'value' => function ($data) {
-                    if (isset($data->image->url)) {
-                        return
-                            '<div class="col-lg-6">
-                                <a href="javascript:;" class="thumbnail">
-                                    <img src="' . $data->image->url . '"/>
-                                </a>
-                            </div>';
-                    }
-                    return '';
+                    return date('H:i d.m.Y', $data->date);
+                }
+            ),
+            array(
+                'name' => 'price',
+            ),
+            array(
+                'name' => 'status_id',
+                'type' => 'raw',
+                'value' => function ($data) {
+                    return $data->status->name;
                 }
             ),
             array(
                 'class' => 'CButtonColumn',
                 'headerHtmlOptions' => array('class' => 'col-lg-1'),
+                'template' => '{view} {update}'
             ),
         ),
     )); ?>

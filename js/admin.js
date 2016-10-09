@@ -42,6 +42,43 @@ $(document).ready(function ($) {
     $('#Product_view_id').on('change', function () {
         hide_show_product_form();
     });
+
+    var index_order_chart = $('#index-order-chart');
+    if (index_order_chart.length) {
+        $('#index-order-chart').highcharts({
+            title: {
+                text: 'Заказы за последний месяц',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: order_date
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'Заказы'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ' грн.'
+            },
+            legend: {
+                enabled: false
+            },
+            series: [{
+                name: 'Суммы заказов',
+                data: order_summ
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+    }
 });
 
 function status_change() {

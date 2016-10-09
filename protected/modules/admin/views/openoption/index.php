@@ -49,12 +49,15 @@
                 'name' => 'image_id',
                 'type' => 'raw',
                 'value' => function ($data) {
-                    return
-                        '<div class="col-lg-6">
-                        <a href="javascript:;" class="thumbnail">
-                            <img src="' . $data->image->url . '"/>
-                        </a>
-                    </div>';
+                    if (isset($data->image->url)) {
+                        return
+                            '<div class="col-lg-6">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="' . $data->image->url . '"/>
+                                </a>
+                            </div>';
+                    }
+                    return '';
                 }
             ),
             array(

@@ -49,8 +49,10 @@ class Slide extends CActiveRecord
         if (parent::beforeDelete()) {
             if (0 < $this->image_id) {
                 $o_image = Image::model()->findByPk($this->image_id);
-                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+                if (isset($o_image->url)) {
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                        unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+                    }
                 }
                 $o_image->delete();
             }

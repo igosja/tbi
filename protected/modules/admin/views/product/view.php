@@ -208,9 +208,11 @@
                     <?php foreach ($model->color as $item) { ?>
                         <div class="col-lg-2 text-center">
                             <?= $item->color->name; ?>
-                            <a href="javascript:;" class="thumbnail">
-                                <img src="<?= $item->color->image->url; ?>"/>
-                            </a>
+                            <?php if (isset($model->color->image->url)) { ?>
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="<?= $item->color->image->url; ?>"/>
+                                </a>
+                            <?php } ?>
                         </div>
                     <?php } ?>
                 </td>
@@ -236,9 +238,11 @@
                     <?php foreach ($model->openoption as $item) { ?>
                         <div class="col-lg-2 text-center">
                             <?= $item->openoption->name; ?>
-                            <a href="javascript:;" class="thumbnail">
-                                <img src="<?= $item->openoption->image->url; ?>"/>
-                            </a>
+                            <?php if (isset($model->openoption->image->url)) { ?>
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="<?= $item->openoption->image->url; ?>"/>
+                                </a>
+                            <?php } ?>
                         </div>
                     <?php } ?>
                 </td>

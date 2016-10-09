@@ -99,12 +99,42 @@ class Product extends CActiveRecord
         if (parent::beforeDelete()) {
             $a_image = ProductImage::model()->findAllByAttributes(array('product_id' => $this->id));
             foreach ($a_image as $item) {
-                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $item->url)) {
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $item->url);
+                if (isset($item->url)) {
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $item->url)) {
+                        unlink($_SERVER['DOCUMENT_ROOT'] . $item->url);
+                    }
                 }
                 $item->delete();
             }
+            $o_catalog = Image::model()->findByPk($this->catalog_id);
+            if (isset($o_catalog->url)) {
+                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_catalog->url)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_catalog->url);
+                }
+            }
+            $o_catalog->delete();
+            $o_incision = Image::model()->findByPk($this->incision_id);
+            if (isset($o_incision->url)) {
+                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_incision->url)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_incision->url);
+                }
+            }
+            $o_incision->delete();
+            $o_sheet = Image::model()->findByPk($this->sheet_id);
+            if (isset($o_sheet->url)) {
+                if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_sheet->url)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . $o_sheet->url);
+                }
+            }
+            $o_sheet->delete();
+            ProductApplication::model()->deleteAllByAttributes(array('product_id' => $this->id));
+            ProductColor::model()->deleteAllByAttributes(array('product_id' => $this->id));
+            ProductOpenOption::model()->deleteAllByAttributes(array('product_id' => $this->id));
             ProductOption::model()->deleteAllByAttributes(array('product_id' => $this->id));
+            ProductPopular::model()->deleteAllByAttributes(array('product_id' => $this->id));
+            ProductSet::model()->deleteAllByAttributes(array('parent_id' => $this->id));
+            ProductSet::model()->deleteAllByAttributes(array('child_id' => $this->id));
+            Review::model()->deleteAllByAttributes(array('product_id' => $this->id));
         }
         return true;
     }

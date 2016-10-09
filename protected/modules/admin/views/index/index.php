@@ -105,3 +105,19 @@
         </div>
     <?php } ?>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> График заказов
+            </div>
+            <div class="panel-body">
+                <div id="index-order-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var order_date = [<?= $order_date; ?>];
+    var order_summ = [<?= $order_summ; ?>];
+</script>

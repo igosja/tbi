@@ -12,7 +12,13 @@ class ProductController extends Controller
         $this->setSEO($o_product);
         $this->breadcrumbs = array(
             'Наши товары' => array('shop/index'),
-            $o_product->category->name => array('category/view', 'id' => $o_product->category->url),
+        );
+        if (isset($o_product->category->url)) {
+            $this->breadcrumbs = array(
+                $o_product->category->name => array('category/view', 'id' => $o_product->category->url),
+            );
+        }
+        $this->breadcrumbs = array(
             CHtml::decode($o_product->name)
         );
         $this->render('view_' . $o_product->view->view, array(

@@ -95,8 +95,10 @@ class BrandController extends AController
     public function actionImage($id)
     {
         $o_image = Image::model()->findByPk($id);
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
-            unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+        if (isset($o_image->url)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $o_image->url)) {
+                unlink($_SERVER['DOCUMENT_ROOT'] . $o_image->url);
+            }
         }
         $o_image->delete();
         $this->redirect($_SERVER['HTTP_REFERER']);
